@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "76205652734",
+    "project_id": "dermair-64f04",
+    "storage_bucket": "dermair-64f04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76205652734:android:3727b73c09f1e0d55883af",
+        "android_client_info": {
+          "package_name": "com.dermair.dermairapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76205652734-me4ok2i67rcq9o90v558od20ofou65ju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBqmRMAVeMQPczzz5sFtRUWTbp2PU-Y7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "76205652734-me4ok2i67rcq9o90v558od20ofou65ju.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76205652734:android:02fb3c56bd57357e5883af",
+        "android_client_info": {
+          "package_name": "com.example.coen_elec_390_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76205652734-me4ok2i67rcq9o90v558od20ofou65ju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBqmRMAVeMQPczzz5sFtRUWTbp2PU-Y7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "76205652734-me4ok2i67rcq9o90v558od20ofou65ju.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
