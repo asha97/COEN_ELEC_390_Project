@@ -12,7 +12,10 @@
         android:theme="@style/Theme.COEN_ELEC_390_Project"
         tools:targetApi="31">
         <activity
-            android:name=".GeneralSettings"
+            android:name=".SignUpPage"
+            android:exported="false" />
+        <activity
+            android:name=".ConnectionSettings"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
