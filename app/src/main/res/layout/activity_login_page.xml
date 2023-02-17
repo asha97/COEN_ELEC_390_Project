@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/teal_blue"
+    tools:context=".LoginPage">
+
+    <TextView
+        android:id="@+id/emailStatText"
+        android:layout_width="47dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="255dp"
+        android:layout_marginBottom="29dp"
+        android:text="E-mail"
+        app:layout_constraintBottom_toTopOf="@+id/signUpEmail"
+        app:layout_constraintStart_toStartOf="@+id/signUpEmail"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/passStatText"
+        android:layout_width="78dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="13dp"
+        android:text="Password"
+        app:layout_constraintBottom_toTopOf="@+id/signUpPassword"
+        app:layout_constraintEnd_toEndOf="@+id/signUpPassword"
+        app:layout_constraintStart_toStartOf="@+id/signUpPassword"
+        app:layout_constraintTop_toBottomOf="@+id/signUpEmail" />
+
+    <EditText
+        android:id="@+id/signUpPassword"
+        android:layout_width="219dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="236dp"
+        android:ems="10"
+        android:hint="Enter Password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passStatText" />
+
+    <EditText
+        android:id="@+id/signUpEmail"
+        android:layout_width="216dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="Enter E-mail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/passStatText"
+        app:layout_constraintEnd_toEndOf="@+id/signUpPassword"
+        app:layout_constraintStart_toStartOf="@+id/signUpPassword"
+        app:layout_constraintTop_toBottomOf="@+id/emailStatText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
