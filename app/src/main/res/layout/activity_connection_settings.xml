@@ -5,26 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/teal_blue"
-    tools:context=".MainActivity">
+    tools:context=".GeneralSettings">
 
     <Button
-        android:id="@+id/signUpButtonMain"
+        android:id="@+id/connectBluetoothButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Sign Up"
+        android:layout_marginTop="360dp"
+        android:text="Connect to Bluetooth"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/loginButtonHome"
+        android:id="@+id/scanEnvironBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="15dp"
-        android:text="Login"
-        app:layout_constraintEnd_toStartOf="@+id/signUpButtonMain"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:layout_marginBottom="176dp"
+        android:text="Scan the Environment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
