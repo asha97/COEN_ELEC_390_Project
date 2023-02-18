@@ -7,53 +7,75 @@
     android:background="@color/teal_blue"
     tools:context=".LoginPage">
 
-    <TextView
-        android:id="@+id/emailStatText"
-        android:layout_width="47dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="69dp"
-        android:layout_marginTop="255dp"
-        android:layout_marginBottom="29dp"
-        android:text="E-mail"
-        app:layout_constraintBottom_toTopOf="@+id/signUpEmail"
-        app:layout_constraintStart_toStartOf="@+id/signUpEmail"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/passStatText"
-        android:layout_width="78dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="13dp"
-        android:text="Password"
-        app:layout_constraintBottom_toTopOf="@+id/signUpPassword"
-        app:layout_constraintEnd_toEndOf="@+id/signUpPassword"
-        app:layout_constraintStart_toStartOf="@+id/signUpPassword"
-        app:layout_constraintTop_toBottomOf="@+id/signUpEmail" />
-
     <EditText
-        android:id="@+id/signUpPassword"
-        android:layout_width="219dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="236dp"
+        android:id="@+id/userEnterEmail"
+        android:layout_width="317dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="389dp"
         android:ems="10"
-        android:hint="Enter Password"
-        android:inputType="textPassword"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passStatText" />
+        app:layout_constraintTop_toBottomOf="@+id/registerNow" />
 
     <EditText
-        android:id="@+id/signUpEmail"
-        android:layout_width="216dp"
-        android:layout_height="57dp"
-        android:layout_marginBottom="16dp"
+        android:id="@+id/userEnterPassword"
+        android:layout_width="317dp"
+        android:layout_height="73dp"
+        android:layout_marginBottom="92dp"
         android:ems="10"
-        android:hint="Enter E-mail"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/passStatText"
-        app:layout_constraintEnd_toEndOf="@+id/signUpPassword"
-        app:layout_constraintStart_toStartOf="@+id/signUpPassword"
-        app:layout_constraintTop_toBottomOf="@+id/emailStatText" />
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/loginbtnPage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/lungsLogo"
+        android:layout_width="179dp"
+        android:layout_height="120dp"
+        app:layout_constraintBottom_toTopOf="@+id/userEnterEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerNow"
+        app:srcCompat="@drawable/logo_lungs_no_bg" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/loginbtnPage"
+        android:layout_width="151dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="144dp"
+        android:backgroundTint="#004AAD"
+        android:text="Sign in"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/registerNow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="242dp"
+        android:gravity="center"
+        android:text="@string/click_to_register"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/userEnterEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
