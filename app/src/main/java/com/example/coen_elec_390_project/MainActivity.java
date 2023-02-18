@@ -8,7 +8,6 @@ import android.view.View;
 import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
-
     Button signUpBtn, loginBtn, homePageBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +17,12 @@ public class MainActivity extends AppCompatActivity {
         signUpBtn = findViewById(R.id.signUpButtonHome);
         loginBtn = findViewById(R.id.loginButtonHome);
         homePageBtn = findViewById(R.id.homePageBtn);
-
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public  void onClick(View v){
                 goToSignUp();
             }
         });
-
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public  void onClick(View v){
@@ -33,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         homePageBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public  void onClick(View v){
                 goToHome();
@@ -47,12 +44,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HomePage.class);
         startActivity(intent);
     }
-
     private void goToLogin(){
         Intent intent = new Intent(this, LoginPage.class);
         startActivity(intent);
     }
-
     private void goToSignUp(){
         Intent intent = new Intent(this, SignUpPage.class);
         startActivity(intent);

@@ -11,24 +11,24 @@
         android:id="@+id/signUpButtonHome"
         android:layout_width="112dp"
         android:layout_height="55dp"
-        android:layout_marginTop="604dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="88dp"
         android:backgroundTint="#004AAD"
         android:text="Sign Up"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/loginButtonHome"
         android:layout_width="112dp"
         android:layout_height="55dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="88dp"
         android:backgroundTint="#004AAD"
         android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/signUpButtonHome"
-        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintHorizontal_bias="0.915"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -38,14 +38,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.198"
+        app:layout_constraintVertical_bias="0.029"
         app:srcCompat="@drawable/dermair_removebg_preview" />
 
     <Button
         android:id="@+id/homePageBtn"
         android:layout_width="290dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="196dp"
+        android:layout_marginBottom="220dp"
         android:backgroundTint="#004AAD"
         android:text="Home Page"
         app:layout_constraintBottom_toBottomOf="parent"
