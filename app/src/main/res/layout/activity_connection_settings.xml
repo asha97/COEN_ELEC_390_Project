@@ -5,26 +5,87 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/teal_blue"
-    tools:context=".GeneralSettings">
+    tools:context=".ConnectionSettings">
+
+    <Button
+        android:id="@+id/scanEnvironBtn2"
+        android:layout_width="232dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="80dp"
+        android:backgroundTint="#004AAD"
+        android:text="Scan Environment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="364dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="20dp"
+        android:text="3. Scan for Air Quality"
+        app:layout_constraintBottom_toTopOf="@+id/scanEnvironBtn2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="364dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="8dp"
+        android:text="2. Scan for UV Radiation"
+        app:layout_constraintBottom_toTopOf="@+id/scanEnvironBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="364dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="12dp"
+        android:text="1. Connect to your watch"
+        app:layout_constraintBottom_toTopOf="@+id/connectBluetoothButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/connectBluetoothButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="360dp"
+        android:layout_width="232dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="36dp"
+        android:backgroundTint="#004AAD"
         android:text="Connect to Bluetooth"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/scanEnvironBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="176dp"
-        android:text="Scan the Environment"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="232dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#004AAD"
+        android:text="Scan UV Radiation"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="364dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="28dp"
+        android:text="To establish a bluetooth connection, please follow the steps below:"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.834" />
 </androidx.constraintlayout.widget.ConstraintLayout>
