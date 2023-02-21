@@ -32,7 +32,7 @@ public class HomePage extends AppCompatActivity {
         if (user == null){
             openLogin();
         } else {
-            greetingText.setText(user.getEmail());
+            greetingText.setText("Good day, " + user.getEmail());
         }
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
