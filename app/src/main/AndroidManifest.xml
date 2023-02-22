@@ -14,9 +14,15 @@
         android:theme="@style/Theme.COEN_ELEC_390_Project"
         tools:targetApi="31">
         <activity
-            android:name=".UserProfileSettings"
-            android:theme="@style/Theme.Material3.Light"
+            android:name=".airQualityAnalytics"
             android:exported="false" />
+        <activity
+            android:name=".uvAnalytics"
+            android:exported="false" />
+        <activity
+            android:name=".UserProfileSettings"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light" />
         <activity
             android:name=".HomePage"
             android:exported="false"

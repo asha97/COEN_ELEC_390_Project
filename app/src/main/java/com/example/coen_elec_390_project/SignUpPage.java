@@ -21,15 +21,13 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpPage extends AppCompatActivity {
 
-    EditText editTextName, editTextDOB, editTextCity, editTextEmail, editTextPassword;
-    Button regButton;
+    EditText editTextEmail, editTextPassword;
+    Button regButton, clickingTheLogin;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
     TextView textView;
 
-
     //check if the person is already logged in
-
     @Override
     public void onStart() {
         super.onStart();
@@ -47,29 +45,22 @@ public class SignUpPage extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up_page);
         mAuth = FirebaseAuth.getInstance();
 
-        /*
-        editTextName = findViewById(R.id.userNameEnter);
-        editTextDOB = findViewById(R.id.userDOB);
-        editTextCity = findViewById(R.id.userCity);
-        */
-
         editTextEmail = findViewById(R.id.userEmail);
         editTextPassword = findViewById(R.id.userPassword);
         regButton = findViewById(R.id.saveSignUp);
         progressBar = findViewById(R.id.progressBar);
-        textView = findViewById(R.id.loginNow);
+        clickingTheLogin = findViewById(R.id.clickLogin);
 
-        textView.setOnClickListener(new View.OnClickListener() {
+        //if they click the login page, they are going to be prompted to go to the login page
+        clickingTheLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LoginPage.class);
                 startActivity(intent);
                 finish();
-
             }
 
         });
-
 
         regButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -77,10 +68,7 @@ public class SignUpPage extends AppCompatActivity {
                 //we want to see the progression of the sign up
                 progressBar.setVisibility(View.VISIBLE);
 
-                String name, dob, city, email, password;
-                name = String.valueOf(editTextName.getText());
-                dob = String.valueOf(editTextDOB.getText());
-                city = String.valueOf(editTextCity.getText());
+                String email, password;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
 
@@ -95,7 +83,7 @@ public class SignUpPage extends AppCompatActivity {
 
                 //create the user
                 mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        .addOnCompleteListener(SignUpPage.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 //set the visibility of the progress bar to gone
@@ -115,7 +103,6 @@ public class SignUpPage extends AppCompatActivity {
                         });
             }
         });
-
     }
 
     //open the home page
@@ -124,7 +111,6 @@ public class SignUpPage extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
     public void openLogin() {
         Intent intent = new Intent(getApplicationContext(), LoginPage.class);
         startActivity(intent);
