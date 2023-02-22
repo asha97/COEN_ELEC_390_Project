@@ -93,7 +93,7 @@ public class SignUpPage extends AppCompatActivity {
                                     // If sign in succeeds, display a message to the user.
                                     Toast.makeText(SignUpPage.this, "Sign up successful.",
                                             Toast.LENGTH_SHORT).show();
-                                    openLogin();
+                                    openUserSettings();
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Toast.makeText(SignUpPage.this, "Authentication failed.",
@@ -108,6 +108,13 @@ public class SignUpPage extends AppCompatActivity {
     //open the home page
     public void openHomePage() {
         Intent intent = new Intent(getApplicationContext(), HomePage.class);
+        startActivity(intent);
+        finish();
+    }
+
+    //open the user profile settings activity
+    public void openUserSettings() {
+        Intent intent = new Intent(getApplicationContext(), UserProfileSettings.class);
         startActivity(intent);
         finish();
     }
