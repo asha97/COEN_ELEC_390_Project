@@ -13,6 +13,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="106dp"
         android:backgroundTint="#004AAD"
+        android:fontFamily="@font/montserratt"
         android:text="Update Your Profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
