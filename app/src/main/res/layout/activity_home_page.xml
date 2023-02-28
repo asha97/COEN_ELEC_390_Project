@@ -7,28 +7,120 @@
     android:background="@color/teal_blue"
     tools:context=".HomePage">
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profile_picture"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ImageView.Circle"
+        app:srcCompat="@drawable/profile_picture" />
+
+    <ImageView
+        android:id="@+id/edit_profile_picture_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/pencil_icon"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/profile_picture"
+        app:layout_constraintEnd_toEndOf="@id/profile_picture"
+        app:tint="@color/white" />
+
     <TextView
         android:id="@+id/userDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Good day, User!"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/montserratt"
-        android:textSize="30sp"
+        android:text="Good day, User!"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_picture" />
 
     <Button
         android:id="@+id/logoutBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="68dp"
-        android:fontFamily="@font/montserratt"
+        android:layout_width="126dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="48dp"
         android:backgroundTint="#004AAD"
+        android:fontFamily="@font/montserratt"
         android:text="Logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="419dp"
+        android:layout_height="498dp"
+        android:background="@drawable/bottom_background_home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TableLayout
+            android:layout_width="407dp"
+            android:layout_height="136dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TableRow
+                android:layout_width="122dp"
+                android:layout_height="122dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="110dp">
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/homeProfile"
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    app:srcCompat="@drawable/lightblue_circle" />
+
+                <ImageView
+                    android:id="@+id/homeConnectionSetting"
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="5dp"
+                    app:srcCompat="@drawable/lightblue_circle" />
+
+                <ImageView
+                    android:id="@+id/homeInfo"
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    app:srcCompat="@drawable/lightblue_circle" />
+            </TableRow>
+
+        </TableLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
