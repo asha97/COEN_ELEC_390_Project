@@ -66,80 +66,23 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TableLayout
-            android:layout_width="407dp"
-            android:layout_height="136dp"
-            android:layout_marginTop="28dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TableRow
-                android:layout_width="122dp"
-                android:layout_height="122dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="110dp">
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/homeProfile"
-                    android:layout_width="108dp"
-                    android:layout_height="108dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="5dp"
-                    app:srcCompat="@drawable/lightblue_circle" />
-
-                <ImageView
-                    android:id="@+id/homeConnectionSetting"
-                    android:layout_width="108dp"
-                    android:layout_height="108dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="5dp"
-                    app:srcCompat="@drawable/lightblue_circle" />
-
-                <ImageView
-                    android:id="@+id/homeInfo"
-                    android:layout_width="108dp"
-                    android:layout_height="108dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="5dp"
-                    app:srcCompat="@drawable/lightblue_circle" />
-            </TableRow>
-
-        </TableLayout>
-
         <ImageView
             android:id="@+id/imageView22"
-            android:layout_width="381dp"
-            android:layout_height="130dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="378dp"
+            android:layout_height="184dp"
+            android:layout_marginBottom="36dp"
             app:layout_constraintBottom_toTopOf="@+id/imageView27"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.421"
+            app:layout_constraintHorizontal_bias="0.39"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/white_rectangle" />
 
         <ImageView
             android:id="@+id/imageView24"
-            android:layout_width="180dp"
-            android:layout_height="135dp"
+            android:layout_width="187dp"
+            android:layout_height="156dp"
             android:layout_marginStart="16dp"
-            android:layout_marginBottom="28dp"
+            android:layout_marginBottom="52dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/white_rectangle" />
@@ -147,11 +90,11 @@
         <ImageView
             android:id="@+id/imageView27"
             android:layout_width="180dp"
-            android:layout_height="135dp"
-            android:layout_marginBottom="28dp"
+            android:layout_height="156dp"
+            android:layout_marginBottom="52dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.325"
+            app:layout_constraintHorizontal_bias="0.305"
             app:layout_constraintStart_toEndOf="@+id/imageView24"
             app:srcCompat="@drawable/white_rectangle" />
 
