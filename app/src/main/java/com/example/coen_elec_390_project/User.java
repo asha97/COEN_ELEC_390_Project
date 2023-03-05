@@ -11,7 +11,6 @@ public class User {
 
     //this is the email address that we are going to be getting from the login
     private String email_address;
-
     public User(String name, String DoB, String location, float height, float weight) {
         this.name = name;
         this.DoB = DoB;
@@ -19,7 +18,6 @@ public class User {
         this.height = height;
         this.weight = weight;
     }
-
     public void writeToFirebase() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference usersRef = database.getReference("users");

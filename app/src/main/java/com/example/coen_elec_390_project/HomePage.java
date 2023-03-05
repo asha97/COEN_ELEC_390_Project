@@ -10,12 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.google.firebase.auth.FirebaseUser;
-
-
 public class HomePage extends AppCompatActivity {
-
     FirebaseAuth auth;
-    Button logoutButton;
+    Button logoutButton, connectionSettings;
     TextView greetingText;
     FirebaseUser user;
     @Override
@@ -23,9 +20,11 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        logoutButton = findViewById(R.id.logoutBtn);
+        connectionSettings = findViewById(R.id.cxnButton);
+
         auth = FirebaseAuth.getInstance();
         greetingText = findViewById(R.id.userDetails);
-        logoutButton = findViewById(R.id.logoutBtn);
         user = auth.getCurrentUser(); //initialize the current user
 
         //if there is no user, then you are going to redirect the user to the sign up page
@@ -45,13 +44,28 @@ public class HomePage extends AppCompatActivity {
 
         });
 
+        connectionSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openConnectionSettings();
+            }
 
-
+        });
     }
 
-    //open the sign up page
+    public void openConnectionSettings() {
+        Intent intent = new Intent(getApplicationContext(), ConnectionSettings.class);
+        startActivity(intent);
+        finish();
+    }
     public void openLogin() {
         Intent intent = new Intent(getApplicationContext(), LoginPage.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void openAirQuality() {
+        Intent intent = new Intent(getApplicationContext(), airQualityAnalytics.class);
         startActivity(intent);
         finish();
     }
