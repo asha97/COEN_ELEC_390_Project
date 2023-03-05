@@ -9,10 +9,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ImageView;
 import com.google.firebase.auth.FirebaseUser;
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
     Button logoutButton, connectionSettings;
+
+    ImageView generalSettings;
     TextView greetingText;
     FirebaseUser user;
     @Override
@@ -22,6 +25,7 @@ public class HomePage extends AppCompatActivity {
 
         logoutButton = findViewById(R.id.logoutBtn);
         connectionSettings = findViewById(R.id.cxnButton);
+        generalSettings = findViewById(R.id.settingButton);
 
         auth = FirebaseAuth.getInstance();
         greetingText = findViewById(R.id.userDetails);
@@ -51,12 +55,18 @@ public class HomePage extends AppCompatActivity {
             }
 
         });
-    }
 
+        generalSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openProfileSettings();
+            }
+
+        });
+    }
     public void openConnectionSettings() {
         Intent intent = new Intent(getApplicationContext(), ConnectionSettings.class);
         startActivity(intent);
-        finish();
     }
     public void openLogin() {
         Intent intent = new Intent(getApplicationContext(), LoginPage.class);
@@ -64,9 +74,13 @@ public class HomePage extends AppCompatActivity {
         finish();
     }
 
+    public void openProfileSettings() {
+        Intent intent = new Intent(getApplicationContext(), UserProfileSettings.class);
+        startActivity(intent);
+    }
+
     public void openAirQuality() {
         Intent intent = new Intent(getApplicationContext(), airQualityAnalytics.class);
         startActivity(intent);
-        finish();
     }
 }
