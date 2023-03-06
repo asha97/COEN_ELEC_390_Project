@@ -108,6 +108,28 @@
         app:layout_constraintBottom_toTopOf="@+id/imageView22"
         app:layout_constraintEnd_toEndOf="parent" />
 
+        <ImageView
+            android:id="@+id/imageView22"
+            android:layout_width="378dp"
+            android:layout_height="184dp"
+            android:layout_marginBottom="36dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView27"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.39"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/white_rectangle"
+            android:onClick="goToAirQuality"/>
+
+        <ImageView
+            android:id="@+id/imageView24"
+            android:layout_width="187dp"
+            android:layout_height="156dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="52dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/white_rectangle" />
+
     <ImageView
         android:id="@+id/settingButton"
         android:layout_width="141dp"
