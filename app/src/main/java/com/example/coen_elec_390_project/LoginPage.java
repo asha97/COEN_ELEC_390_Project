@@ -21,10 +21,9 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginPage extends AppCompatActivity {
 
     EditText enterTextEmail, enterTextPassword;
-    Button loginButton;
+    Button loginButton, regButton;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
-    TextView textView;
 
     //check if the person is already logged in
 
@@ -50,9 +49,9 @@ public class LoginPage extends AppCompatActivity {
         enterTextPassword = findViewById(R.id.userEnterPassword);
         loginButton = findViewById(R.id.loginbtnPage);
         progressBar = findViewById(R.id.progressBar);
-        textView = findViewById(R.id.registerNow);
+        regButton = findViewById(R.id.registerButton);
 
-        textView.setOnClickListener(new View.OnClickListener() {
+        regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SignUpPage.class);

@@ -7,30 +7,47 @@
     android:background="@color/teal_blue"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_marginEnd="248dp"
+        android:layout_marginBottom="592dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/circle_purple3" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="576dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/circle_purple1" />
+
     <Button
         android:id="@+id/signUpButtonHome"
-        android:layout_width="112dp"
-        android:layout_height="55dp"
+        android:layout_width="134dp"
+        android:layout_height="57dp"
         android:layout_marginEnd="56dp"
-        android:fontFamily="@font/montserratt"
-        android:layout_marginBottom="88dp"
-        android:backgroundTint="#004AAD"
+        android:layout_marginBottom="224dp"
+        android:backgroundTint="#6C779F"
         android:text="Sign Up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/loginButtonHome"
-        android:layout_width="112dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="88dp"
-        android:backgroundTint="#004AAD"
-        android:fontFamily="@font/montserratt"
+        android:layout_width="134dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="224dp"
+        android:backgroundTint="#4F609B"
         android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/signUpButtonHome"
-        app:layout_constraintHorizontal_bias="0.915"
+        app:layout_constraintHorizontal_bias="0.747"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -47,9 +64,8 @@
         android:id="@+id/homePageBtn"
         android:layout_width="290dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="220dp"
-        android:backgroundTint="#004AAD"
-        android:fontFamily="@font/montserratt"
+        android:layout_marginBottom="296dp"
+        android:backgroundTint="#5D599B"
         android:text="Home Page"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
