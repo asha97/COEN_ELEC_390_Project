@@ -55,4 +55,8 @@ public class HomePage extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    public void goToAirQuality(View v){
+        startActivity(new Intent(HomePage.this, airQualityAnalytics.class));
+    }
 }

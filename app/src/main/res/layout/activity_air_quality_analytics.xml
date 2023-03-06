@@ -7,4 +7,12 @@
     android:background="@color/teal_blue"
     tools:context=".airQualityAnalytics">
 
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="385dp"
+        android:layout_height="702dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

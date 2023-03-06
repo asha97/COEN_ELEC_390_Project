@@ -75,7 +75,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.39"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/white_rectangle" />
+            app:srcCompat="@drawable/white_rectangle"
+            android:onClick="goToAirQuality"/>
 
         <ImageView
             android:id="@+id/imageView24"
