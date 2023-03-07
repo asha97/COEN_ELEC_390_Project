@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.view.MenuItem;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +25,9 @@ public class airQualityAnalytics extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_air_quality_analytics);
 
+        //this is going to be displaying the back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         listView = findViewById(R.id.listview);
 
         final ArrayList<String> list = new ArrayList<>();
@@ -38,7 +42,7 @@ public class airQualityAnalytics extends AppCompatActivity {
                 int i = 1;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
 
-                    String addData = i + ": " + snapshot.getValue().toString();
+                    String addData = "Metric #" + i + ": " + snapshot.getValue().toString();
                     list.add(addData);
                     i++;
                 }
@@ -50,5 +54,16 @@ public class airQualityAnalytics extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) { //go back to main activity
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
