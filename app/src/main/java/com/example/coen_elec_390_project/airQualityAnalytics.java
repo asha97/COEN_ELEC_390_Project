@@ -35,8 +35,12 @@ public class airQualityAnalytics extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 list.clear();
+                int i = 1;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    list.add(snapshot.getValue().toString());
+
+                    String addData = i + ": " + snapshot.getValue().toString();
+                    list.add(addData);
+                    i++;
                 }
                 adapter.notifyDataSetChanged();
             }

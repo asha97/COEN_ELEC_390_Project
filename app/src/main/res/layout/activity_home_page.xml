@@ -10,11 +10,11 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="373dp"
-        android:layout_height="373dp"
-        android:layout_marginEnd="96dp"
-        android:layout_marginBottom="392dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView24"
+        android:layout_width="337dp"
+        android:layout_height="317dp"
+        android:layout_marginEnd="108dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView22"
         app:layout_constraintEnd_toEndOf="@+id/logoutBtn"
         app:srcCompat="@drawable/circle_purple3" />
 
@@ -29,14 +29,13 @@
         app:srcCompat="@drawable/circle_purple1" />
 
     <ImageView
-        android:id="@+id/imageView27"
+        android:id="@+id/airQualitySegment"
         android:layout_width="179dp"
         android:layout_height="177dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.594"
-        app:layout_constraintStart_toEndOf="@+id/imageView24"
         app:srcCompat="@drawable/white_rectangle" />
 
     <ImageView
@@ -49,24 +48,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/white_rectangle" />
 
+
     <ImageView
         android:id="@+id/imageView22"
         android:layout_width="373dp"
         android:layout_height="232dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.605"
+        app:layout_constraintHorizontal_bias="0.684"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/white_rectangle" />
-
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profile_picture"
         android:layout_width="181dp"
         android:layout_height="139dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/userDetails"
         app:layout_constraintStart_toStartOf="parent"
         app:shapeAppearanceOverlay="@style/ImageView.Circle"
@@ -77,12 +76,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="36dp"
         android:text="Good day, User!"
-        android:textSize="25sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView22"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -100,35 +99,13 @@
         android:id="@+id/cxnButton"
         android:layout_width="149dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="60dp"
         android:backgroundTint="#4B5AA7"
         android:text="Connection Settings"
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView22"
         app:layout_constraintEnd_toEndOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView22"
-            android:layout_width="378dp"
-            android:layout_height="184dp"
-            android:layout_marginBottom="36dp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView27"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.39"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/white_rectangle"
-            android:onClick="goToAirQuality"/>
-
-        <ImageView
-            android:id="@+id/imageView24"
-            android:layout_width="187dp"
-            android:layout_height="156dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="52dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/white_rectangle" />
 
     <ImageView
         android:id="@+id/settingButton"

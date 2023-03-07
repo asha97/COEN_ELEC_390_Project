@@ -15,7 +15,7 @@ public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
     Button logoutButton, connectionSettings;
 
-    ImageView generalSettings;
+    ImageView generalSettings, airQualityBtn;
     TextView greetingText;
     FirebaseUser user;
     @Override
@@ -26,6 +26,7 @@ public class HomePage extends AppCompatActivity {
         logoutButton = findViewById(R.id.logoutBtn);
         connectionSettings = findViewById(R.id.cxnButton);
         generalSettings = findViewById(R.id.settingButton);
+        airQualityBtn = findViewById(R.id.airQualitySegment);
 
         auth = FirebaseAuth.getInstance();
         greetingText = findViewById(R.id.userDetails);
@@ -63,6 +64,15 @@ public class HomePage extends AppCompatActivity {
             }
 
         });
+
+        airQualityBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openAirQuality();
+            }
+
+        });
+
     }
     public void openConnectionSettings() {
         Intent intent = new Intent(getApplicationContext(), ConnectionSettings.class);
