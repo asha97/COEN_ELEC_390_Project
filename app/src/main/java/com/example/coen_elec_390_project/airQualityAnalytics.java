@@ -15,9 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Array;
 import java.util.ArrayList;
-
 public class airQualityAnalytics extends AppCompatActivity {
-
     private ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
