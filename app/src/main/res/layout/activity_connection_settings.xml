@@ -47,18 +47,18 @@
         android:layout_height="42dp"
         android:layout_marginBottom="12dp"
         android:text="1. Connect to your watch"
-        app:layout_constraintBottom_toTopOf="@+id/connectBluetoothButton"
+        app:layout_constraintBottom_toTopOf="@+id/connectWiFiButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/connectBluetoothButton"
+        android:id="@+id/connectWiFiButton"
         android:layout_width="232dp"
         android:layout_height="58dp"
         android:layout_marginBottom="36dp"
         android:backgroundTint="#004AAD"
-        android:text="Connect to Bluetooth"
+        android:text="Connect to WiFi"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
