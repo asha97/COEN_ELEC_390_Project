@@ -4,24 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
 
-public class ConnectionSettings extends AppCompatActivity {
-
-    protected Button connectWiFiBtn;
+public class tVOC_Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_connection_settings);
+        setContentView(R.layout.activity_tvoc);
 
         //this is going to be displaying the back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        connectWiFiBtn = findViewById(R.id.connectWiFiButton);
-
-
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) { //go back to main activity
@@ -34,4 +28,7 @@ public class ConnectionSettings extends AppCompatActivity {
         }
 
     }
+
+
+
 }
