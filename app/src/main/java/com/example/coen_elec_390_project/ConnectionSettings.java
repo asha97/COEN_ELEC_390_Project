@@ -23,9 +23,6 @@ public class ConnectionSettings extends AppCompatActivity {
 
     }
 
-
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) { //go back to main activity
         switch (item.getItemId()) {
