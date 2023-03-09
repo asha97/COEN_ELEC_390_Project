@@ -287,7 +287,7 @@ void loop(){
       Serial.println("REASON: " + fbdo.errorReason());
     }
 
-    if (Firebase.RTDB.setFloat(&fbdo, "CCS811_Sensor/elapsedTime(ms)", elapsedTime)){
+    if (Firebase.RTDB.setFloat(&fbdo, "elapsedTime(ms)", elapsedTime)){
       Serial.println("PASSED");
       Serial.print(elapsedTime);Serial.println(" ms");
       Serial.println("PATH: " + fbdo.dataPath());
