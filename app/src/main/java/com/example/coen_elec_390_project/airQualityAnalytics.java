@@ -30,7 +30,7 @@ public class airQualityAnalytics extends AppCompatActivity {
         final ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.list_data, list);
         listView.setAdapter(adapter);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Sensor");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("BME680_Sensor");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
