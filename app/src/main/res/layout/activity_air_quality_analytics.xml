@@ -42,6 +42,7 @@
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/bar_chart"
+        android:background="#B6C3EF"
         android:layout_width="408dp"
         android:layout_height="353dp"
         android:layout_marginBottom="16dp"
