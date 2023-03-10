@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginButtonHome);
         homePageBtn = findViewById(R.id.homePageBtn);
         signUpBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public  void onClick(View v){
                 goToSignUp();
