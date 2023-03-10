@@ -16,5 +16,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/purple_upper_background" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
