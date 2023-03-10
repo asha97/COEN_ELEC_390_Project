@@ -10,6 +10,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://jitpack.io" } // add this line
+
+
     }
 }
 rootProject.name = "COEN_ELEC_390_Project"
