@@ -72,6 +72,9 @@ public class airQualityAnalytics extends AppCompatActivity {
         barChart.setData(barData);
         barChart.invalidate();
 
+        //display into the box the right metrics
+        String [] nameMetric = {"Altitude (m)", "CO2 (ppm)", "Gas (KOhms)", "Humidity (%)", "Pressure (hPa)", "Temperature (*C)", "Elapsed Time (ms)", "tVOC (g*m^-3)" };
+
         // Attach a ValueEventListener to the Firebase database node to get the data
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -84,10 +87,13 @@ public class airQualityAnalytics extends AppCompatActivity {
                 int i = 0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     float value = Float.parseFloat(snapshot.getValue().toString());
-                    dataSet.addEntry(new BarEntry(i, value));
-                    String addData = "Metric #" + (i+1) + ": " + snapshot.getValue().toString();
-                    list.add(addData);
-                    i++;
+                    //not going to be displaying the elapsed time
+                    if (i !=6) {
+                        dataSet.addEntry(new BarEntry(i, value, nameMetric[i]));
+                        String addData = nameMetric[i] + ": " + snapshot.getValue().toString();
+                        list.add(addData);
+                        i++;
+                    }
                 }
 
                 // notification that data in chart has been updated
