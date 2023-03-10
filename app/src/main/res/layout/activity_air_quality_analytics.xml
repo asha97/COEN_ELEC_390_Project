@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8499b1"
+    android:background="#8B99DF"
     tools:context=".airQualityAnalytics">
 
     <ImageView
@@ -18,8 +18,8 @@
 
     <ListView
         android:id="@+id/listview"
-        android:layout_width="370dp"
-        android:layout_height="373dp"
+        android:layout_width="362dp"
+        android:layout_height="217dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_corners_list_view"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:text="Air Quality Analytics"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textColor="#FFFFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,6 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listview" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
