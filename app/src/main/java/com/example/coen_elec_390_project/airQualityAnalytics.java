@@ -36,17 +36,29 @@ import com.github.mikephil.charting.data.BarEntry;
 public class airQualityAnalytics extends AppCompatActivity {
     private BarChart barChart;
     private DatabaseReference reference;
+    private ListView listView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_air_quality_analytics);
 
-        // barchart from xml
+        //this is going to be displaying the back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        listView = findViewById(R.id.listview);
         barChart = findViewById(R.id.bar_chart);
 
         // fetch data from firebase
         reference = FirebaseDatabase.getInstance().getReference().child("Sensor");
+
+        //--------CREATION OF LIST OF DATA TO DISPLAY---------//
+        final ArrayList<String> list = new ArrayList<>();
+        final ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.list_data, list);
+        listView.setAdapter(adapter);
+
+        //--------CREATION OF BARCHART---------//
 
         // container for data
         BarDataSet dataSet = new BarDataSet(new ArrayList<BarEntry>(), "Sensor Data");
@@ -66,12 +78,15 @@ public class airQualityAnalytics extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // clear data to make sure there isnt anything else
                 dataSet.clear();
+                list.clear();
 
                 // looping in data
                 int i = 0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     float value = Float.parseFloat(snapshot.getValue().toString());
                     dataSet.addEntry(new BarEntry(i, value));
+                    String addData = "Metric #" + (i+1) + ": " + snapshot.getValue().toString();
+                    list.add(addData);
                     i++;
                 }
 
@@ -79,6 +94,9 @@ public class airQualityAnalytics extends AppCompatActivity {
                 barData.notifyDataChanged();
                 barChart.notifyDataSetChanged();
                 barChart.invalidate();
+                adapter.notifyDataSetChanged();
+
+
             }
 
             @Override
@@ -86,5 +104,24 @@ public class airQualityAnalytics extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) { //go back to main activity
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    public void startTVOC_Activity(String tVOC){
+        //intent to start the tVOC activity
+        Intent intent = new Intent(airQualityAnalytics.this, tVOC_Activity.class);
+        intent.putExtra("metric_tvoc", tVOC);
+        startActivity(intent);
     }
 }
