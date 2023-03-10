@@ -1,31 +1,32 @@
-/*
-  Rui Santos
-  Complete project details at our blog.
-    - ESP32: https://RandomNerdTutorials.com/esp32-firebase-realtime-database/
-    - ESP8266: https://RandomNerdTutorials.com/esp8266-nodemcu-firebase-realtime-database/
-  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files.
-  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-  Based in the RTDB Basic Example by Firebase-ESP-Client library by mobizt
-  https://github.com/mobizt/Firebase-ESP-Client/blob/main/examples/RTDB/Basic/Basic.ino
-*/
-
+//Time, WiFi and Firebase Libraries
+#include <time.h>
 #include <WiFi.h>
 #include <Firebase_ESP_Client.h>
-
 //Provide the token generation process info.
 #include "addons/TokenHelper.h"
 //Provide the RTDB payload printing info and other helper functions.
 #include "addons/RTDBHelper.h"
 
+
+//Adafruit BME680 Libraries
+#include <Wire.h>
+#include <SPI.h>
+#include <Adafruit_Sensor.h>
+#include "Adafruit_BME680.h"
+
+//Sparkfun CCS811 Libraries
+#include <Wire.h>
+#include "SparkFunCCS811.h" //Click here to get the library: http://librarymanager/All#SparkFun_CCS811
+
+
+
 // Insert your network credentials
 #define WIFI_SSID "O"
-#define WIFI_PASSWORD "papaya02"
+#define WIFI_PASSWORD "papaya00"
 
 
-//TEST FILE 2 KEY (NOT DERMAIR)
 // Insert Firebase project API Key
 #define API_KEY "AIzaSyDyBl0v4j8M0uSzvm7Lf37p9wADwBsJZy0"
-
 // Insert RTDB URLefine the RTDB URL */
 #define DATABASE_URL "https://test2-5494e-default-rtdb.firebaseio.com/" 
 
@@ -35,6 +36,7 @@ FirebaseData fbdo;
 FirebaseAuth auth;
 FirebaseConfig config;
 
+//Adafruit BME680 Variable Declarations
 unsigned long sendDataPrevMillis = 0;
 bool signupOK = false;
 float Temperature = 0.0;
@@ -43,6 +45,7 @@ float Humidity = 0.0;
 float Gas = 0.0;
 float AA = 0.0; //Approximate Altitude
 
+//Sparkfun CCS811 Variable Declarations
 float CO2 = 0.0;
 float tVOC = 0.0;
 float elapsedTime = 0.0;
@@ -50,15 +53,7 @@ float elapsedTime = 0.0;
 
 
 
-
-
-
-//Adafruit BME680 Libraries and Pins
-#include <Wire.h>
-#include <SPI.h>
-#include <Adafruit_Sensor.h>
-#include "Adafruit_BME680.h"
-
+//Adafruit BME680 Pin Definitions
 #define BME_SCK 13
 #define BME_MISO 12
 #define BME_MOSI 11
@@ -71,11 +66,7 @@ Adafruit_BME680 bme; // I2C
 //Adafruit_BME680 bme(BME_CS, BME_MOSI, BME_MISO,  BME_SCK);
 
 
-//Sparkfun CCS811 Libraries and Pins
-#include <Wire.h>
-
-#include "SparkFunCCS811.h" //Click here to get the library: http://librarymanager/All#SparkFun_CCS811
-
+//Sparkfun CCS811 Pin Definitions
 #define CCS811_ADDR 0x5B //Default I2C Address
 //#define CCS811_ADDR 0x5A //Alternate I2C Address
 
@@ -120,7 +111,7 @@ void setup(){
       ;
   }
 
-
+  //WiFi Protocols + Connection to Firebase
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   Serial.print("\n\n\nConnecting to Wi-Fi");
   while (WiFi.status() != WL_CONNECTED){
@@ -175,11 +166,7 @@ void loop(){
 
   }
 
-  
-  
-
-
-
+  //Repeatedly send data to firebase 
   if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 5000 || sendDataPrevMillis == 0)){
     sendDataPrevMillis = millis();
 
