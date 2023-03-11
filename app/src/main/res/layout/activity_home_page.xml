@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_blue"
+    android:background="#C5DEFF"
     tools:context=".HomePage">
 
 
@@ -12,10 +12,11 @@
         android:id="@+id/imageView5"
         android:layout_width="337dp"
         android:layout_height="317dp"
-        android:layout_marginEnd="112dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginBottom="464dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/logoutBtn"
-        app:srcCompat="@drawable/circle_purple3"
-        tools:layout_editor_absoluteY="-50dp" />
+        app:srcCompat="@drawable/circle_purple3" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -31,8 +32,8 @@
         android:id="@+id/imageView14"
         android:layout_width="98dp"
         android:layout_height="95dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/white_rectangle" />
@@ -41,10 +42,10 @@
         android:id="@+id/airQualitySegment"
         android:layout_width="98dp"
         android:layout_height="95dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView11"
-        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintHorizontal_bias="0.631"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/white_rectangle" />
 
@@ -52,8 +53,8 @@
         android:id="@+id/imageView11"
         android:layout_width="98dp"
         android:layout_height="95dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView14"
         app:srcCompat="@drawable/white_rectangle" />
@@ -74,8 +75,8 @@
         android:id="@+id/logoutBtn"
         android:layout_width="149dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="#4B5AA7"
         android:text="Logout"
         app:layout_constraintBottom_toTopOf="@+id/cxnButton"
@@ -86,15 +87,17 @@
         android:layout_width="149dp"
         android:layout_height="50dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="464dp"
         android:backgroundTint="#4B5AA7"
         android:text="Connection Settings"
         android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView14"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/logoutBtn"
-        tools:layout_editor_absoluteY="130dp" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/logoutBtn" />
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/airQualityData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/airQualitySegment"
@@ -104,7 +107,7 @@
         app:srcCompat="@drawable/chart_settings" />
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/userProfileAccess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/imageView11"
