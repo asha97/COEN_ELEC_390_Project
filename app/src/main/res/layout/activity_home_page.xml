@@ -12,11 +12,10 @@
         android:id="@+id/imageView5"
         android:layout_width="337dp"
         android:layout_height="317dp"
-        android:layout_marginEnd="108dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView22"
+        android:layout_marginEnd="112dp"
         app:layout_constraintEnd_toEndOf="@+id/logoutBtn"
-        app:srcCompat="@drawable/circle_purple3" />
+        app:srcCompat="@drawable/circle_purple3"
+        tools:layout_editor_absoluteY="-50dp" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -29,60 +28,47 @@
         app:srcCompat="@drawable/circle_purple1" />
 
     <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="98dp"
+        android:layout_height="95dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/white_rectangle" />
+
+    <ImageView
         android:id="@+id/airQualitySegment"
-        android:layout_width="179dp"
-        android:layout_height="177dp"
-        android:layout_marginEnd="12dp"
+        android:layout_width="98dp"
+        android:layout_height="95dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView11"
+        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/white_rectangle" />
 
     <ImageView
-        android:id="@+id/imageView24"
-        android:layout_width="179dp"
-        android:layout_height="177dp"
-        android:layout_marginStart="16dp"
+        android:id="@+id/imageView11"
+        android:layout_width="98dp"
+        android:layout_height="95dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView14"
         app:srcCompat="@drawable/white_rectangle" />
-
-
-    <ImageView
-        android:id="@+id/imageView22"
-        android:layout_width="373dp"
-        android:layout_height="232dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.684"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/white_rectangle" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/profile_picture"
-        android:layout_width="181dp"
-        android:layout_height="139dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/userDetails"
-        app:layout_constraintStart_toStartOf="parent"
-        app:shapeAppearanceOverlay="@style/ImageView.Circle"
-        app:srcCompat="@drawable/profile_picture" />
 
     <TextView
         android:id="@+id/userDetails"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginBottom="36dp"
+        android:layout_width="263dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:text="Good day, User!"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView22"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.128"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/logoutBtn"
@@ -100,22 +86,42 @@
         android:layout_width="149dp"
         android:layout_height="50dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="60dp"
         android:backgroundTint="#4B5AA7"
         android:text="Connection Settings"
         android:textSize="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView22"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/logoutBtn"
+        tools:layout_editor_absoluteY="130dp" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/airQualitySegment"
+        app:layout_constraintEnd_toEndOf="@+id/airQualitySegment"
+        app:layout_constraintStart_toStartOf="@+id/airQualitySegment"
+        app:layout_constraintTop_toTopOf="@+id/airQualitySegment"
+        app:srcCompat="@drawable/chart_settings" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+        app:layout_constraintEnd_toEndOf="@+id/imageView11"
+        app:layout_constraintStart_toStartOf="@+id/imageView11"
+        app:layout_constraintTop_toTopOf="@+id/imageView11"
+        app:srcCompat="@drawable/userprofile" />
 
     <ImageView
         android:id="@+id/settingButton"
-        android:layout_width="141dp"
-        android:layout_height="126dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView24"
-        app:layout_constraintEnd_toEndOf="@+id/imageView24"
-        app:layout_constraintStart_toStartOf="@+id/imageView24"
-        app:layout_constraintTop_toTopOf="@+id/imageView24"
-        app:srcCompat="@drawable/outline_settings_24" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView14"
+        app:layout_constraintEnd_toEndOf="@+id/imageView14"
+        app:layout_constraintStart_toStartOf="@+id/imageView14"
+        app:layout_constraintTop_toTopOf="@+id/imageView14"
+        app:srcCompat="@drawable/settings" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
