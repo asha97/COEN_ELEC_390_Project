@@ -13,16 +13,21 @@ import android.widget.ImageView;
 import com.google.firebase.auth.FirebaseUser;
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
-    Button logoutButton, connectionSettings;
 
+    Button logoutButton, connectionSettings,startStopButton;
     ImageView generalSettings, airQualityBtn, userProfileGo;
+
     TextView greetingText;
     FirebaseUser user;
+    Stopwatch stopwatch;
+    long counter = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
+        stopwatch = new Stopwatch();
+        startStopButton = findViewById(R.id.start_stop_button);
         logoutButton = findViewById(R.id.logoutBtn);
         connectionSettings = findViewById(R.id.cxnButton);
         generalSettings = findViewById(R.id.settingButton);
@@ -74,10 +79,29 @@ public class HomePage extends AppCompatActivity {
 
         });
 
+
         userProfileGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openUserProfile();
+            }
+         });
+
+
+        startStopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(counter%2 == 0){
+                    stopwatch.start();
+                    startStopButton.setText(R.string.Stop_stopwatch);
+                    counter++;
+                }
+                else{
+                    stopwatch.stop();
+                    startStopButton.setText(R.string.Start_stopwatch);
+                    counter++;
+                    System.out.println(stopwatch.getElapsedTime());
+                }
             }
 
         });
