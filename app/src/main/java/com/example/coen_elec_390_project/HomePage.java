@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import com.google.firebase.auth.FirebaseAuth;
+import android.graphics.Color;
 
 import android.view.View;
 import android.widget.Button;
@@ -13,15 +14,12 @@ import android.widget.ImageView;
 import com.google.firebase.auth.FirebaseUser;
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
-
     Button logoutButton, connectionSettings,startStopButton;
     ImageView generalSettings, airQualityBtn, userProfileGo;
-
     TextView greetingText;
     FirebaseUser user;
     Stopwatch stopwatch;
     long counter = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,18 +92,18 @@ public class HomePage extends AppCompatActivity {
                 if(counter%2 == 0){
                     stopwatch.start();
                     startStopButton.setText(R.string.Stop_stopwatch);
+                    startStopButton.setBackgroundColor(Color.RED); // set the background color to red
                     counter++;
                 }
                 else{
                     stopwatch.stop();
                     startStopButton.setText(R.string.Start_stopwatch);
+                    startStopButton.setBackgroundColor(Color.BLUE); // set the background color to green
                     counter++;
                     System.out.println(stopwatch.getElapsedTime());
                 }
             }
-
         });
-
     }
     public void openConnectionSettings() {
         Intent intent = new Intent(getApplicationContext(), ConnectionSettings.class);
@@ -116,17 +114,14 @@ public class HomePage extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
     public void openProfileSettings() {
         Intent intent = new Intent(getApplicationContext(), UserProfileSettings.class);
         startActivity(intent);
     }
-
     public void openAirQuality() {
         Intent intent = new Intent(getApplicationContext(), airQualityAnalytics.class);
         startActivity(intent);
     }
-
     public void openUserProfile() {
         Intent intent = new Intent(getApplicationContext(), UserProfile.class);
         startActivity(intent);
