@@ -13,8 +13,10 @@ import android.widget.ImageView;
 import com.google.firebase.auth.FirebaseUser;
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
+
     Button logoutButton, connectionSettings,startStopButton;
-    ImageView generalSettings, airQualityBtn;
+    ImageView generalSettings, airQualityBtn, userProfileGo;
+
     TextView greetingText;
     FirebaseUser user;
     Stopwatch stopwatch;
@@ -29,7 +31,8 @@ public class HomePage extends AppCompatActivity {
         logoutButton = findViewById(R.id.logoutBtn);
         connectionSettings = findViewById(R.id.cxnButton);
         generalSettings = findViewById(R.id.settingButton);
-        airQualityBtn = findViewById(R.id.airQualitySegment);
+        airQualityBtn = findViewById(R.id.airQualityData);
+        userProfileGo = findViewById(R.id.userProfileAccess);
 
         auth = FirebaseAuth.getInstance();
         greetingText = findViewById(R.id.userDetails);
@@ -76,6 +79,15 @@ public class HomePage extends AppCompatActivity {
 
         });
 
+
+        userProfileGo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openUserProfile();
+            }
+         });
+
+
         startStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,6 +103,7 @@ public class HomePage extends AppCompatActivity {
                     System.out.println(stopwatch.getElapsedTime());
                 }
             }
+
         });
 
     }
@@ -111,6 +124,11 @@ public class HomePage extends AppCompatActivity {
 
     public void openAirQuality() {
         Intent intent = new Intent(getApplicationContext(), airQualityAnalytics.class);
+        startActivity(intent);
+    }
+
+    public void openUserProfile() {
+        Intent intent = new Intent(getApplicationContext(), UserProfile.class);
         startActivity(intent);
     }
 }
