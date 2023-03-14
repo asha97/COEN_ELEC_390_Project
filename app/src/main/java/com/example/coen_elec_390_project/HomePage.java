@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import com.google.firebase.auth.FirebaseUser;
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
-    Button logoutButton, connectionSettings,startStopButton;
+    Button logoutButton, connectionSettings,startStopButton, medicationButton;
     ImageView generalSettings, airQualityBtn, userProfileGo;
     TextView greetingText;
     FirebaseUser user;
@@ -31,6 +31,7 @@ public class HomePage extends AppCompatActivity {
         generalSettings = findViewById(R.id.settingButton);
         airQualityBtn = findViewById(R.id.airQualityData);
         userProfileGo = findViewById(R.id.userProfileAccess);
+        medicationButton = findViewById(R.id.medButton);
 
         auth = FirebaseAuth.getInstance();
         greetingText = findViewById(R.id.userDetails);
@@ -77,6 +78,14 @@ public class HomePage extends AppCompatActivity {
 
         });
 
+        medicationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMedication();
+            }
+
+        });
+
 
         userProfileGo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +116,11 @@ public class HomePage extends AppCompatActivity {
     }
     public void openConnectionSettings() {
         Intent intent = new Intent(getApplicationContext(), ConnectionSettings.class);
+        startActivity(intent);
+    }
+
+    public void openMedication() {
+        Intent intent = new Intent(getApplicationContext(), userBiometrics.class);
         startActivity(intent);
     }
     public void openLogin() {
