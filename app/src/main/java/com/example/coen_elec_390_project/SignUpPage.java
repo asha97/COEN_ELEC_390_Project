@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpPage extends AppCompatActivity {
 
-    EditText editTextEmail, editTextPassword;
+    EditText editTextEmail, editTextPassword, editName, editDOB, editLocation, editWeight, editHeight;
     Button regButton, clickingTheLogin;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
@@ -47,6 +47,12 @@ public class SignUpPage extends AppCompatActivity {
 
         editTextEmail = findViewById(R.id.userEmail);
         editTextPassword = findViewById(R.id.userPassword);
+        editName = findViewById(R.id.userName);
+        editDOB= findViewById(R.id.userDOB);
+        editLocation = findViewById(R.id.userLocation);
+        editHeight = findViewById(R.id.userHeight);
+        editWeight = findViewById(R.id.userWeight);
+
         regButton = findViewById(R.id.saveSignUp);
         progressBar = findViewById(R.id.progressBar);
         clickingTheLogin = findViewById(R.id.clickLogin);
@@ -72,6 +78,16 @@ public class SignUpPage extends AppCompatActivity {
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
 
+                //this is for the User object
+                String name, dob, location, height, weight, id;
+                name = String.valueOf(editName.getText());
+                dob = String.valueOf(editDOB.getText());
+                location = String.valueOf(editLocation.getText());
+                height = editHeight.getText().toString();
+                weight = editWeight.getText().toString();
+
+
+
                 //check if the email or password fields are empty or not
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(SignUpPage.this, "Please enter a valid e-mail", Toast.LENGTH_SHORT).show();
@@ -93,7 +109,11 @@ public class SignUpPage extends AppCompatActivity {
                                     // If sign in succeeds, display a message to the user.
                                     Toast.makeText(SignUpPage.this, "Sign up successful.",
                                             Toast.LENGTH_SHORT).show();
-                                    openUserSettings();
+                                    String userId = mAuth.getCurrentUser().getUid(); //get the user ID
+                                    // User(String name, String DoB, String location, float height, float weight, String uid)
+                                    User user = new User(name, dob, location, height, weight, userId);
+                                    user.writeToFirebase(userId); //store the user information with the ID
+                                   // openUserSettings();
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Toast.makeText(SignUpPage.this, "Authentication failed.",
@@ -101,6 +121,7 @@ public class SignUpPage extends AppCompatActivity {
                                 }
                             }
                         });
+
             }
         });
     }
