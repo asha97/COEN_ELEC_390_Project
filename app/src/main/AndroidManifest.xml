@@ -14,11 +14,22 @@
         android:theme="@style/Theme.COEN_ELEC_390_Project"
         tools:targetApi="31">
         <activity
-            android:name=".tVOC_Activity"
+            android:name=".userBiometrics"
             android:theme="@style/Theme.Material3.Light"
             android:exported="false" />
         <activity
-            android:parentActivityName=".HomePage"
+
+            android:name=".WeatherDetails"
+            android:exported="false" />
+        <activity
+            android:name=".UserProfile"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light" />
+        <activity
+            android:name=".tVOC_Activity"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light" />
+        <activity
             android:name=".airQualityAnalytics"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light" />

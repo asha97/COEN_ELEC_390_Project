@@ -2,5 +2,7 @@
     <string name="app_name">DermAir</string>
     <string name="click_to_login">Click to Login</string>
     <string name="click_to_register">Click to Register</string>
+    <string name="Stop_stopwatch">Stop</string>
+    <string name="Start_stopwatch">Start</string>
 
 </resources>
