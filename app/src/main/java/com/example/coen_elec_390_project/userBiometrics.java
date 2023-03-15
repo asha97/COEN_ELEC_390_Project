@@ -52,10 +52,12 @@ public class userBiometrics extends AppCompatActivity {
         if (!medication.isEmpty() && !freq.isEmpty()) {
             int frequency = Integer.parseInt(freq);
             MedicationInformation medinfo = new MedicationInformation(medication, frequency);
-            userRef.child("medications").push().setValue(medinfo);
+            String userId = currentUser.getUid(); //get the user's unique ID
+            userRef.child(userId).child("medications").push().setValue(medinfo); //store the medication information under the user's unique ID
             Toast.makeText(userBiometrics.this, "Information saved successfully!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(userBiometrics.this, "Invalid/No Entry. Please Try Again!", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

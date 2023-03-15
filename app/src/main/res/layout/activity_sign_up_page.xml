@@ -4,45 +4,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_blue"
+    android:background="#BAC8FC"
     tools:context=".SignUpPage">
 
     <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="299dp"
+        android:layout_height="410dp"
+        app:layout_constraintBottom_toTopOf="@+id/saveSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lungLogo"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/purple_square_bg_2" />
+
+    <EditText
+        android:id="@+id/userDOB"
+        android:layout_width="269dp"
+        android:layout_height="53dp"
+        android:ems="10"
+        android:hint="Date of Birth (DD-MM-YY)"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/userLocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <EditText
+        android:id="@+id/userLocation"
+        android:layout_width="269dp"
+        android:layout_height="53dp"
+        android:ems="10"
+        android:hint="Location"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/userWeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/userWeight"
+        android:layout_width="269dp"
+        android:layout_height="53dp"
+        android:ems="10"
+        android:hint="Weight (kg)"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/userHeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/userHeight"
+        android:layout_width="269dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="28dp"
+        android:ems="10"
+        android:hint="Height (m)"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/saveSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:layout_marginEnd="248dp"
-        android:layout_marginBottom="592dp"
+        android:layout_width="222dp"
+        android:layout_height="209dp"
+        android:layout_marginEnd="236dp"
+        android:layout_marginBottom="608dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/circle_purple3" />
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="576dp"
+        android:layout_width="207dp"
+        android:layout_height="197dp"
+        android:layout_marginStart="248dp"
+        android:layout_marginTop="608dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/circle_purple1" />
 
     <ImageView
         android:id="@+id/lungLogo"
-        android:layout_width="179dp"
-        android:layout_height="120dp"
+        android:layout_width="168dp"
+        android:layout_height="106dp"
         app:layout_constraintBottom_toTopOf="@+id/userEmail"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.783"
+        app:layout_constraintVertical_bias="0.778"
         app:srcCompat="@drawable/logo_lungs_no_bg" />
 
     <EditText
         android:id="@+id/userEmail"
-        android:layout_width="317dp"
-        android:layout_height="73dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="269dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="4dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
@@ -60,38 +118,53 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Button
         android:id="@+id/clickLogin"
-        android:layout_width="191dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="104dp"
+        android:layout_width="144dp"
+        android:layout_height="66dp"
         android:backgroundTint="#2D1A61"
         android:text="Click Here to Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.218"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.275" />
 
     <Button
         android:id="@+id/saveSignUp"
-        android:layout_width="191dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="168dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="96dp"
         android:backgroundTint="#004AAD"
         android:text="Save Your Profile"
-        app:layout_constraintBottom_toTopOf="@+id/clickLogin"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/userPassword"
-        android:layout_width="317dp"
-        android:layout_height="73dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="269dp"
+        android:layout_height="53dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/saveSignUp"
+        app:layout_constraintBottom_toTopOf="@+id/userName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="269dp"
+        android:layout_height="53dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/userDOB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
