@@ -18,6 +18,7 @@
             android:theme="@style/Theme.Material3.Light"
             android:exported="false" />
         <activity
+
             android:name=".WeatherDetails"
             android:exported="false" />
         <activity
@@ -37,6 +38,7 @@
             android:exported="false"
             android:theme="@style/Theme.Material3.Light" />
         <activity
+            android:parentActivityName=".HomePage"
             android:name=".UserProfileSettings"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light" />
@@ -45,14 +47,17 @@
             android:exported="false"
             android:theme="@style/Theme.Material3.Light" />
         <activity
+            android:parentActivityName=".MainActivity"
             android:name=".LoginPage"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light" />
         <activity
+            android:parentActivityName=".MainActivity"
             android:name=".SignUpPage"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light" />
         <activity
+            android:parentActivityName=".HomePage"
             android:name=".ConnectionSettings"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light" />
