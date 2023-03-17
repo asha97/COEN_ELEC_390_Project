@@ -2,7 +2,9 @@ package com.example.coen_elec_390_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +26,9 @@ public class userBiometrics extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_biometrics);
+
+        //this is going to be displaying the back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         medicationName = findViewById(R.id.medicationName);
         frequency = findViewById(R.id.frequencyMed);
@@ -59,5 +64,17 @@ public class userBiometrics extends AppCompatActivity {
             Toast.makeText(userBiometrics.this, "Invalid/No Entry. Please Try Again!", Toast.LENGTH_SHORT).show();
         }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) { //go back to main activity
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
 }
