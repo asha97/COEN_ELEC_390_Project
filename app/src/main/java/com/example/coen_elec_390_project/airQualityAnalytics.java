@@ -92,6 +92,14 @@ public class airQualityAnalytics extends AppCompatActivity {
                     if (i !=6) {
                         dataSet.addEntry(new BarEntry(i, value, nameMetric[i]));
                         String addData = nameMetric[i] + ": " + snapshot.getValue().toString();
+                        if (nameMetric[i].equals("Temperature (*C)")){
+                            String addFahrenheit = "Temperature (*F): " + convertToFahrenheit(snapshot.getValue().toString());
+                            list.add(addFahrenheit);
+                        }
+                        if (nameMetric[i].equals("Pressure (hPa)")){
+                            String addBar = "Pressure (Bar): " + convertToBar(snapshot.getValue().toString());
+                            list.add(addBar);
+                        }
                         list.add(addData);
                         i++;
                     }
@@ -130,5 +138,15 @@ public class airQualityAnalytics extends AppCompatActivity {
         Intent intent = new Intent(airQualityAnalytics.this, tVOC_Activity.class);
         intent.putExtra("metric_tvoc", tVOC);
         startActivity(intent);
+    }
+
+    private String convertToFahrenheit(String value){
+        double celsiusValue = Double.parseDouble(value);
+        return String.valueOf((celsiusValue*1.80000)+32.00);
+    }
+
+    private String convertToBar(String value){
+        double hpaValue = Double.parseDouble(value);
+        return String.valueOf((hpaValue * 0.001));
     }
 }
