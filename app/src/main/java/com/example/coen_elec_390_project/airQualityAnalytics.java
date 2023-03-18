@@ -37,6 +37,7 @@ public class airQualityAnalytics extends AppCompatActivity {
     private BarChart barChart;
     private DatabaseReference reference;
     private ListView listView;
+    //here
 
 
     @Override
