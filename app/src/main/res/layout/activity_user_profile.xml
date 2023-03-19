@@ -28,11 +28,11 @@
         app:srcCompat="@drawable/circle_purple1" />
 
     <Button
-        android:id="@+id/HealthInfoBtn"
+        android:id="@+id/changeProfileInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
-        android:text="Test Profile Info"
+        android:text="Change Profile Information"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
