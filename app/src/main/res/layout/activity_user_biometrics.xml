@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#B6C3EF"
-    tools:context=".userBiometrics">
+    tools:context=".MedicationLogger">
 
     <ImageView
         android:id="@+id/imageView10"

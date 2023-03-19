@@ -124,7 +124,7 @@ public class HomePage extends AppCompatActivity {
     }
 
     public void openMedication() {
-        Intent intent = new Intent(getApplicationContext(), userBiometrics.class);
+        Intent intent = new Intent(getApplicationContext(), MedicationLogger.class);
         startActivity(intent);
     }
     public void openLogin() {

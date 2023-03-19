@@ -2,7 +2,6 @@ package com.example.coen_elec_390_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,9 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-public class userBiometrics extends AppCompatActivity {
-
+public class MedicationLogger extends AppCompatActivity {
     private EditText medicationName, frequency;
     private Button saveButton;
     private FirebaseAuth mAuth;
@@ -59,12 +56,11 @@ public class userBiometrics extends AppCompatActivity {
             MedicationInformation medinfo = new MedicationInformation(medication, frequency);
             String userId = currentUser.getUid(); //get the user's unique ID
             userRef.child(userId).child("medications").push().setValue(medinfo); //store the medication information under the user's unique ID
-            Toast.makeText(userBiometrics.this, "Information saved successfully!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MedicationLogger.this, "Information saved successfully!", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(userBiometrics.this, "Invalid/No Entry. Please Try Again!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MedicationLogger.this, "Invalid/No Entry. Please Try Again!", Toast.LENGTH_SHORT).show();
         }
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) { //go back to main activity
         switch (item.getItemId()) {
@@ -75,6 +71,4 @@ public class userBiometrics extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
 }

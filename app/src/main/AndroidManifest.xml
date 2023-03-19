@@ -18,7 +18,7 @@
             android:theme="@style/Theme.Material3.Light"
             android:exported="false" />
         <activity
-            android:name=".userBiometrics"
+            android:name=".MedicationLogger"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light" />
         <activity
