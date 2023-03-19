@@ -68,62 +68,63 @@ public class SignUpPage extends AppCompatActivity {
 
         });
 
-        regButton.setOnClickListener(new View.OnClickListener(){
+        regButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                //we want to see the progression of the sign up
+            public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
-
-                String email, password;
+                String email, password, name, dob, location, weight, height;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
-
-                //this is for the User object
-                String name, dob, location, height, weight, id;
                 name = String.valueOf(editName.getText());
                 dob = String.valueOf(editDOB.getText());
                 location = String.valueOf(editLocation.getText());
-                height = editHeight.getText().toString();
-                weight = editWeight.getText().toString();
+                weight = String.valueOf(editWeight.getText());
+                height = String.valueOf(editHeight.getText());
 
-
-
-                //check if the email or password fields are empty or not
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(SignUpPage.this, "Please enter a valid e-mail", Toast.LENGTH_SHORT).show();
                     return;
                 } else if (TextUtils.isEmpty(password)){
                     Toast.makeText(SignUpPage.this, "Please enter a valid password", Toast.LENGTH_SHORT).show();
                     return;
+                } else if (TextUtils.isEmpty(name)){
+                    Toast.makeText(SignUpPage.this, "Please enter your name", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (TextUtils.isEmpty(dob)){
+                    Toast.makeText(SignUpPage.this, "Please enter your date of birth", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (TextUtils.isEmpty(location)){
+                    Toast.makeText(SignUpPage.this, "Please enter your location", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (TextUtils.isEmpty(weight)){
+                    Toast.makeText(SignUpPage.this, "Please enter your weight", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (TextUtils.isEmpty(height)){
+                    Toast.makeText(SignUpPage.this, "Please enter your height", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
-                //create the user
                 mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(SignUpPage.this, new OnCompleteListener<AuthResult>() {
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                //set the visibility of the progress bar to gone
                                 progressBar.setVisibility(View.GONE);
 
                                 if (task.isSuccessful()) {
-                                    // If sign in succeeds, display a message to the user.
-                                    Toast.makeText(SignUpPage.this, "Sign up successful.",
+                                    Toast.makeText(getApplicationContext(), "Registration successful.",
                                             Toast.LENGTH_SHORT).show();
-                                    String userId = mAuth.getCurrentUser().getUid(); //get the user ID
-                                    // User(String name, String DoB, String location, float height, float weight, String uid)
-                                    User user = new User(name, dob, location, height, weight, userId);
-                                    user.writeToFirebase(userId); //store the user information with the ID
-                                   // openUserSettings();
+                                    User user = new User(name, dob, location, height, weight, mAuth.getUid(), email);
+                                    user.writeToFirebase();
+                                    openHomePage();
                                 } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(SignUpPage.this, "Authentication failed.",
+                                    Toast.makeText(SignUpPage.this, "Registration failed.",
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-
             }
         });
+
     }
 
     //open the home page
