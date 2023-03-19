@@ -32,8 +32,6 @@ public class User {
         userRef.child("height").setValue(height);
         userRef.child("weight").setValue(weight);
     }
-
-
     public void updateToFirebase() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference usersRef = database.getReference().child("users");
