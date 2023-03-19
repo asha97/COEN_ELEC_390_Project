@@ -49,7 +49,6 @@ public class UserProfile extends AppCompatActivity {
                     locationText.setText(location);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.w("UserProfile", "loadUser:onCancelled", error.toException());
