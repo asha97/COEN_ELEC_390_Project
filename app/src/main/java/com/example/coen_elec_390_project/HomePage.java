@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseUser;
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
@@ -109,7 +111,9 @@ public class HomePage extends AppCompatActivity {
                     startStopButton.setText(R.string.Start_stopwatch);
                     startStopButton.setBackgroundColor(Color.BLUE); // set the background color to green
                     counter++;
-                    System.out.println(stopwatch.getElapsedTime());
+                    //System.out.println(stopwatch.getElapsedTime()); //This is for developer testing
+                    Toast toast = Toast.makeText(getApplicationContext(), stopwatch.getElapsedTime(), Toast.LENGTH_LONG); // This is for demo purposes
+                    toast.show();
                 }
             }
         });
