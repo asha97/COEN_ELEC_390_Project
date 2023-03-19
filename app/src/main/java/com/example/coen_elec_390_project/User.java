@@ -2,7 +2,6 @@ package com.example.coen_elec_390_project;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 public class User {
-
     private String name;
     private String DoB;
     private String location;
