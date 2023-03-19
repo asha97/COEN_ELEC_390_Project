@@ -1,5 +1,6 @@
-// This activity was made to retrieve the user profile's data
-// and display it on the emulator/phone.
+// This activity is meant to be used by ADMINS ONLY.
+// This activity was made to retrieve and display all users
+// with their respective information on the emulator/phone.
 
 package com.example.coen_elec_390_project;
 
@@ -18,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class UserProfile extends AppCompatActivity {
+public class UserProfileAdmin extends AppCompatActivity {
 
     private ListView listView;
 
@@ -30,8 +31,8 @@ public class UserProfile extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         listView = findViewById(R.id.listView);
 
-        final ArrayList<String> list = new ArrayList<>();
-        final ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.list_data, list);
+        ArrayList<String> list = new ArrayList<>();
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.list_data, list);
         listView.setAdapter(adapter);
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users");
@@ -40,9 +41,7 @@ public class UserProfile extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 list.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Information info = snapshot.getValue(Information.class);
-                    String txt = info.getName() + " : " + info.getLocation();
-                    list.add(txt);
+                    list.add(snapshot.getValue().toString());
                 }
                 adapter.notifyDataSetChanged();
             }

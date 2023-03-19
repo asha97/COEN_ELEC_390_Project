@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#CED6FF"
     android:orientation="vertical"
-    tools:context=".UserProfile">
+    tools:context=".UserProfileAdmin">
 
     <ListView
         android:layout_width="match_parent"
