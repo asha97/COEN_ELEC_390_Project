@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C5DEFF"
+    android:background="#CED6FF"
     tools:context=".HomePage">
 
 
@@ -27,6 +27,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5"
         app:srcCompat="@drawable/circle_purple1" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="162dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="168dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintEnd_toStartOf="@+id/imageView19"
+        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/white_rectangle" />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="162dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="124dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/white_rectangle" />
 
     <ImageView
         android:id="@+id/imageView14"
@@ -89,13 +110,13 @@
         android:layout_width="149dp"
         android:layout_height="50dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="464dp"
+        android:layout_marginBottom="304dp"
         android:backgroundTint="#4B5AA7"
         android:text="Connection Settings"
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView14"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/logoutBtn" />
 
     <ImageView
@@ -132,24 +153,31 @@
         android:id="@+id/start_stop_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#C01DDC"
         android:text="Start"
-        app:layout_constraintBottom_toTopOf="@+id/imageView14"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/medButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Log Medication"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.846"
+        app:layout_constraintHorizontal_bias="0.873"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cxnButton" />
+
+    <ImageView
+        android:id="@+id/logMedication"
+        android:layout_width="146dp"
+        android:layout_height="124dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView16"
+        app:layout_constraintEnd_toEndOf="@+id/imageView16"
+        app:layout_constraintStart_toStartOf="@+id/imageView16"
+        app:layout_constraintTop_toTopOf="@+id/imageView16"
+        app:srcCompat="@drawable/health_icon" />
+
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="109dp"
+        android:layout_height="101dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_lungs_no_bg" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

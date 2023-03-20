@@ -28,10 +28,7 @@
             android:name=".UserProfile"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light" />
-        <activity
-            android:name=".tVOC_Activity"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light" />
+
         <activity
             android:name=".airQualityAnalytics"
             android:exported="false"
