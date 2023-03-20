@@ -1,12 +1,14 @@
 package com.example.coen_elec_390_project;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 public class User {
     private String name;
     private String DoB;
     private String location;
-    private String height;
-    private String weight;
+    private int height;
+    private double weight;
     private String userId;
     //this is the email address that we are going to be getting from the login
     private String email_address;
@@ -15,8 +17,8 @@ public class User {
         this.name = name;
         this.DoB = DoB;
         this.location = location;
-        this.height = height;
-        this.weight = weight;
+        this.height = Integer.parseInt(height);
+        this.weight = Double.parseDouble(weight);
         this.userId = userId;
         this.email_address = email;
     }
@@ -33,6 +35,7 @@ public class User {
         userRef.child("weight").setValue(weight);
         userRef.child("email").setValue(email_address);
     }
+
     public void updateToFirebase() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference usersRef = database.getReference().child("users");
@@ -48,10 +51,10 @@ public class User {
         if (!location.isEmpty()) {
             userRef.child("location").setValue(location);
         }
-        if (!height.isEmpty()) {
+        if (height != 0) {
             userRef.child("height").setValue(height);
         }
-        if (!weight.isEmpty()) {
+        if (weight != 0.0) {
             userRef.child("weight").setValue(weight);
         }
     }
@@ -81,19 +84,19 @@ public class User {
         this.location = location;
     }
 
-    public String getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    public String getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
@@ -112,5 +115,6 @@ public class User {
     public void setEmailAddress(String email_address) {
         this.email_address = email_address;
     }
+
 
 }

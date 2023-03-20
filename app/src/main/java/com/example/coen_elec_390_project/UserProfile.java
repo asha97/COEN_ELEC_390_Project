@@ -22,6 +22,7 @@ public class UserProfile extends AppCompatActivity {
     private TextView nameText;
     private TextView dateText;
     private TextView locationText;
+    private TextView bmi;
     private DatabaseReference userRef;
     private int userId;
 
@@ -37,48 +38,42 @@ public class UserProfile extends AppCompatActivity {
         nameText = findViewById(R.id.nameText);
         dateText = findViewById(R.id.dateText);
         locationText = findViewById(R.id.locationText);
+        bmi = findViewById(R.id.userBMI);
 
         // Get the current user's ID
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        String uid = currentUser.getUid();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser(); //initialize the current user
 
         // Get a reference to the user's data in the database
-        userRef = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+        userRef = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
 
         // Retrieve the user's data from the database
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
+                    User userData = snapshot.getValue(User.class);
+
                     // Get the user's data from the snapshot
                     String name = snapshot.child("name").getValue().toString();
                     String dateOfBirth = snapshot.child("dob").getValue().toString();
                     String location = snapshot.child("location").getValue().toString();
+                    String weight = snapshot.child("weight").getValue().toString();
+
                     // Display the user's data in the UI
                     nameText.setText(name);
                     dateText.setText(dateOfBirth);
                     locationText.setText(location);
+                    bmi.setText(weight);
                 }
             }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.w("UserProfile", "loadUser:onCancelled", error.toException());
-            }
-        });
 
-        // Set the user ID based on the number of existing users in the database
-        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users");
-        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // Set the user ID to the number of existing users plus one
-                userId = (int) snapshot.getChildrenCount() + 1;
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.w("UserProfile", "getUserCount:onCancelled", error.toException());
-            }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    //Toast.makeText(HomePage.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
         });
 
         // Set up the button to allow the user to change their profile information
@@ -92,6 +87,7 @@ public class UserProfile extends AppCompatActivity {
             }
         });
     }
+
 
     // Handle the back button press
     @Override
