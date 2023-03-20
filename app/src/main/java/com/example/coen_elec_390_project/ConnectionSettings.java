@@ -7,9 +7,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 public class ConnectionSettings extends AppCompatActivity {
-
     protected Button connectWiFiBtn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,10 +15,7 @@ public class ConnectionSettings extends AppCompatActivity {
 
         //this is going to be displaying the back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         connectWiFiBtn = findViewById(R.id.connectWiFiButton);
-
-
     }
 
     @Override
@@ -32,6 +27,5 @@ public class ConnectionSettings extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 }

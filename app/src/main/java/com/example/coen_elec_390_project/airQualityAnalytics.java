@@ -31,15 +31,10 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-
-
 public class airQualityAnalytics extends AppCompatActivity {
     private BarChart barChart;
     private DatabaseReference reference;
     private ListView listView;
-    //here
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +54,7 @@ public class airQualityAnalytics extends AppCompatActivity {
         final ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.list_data, list);
         listView.setAdapter(adapter);
 
-        //--------CREATION OF BARCHART---------//
+        //----------------------CREATION OF BARCHART--------------------------//
 
         // container for data
         BarDataSet dataSet = new BarDataSet(new ArrayList<BarEntry>(), "Sensor Data");
@@ -110,17 +105,12 @@ public class airQualityAnalytics extends AppCompatActivity {
                 barChart.notifyDataSetChanged();
                 barChart.invalidate();
                 adapter.notifyDataSetChanged();
-
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) { //go back to main activity
         switch (item.getItemId()) {
@@ -130,7 +120,6 @@ public class airQualityAnalytics extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
 
