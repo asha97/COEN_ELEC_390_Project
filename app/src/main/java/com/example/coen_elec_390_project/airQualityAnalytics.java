@@ -133,12 +133,7 @@ public class airQualityAnalytics extends AppCompatActivity {
 
     }
 
-    public void startTVOC_Activity(String tVOC){
-        //intent to start the tVOC activity
-        Intent intent = new Intent(airQualityAnalytics.this, tVOC_Activity.class);
-        intent.putExtra("metric_tvoc", tVOC);
-        startActivity(intent);
-    }
+
 
     private String convertToFahrenheit(String value){
         double celsiusValue = Double.parseDouble(value);

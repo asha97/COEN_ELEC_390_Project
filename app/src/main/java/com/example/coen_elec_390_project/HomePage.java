@@ -16,8 +16,8 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseUser;
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
-    Button logoutButton, connectionSettings,startStopButton, medicationButton;
-    ImageView generalSettings, airQualityBtn, userProfileGo;
+    Button logoutButton, connectionSettings,startStopButton;
+    ImageView generalSettings, airQualityBtn, userProfileGo, medicationButton;
     TextView greetingText;
     FirebaseUser user;
     Stopwatch stopwatch;
@@ -33,7 +33,7 @@ public class HomePage extends AppCompatActivity {
         generalSettings = findViewById(R.id.settingButton);
         airQualityBtn = findViewById(R.id.airQualityData);
         userProfileGo = findViewById(R.id.userProfileAccess);
-        medicationButton = findViewById(R.id.medButton);
+        medicationButton = findViewById(R.id.logMedication);
 
         auth = FirebaseAuth.getInstance();
         greetingText = findViewById(R.id.userDetails);

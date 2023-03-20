@@ -3,6 +3,7 @@ package com.example.coen_elec_390_project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,6 +27,9 @@ public class UserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+
+        //this is going to be displaying the back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nameText = findViewById(R.id.nameText);
         dateText = findViewById(R.id.dateText);
@@ -64,5 +68,16 @@ public class UserProfile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) { //go back to main activity
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
