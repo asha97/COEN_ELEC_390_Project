@@ -179,5 +179,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_lungs_no_bg" />
 
+    <TextView
+        android:id="@+id/displayName"
+        android:layout_width="142dp"
+        android:layout_height="30dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/displayDOB"
+        app:layout_constraintEnd_toStartOf="@+id/cxnButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/displayDOB"
+        android:layout_width="141dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="100dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/imageView16"
+        app:layout_constraintEnd_toStartOf="@+id/start_stop_button"
+        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

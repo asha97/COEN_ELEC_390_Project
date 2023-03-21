@@ -1,24 +1,30 @@
 package com.example.coen_elec_390_project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import com.google.firebase.auth.FirebaseAuth;
 import android.graphics.Color;
-
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
     Button logoutButton, connectionSettings,startStopButton;
     ImageView generalSettings, airQualityBtn, userProfileGo, medicationButton;
-    TextView greetingText;
+    TextView greetingText, nameText, dobText;
     FirebaseUser user;
     Stopwatch stopwatch;
     long counter = 0;
@@ -35,15 +41,38 @@ public class HomePage extends AppCompatActivity {
         userProfileGo = findViewById(R.id.userProfileAccess);
         medicationButton = findViewById(R.id.logMedication);
 
+        nameText = findViewById(R.id.displayName);
+        dobText = findViewById(R.id.displayDOB);
+
         auth = FirebaseAuth.getInstance();
         greetingText = findViewById(R.id.userDetails);
         user = auth.getCurrentUser(); //initialize the current user
 
-        //if there is no user, then you are going to redirect the user to the sign up page
         if (user == null){
             openLogin();
         } else {
             greetingText.setText("Good day, " + user.getEmail());
+            String uid = user.getUid();
+
+            // Retrieve the user's information from Firebase
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child("id");
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        // Set the text of the TextViews to the user's name and dob
+                        String name = snapshot.child("name").getValue(String.class);
+                        String dob = snapshot.child("dob").getValue(String.class);
+                        nameText.setText(name);
+                        dobText.setText(dob);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getApplicationContext(), "Failed to retrieve user information", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         logoutButton.setOnClickListener(new View.OnClickListener() {

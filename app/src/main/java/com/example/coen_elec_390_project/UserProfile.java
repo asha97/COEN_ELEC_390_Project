@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -19,12 +20,13 @@ import com.google.firebase.database.ValueEventListener;
 public class UserProfile extends AppCompatActivity {
 
     // Declare class variables
-    private TextView nameText;
-    private TextView dateText;
-    private TextView locationText;
-    private TextView bmi;
+    private TextView nameText1;
+    private TextView dateText1;
+    private TextView locationText1;
+    private TextView bmi1;
     private DatabaseReference userRef;
-    private int userId;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,46 +37,82 @@ public class UserProfile extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Get references to the UI elements
-        nameText = findViewById(R.id.nameText);
-        dateText = findViewById(R.id.dateText);
-        locationText = findViewById(R.id.locationText);
-        bmi = findViewById(R.id.userBMI);
+        nameText1 = findViewById(R.id.nameText);
+        dateText1 = findViewById(R.id.dateText);
+        locationText1 = findViewById(R.id.locationText);
+        bmi1 = findViewById(R.id.userBMI);
 
-        // Get the current user's ID
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser user = auth.getCurrentUser(); //initialize the current user
-
-        // Get a reference to the user's data in the database
-        userRef = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
-
-        // Retrieve the user's data from the database
-        userRef.addValueEventListener(new ValueEventListener() {
+        //authenticate user and get user by ID
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid(); // Obtain the user's UID
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users").child(uid); // Reference the "users" node and the specific user's data using their UID
+        databaseRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    User userData = snapshot.getValue(User.class);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String name = dataSnapshot.child("name").getValue(String.class);
+                String dob = dataSnapshot.child("dob").getValue(String.class);
+                String location = dataSnapshot.child("location").getValue(String.class);
+                int height = dataSnapshot.child("height").getValue(Integer.class);
+                double weight = dataSnapshot.child("weight").getValue(Double.class);
 
-                    // Get the user's data from the snapshot
-                    String name = snapshot.child("name").getValue().toString();
-                    String dateOfBirth = snapshot.child("dob").getValue().toString();
-                    String location = snapshot.child("location").getValue().toString();
-                    String weight = snapshot.child("weight").getValue().toString();
+                nameText1.setText(name);
+                dateText1.setText(dob);
+                locationText1.setText(location);
 
-                    // Display the user's data in the UI
-                    nameText.setText(name);
-                    dateText.setText(dateOfBirth);
-                    locationText.setText(location);
-                    bmi.setText(weight);
-                }
+                // Calculate and display BMI
+                double bmiValue = weight / Math.pow(height / 100.0, 2);
+                bmi1.setText(String.format("%.1f", bmiValue));
             }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle any errors here
+            }
+        });
 
+
+
+
+/*
+
+        // Initialize Firebase
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            userRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUser.getUid());
+            userRef.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    //Toast.makeText(HomePage.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String name = dataSnapshot.child("name").getValue(String.class);
+                        String dob = dataSnapshot.child("dob").getValue(String.class);
+                        String location = dataSnapshot.child("location").getValue(String.class);
+                        int height = dataSnapshot.child("height").getValue(Integer.class);
+                        double weight = dataSnapshot.child("weight").getValue(Double.class);
+
+                        nameText1.setText(name);
+                        dateText1.setText(dob);
+                        locationText1.setText(location);
+
+                        // Calculate and display BMI
+                        double bmiValue = weight / Math.pow(height / 100.0, 2);
+                        bmi1.setText(String.format("%.1f", bmiValue));
+                    }
                 }
 
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.e("UserProfile", "Failed to read user data", databaseError.toException());
+                }
+            });
+        }
+        else {
+            // User is not signed in
+            Toast.makeText(this, "Please sign in to view your profile", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
+
+ */
 
         // Set up the button to allow the user to change their profile information
         Button changeProfileInfo = findViewById(R.id.changeProfileInfo);
@@ -87,7 +125,6 @@ public class UserProfile extends AppCompatActivity {
             }
         });
     }
-
 
     // Handle the back button press
     @Override

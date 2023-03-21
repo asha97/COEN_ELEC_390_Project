@@ -17,6 +17,8 @@ import android.content.Intent;
 import android.widget.TextView;
 import android.widget.ProgressBar;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 
 public class SignUpPage extends AppCompatActivity {
@@ -71,15 +73,16 @@ public class SignUpPage extends AppCompatActivity {
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 progressBar.setVisibility(View.VISIBLE);
                 String email, password, name, dob, location, weight, height;
-                email = String.valueOf(editTextEmail.getText());
-                password = String.valueOf(editTextPassword.getText());
-                name = String.valueOf(editName.getText());
-                dob = String.valueOf(editDOB.getText());
-                location = String.valueOf(editLocation.getText());
-                weight = String.valueOf(editWeight.getText());
-                height = String.valueOf(editHeight.getText());
+                email = editTextEmail.getText().toString();
+                password = editTextPassword.getText().toString();
+                name = editName.getText().toString();
+                dob = editDOB.getText().toString();
+                location = editLocation.getText().toString();
+                weight = editWeight.getText().toString();
+                height = editHeight.getText().toString();
 
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(SignUpPage.this, "Please enter a valid e-mail", Toast.LENGTH_SHORT).show();
@@ -113,8 +116,11 @@ public class SignUpPage extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(getApplicationContext(), "Registration successful.",
                                             Toast.LENGTH_SHORT).show();
-                                    User user = new User(name, dob, location, height, weight, mAuth.getUid(), email);
-                                    user.writeToFirebase();
+                                    User user = new User(name, dob, location, height, weight, email);
+
+                                    FirebaseDatabase.getInstance().getReference("users")
+                                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                            .setValue(user);
                                     openHomePage();
                                 } else {
                                     Toast.makeText(SignUpPage.this, "Registration failed.",
