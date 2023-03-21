@@ -49,7 +49,7 @@ public class UserProfile extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.child("name").getValue(String.class);
-                String dob = dataSnapshot.child("dob").getValue(String.class);
+                String dob = dataSnapshot.child("doB").getValue(String.class);
                 String location = dataSnapshot.child("location").getValue(String.class);
                 int height = dataSnapshot.child("height").getValue(Integer.class);
                 double weight = dataSnapshot.child("weight").getValue(Double.class);
