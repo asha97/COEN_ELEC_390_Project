@@ -42,7 +42,7 @@ public class UserProfileSettings extends AppCompatActivity {
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-                User user = new User(name, dob, location, height, weight, uid, email);
+                User user = new User(name, dob, location, height, weight, email);
 
                 // need to change this to update, but need to find code
                 user.writeToFirebase();

@@ -13,13 +13,12 @@ public class User {
     //this is the email address that we are going to be getting from the login
     private String email_address;
 
-    public User(String name, String DoB, String location, String height, String weight, String userId, String email) {
+    public User(String name, String DoB, String location, String height, String weight,String email) {
         this.name = name;
         this.DoB = DoB;
         this.location = location;
         this.height = Integer.parseInt(height);
         this.weight = Double.parseDouble(weight);
-        this.userId = userId;
         this.email_address = email;
     }
 

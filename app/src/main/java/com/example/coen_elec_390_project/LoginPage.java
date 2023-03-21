@@ -24,9 +24,6 @@ public class LoginPage extends AppCompatActivity {
     Button loginButton, regButton;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
-
-    //check if the person is already logged in
-
     @Override
     public void onStart() {
         super.onStart();
@@ -37,7 +34,6 @@ public class LoginPage extends AppCompatActivity {
             openHomePage();
         }
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
