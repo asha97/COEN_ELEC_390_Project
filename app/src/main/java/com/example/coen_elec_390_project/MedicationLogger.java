@@ -2,6 +2,7 @@ package com.example.coen_elec_390_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,6 +58,7 @@ public class MedicationLogger extends AppCompatActivity {
             MedicationInformation medinfo = new MedicationInformation(medication, frequency);
             userRef.child("medications").push().setValue(medinfo); //store the medication information under the user's unique ID
             Toast.makeText(MedicationLogger.this, "Information saved successfully!", Toast.LENGTH_SHORT).show();
+            openMedicationList();
         } else {
             Toast.makeText(MedicationLogger.this, "Invalid/No Entry. Please Try Again!", Toast.LENGTH_SHORT).show();
         }
@@ -70,5 +72,10 @@ public class MedicationLogger extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void openMedicationList() {
+        Intent intent = new Intent(getApplicationContext(), MedicationList.class);
+        startActivity(intent);
     }
 }
