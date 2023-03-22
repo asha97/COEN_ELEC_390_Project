@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
-    Button logoutButton, connectionSettings,startStopButton;
+    Button logoutButton, connectionSettings,startStopButton, notifTest;
     ImageView generalSettings, airQualityBtn, userProfileGo, medicationButton;
     TextView greetingText, nameText, dobText;
     FirebaseUser user;
@@ -40,8 +40,10 @@ public class HomePage extends AppCompatActivity {
         airQualityBtn = findViewById(R.id.airQualityData);
         userProfileGo = findViewById(R.id.userProfileAccess);
         medicationButton = findViewById(R.id.logMedication);
+        notifTest = findViewById(R.id.notifTest);
 
-        nameText = findViewById(R.id.displayName);
+
+        //nameText = findViewById(R.id.displayName);
         dobText = findViewById(R.id.displayDOB);
 
         auth = FirebaseAuth.getInstance();
@@ -125,6 +127,13 @@ public class HomePage extends AppCompatActivity {
             }
          });
 
+        notifTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openNotif();
+            }
+        });
+
 
         startStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +158,11 @@ public class HomePage extends AppCompatActivity {
     }
     public void openConnectionSettings() {
         Intent intent = new Intent(getApplicationContext(), ConnectionSettings.class);
+        startActivity(intent);
+    }
+
+    public void openNotif() {
+        Intent intent = new Intent(getApplicationContext(), TestNotifActivity.class);
         startActivity(intent);
     }
 
