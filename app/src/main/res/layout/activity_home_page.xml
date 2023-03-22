@@ -10,41 +10,41 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="337dp"
-        android:layout_height="317dp"
-        android:layout_marginEnd="144dp"
-        android:layout_marginBottom="472dp"
+        android:layout_width="327dp"
+        android:layout_height="304dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginBottom="488dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/circle_purple3" />
 
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="373dp"
-        android:layout_height="373dp"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="136dp"
+        android:id="@+id/imageView4"
+        android:layout_width="424dp"
+        android:layout_height="341dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5"
-        app:srcCompat="@drawable/circle_purple1" />
+        app:srcCompat="@drawable/homepage_bottom_bg" />
 
     <ImageView
         android:id="@+id/imageView16"
         android:layout_width="162dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="200dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        android:layout_height="140dp"
+        android:layout_marginBottom="148dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView19"
-        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/white_rectangle" />
 
     <ImageView
         android:id="@+id/imageView19"
         android:layout_width="162dp"
-        android:layout_height="150dp"
+        android:layout_height="140dp"
         android:layout_marginEnd="28dp"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="148dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/white_rectangle" />
@@ -139,7 +139,7 @@
         android:id="@+id/start_stop_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#C01DDC"
         android:text="Start"
         app:layout_constraintEnd_toEndOf="parent"
@@ -165,13 +165,12 @@
 
     <Button
         android:id="@+id/notifTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="512dp"
+        android:layout_width="131dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="32dp"
         android:text="notification test"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoutBtn" />
 
     <TextView
         android:id="@+id/analysisText"
@@ -180,6 +179,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginBottom="12dp"
         android:text="Analysis"
+        android:textColor="#FFFF"
         app:layout_constraintBottom_toTopOf="@+id/airQualitySegment"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -212,8 +212,22 @@
         android:layout_marginStart="80dp"
         android:layout_marginBottom="12dp"
         android:text="Biometrics"
+        android:textColor="#FFFF"
         app:layout_constraintBottom_toTopOf="@+id/imageView16"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/lineChartDisplay"
+        android:layout_width="340dp"
+        android:layout_height="198dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.563"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.965"
+        app:srcCompat="@drawable/white_rectangle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
