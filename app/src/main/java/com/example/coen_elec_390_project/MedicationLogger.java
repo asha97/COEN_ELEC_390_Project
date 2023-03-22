@@ -35,7 +35,8 @@ public class MedicationLogger extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        userRef = database.getReference("users/" + currentUser.getUid());
+        String userId = currentUser.getUid(); //get the user's unique ID
+        userRef = database.getReference("users/").child(userId);
 
         //saving info on click of button into db
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -54,8 +55,7 @@ public class MedicationLogger extends AppCompatActivity {
         if (!medication.isEmpty() && !freq.isEmpty()) {
             int frequency = Integer.parseInt(freq);
             MedicationInformation medinfo = new MedicationInformation(medication, frequency);
-            String userId = currentUser.getUid(); //get the user's unique ID
-            userRef.child(userId).child("medications").push().setValue(medinfo); //store the medication information under the user's unique ID
+            userRef.child("medications").push().setValue(medinfo); //store the medication information under the user's unique ID
             Toast.makeText(MedicationLogger.this, "Information saved successfully!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(MedicationLogger.this, "Invalid/No Entry. Please Try Again!", Toast.LENGTH_SHORT).show();
