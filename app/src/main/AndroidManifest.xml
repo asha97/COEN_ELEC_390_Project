@@ -16,10 +16,7 @@
         <activity
             android:name=".TestNotifActivity"
             android:exported="false" />
-        <activity
-            android:name=".HealthInfo"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light" />
+
         <activity
             android:name=".MedicationLogger"
             android:exported="false"
@@ -58,11 +55,7 @@
             android:exported="false"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.Material3.Light" />
-        <activity
-            android:name=".ConnectionSettings"
-            android:exported="false"
-            android:parentActivityName=".HomePage"
-            android:theme="@style/Theme.Material3.Light" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

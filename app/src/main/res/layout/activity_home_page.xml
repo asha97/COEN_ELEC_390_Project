@@ -12,10 +12,10 @@
         android:id="@+id/imageView5"
         android:layout_width="337dp"
         android:layout_height="317dp"
-        android:layout_marginEnd="124dp"
-        android:layout_marginBottom="464dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginBottom="472dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/logoutBtn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/circle_purple3" />
 
     <ImageView
@@ -32,7 +32,7 @@
         android:id="@+id/imageView16"
         android:layout_width="162dp"
         android:layout_height="150dp"
-        android:layout_marginBottom="168dp"
+        android:layout_marginBottom="200dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
         app:layout_constraintEnd_toStartOf="@+id/imageView19"
         app:layout_constraintHorizontal_bias="0.61"
@@ -44,7 +44,7 @@
         android:layout_width="162dp"
         android:layout_height="150dp"
         android:layout_marginEnd="28dp"
-        android:layout_marginBottom="124dp"
+        android:layout_marginBottom="160dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/white_rectangle" />
@@ -98,26 +98,12 @@
         android:id="@+id/logoutBtn"
         android:layout_width="149dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#4B5AA7"
         android:text="Logout"
-        app:layout_constraintBottom_toTopOf="@+id/cxnButton"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/cxnButton"
-        android:layout_width="149dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="304dp"
-        android:backgroundTint="#4B5AA7"
-        android:text="Connection Settings"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView14"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/logoutBtn" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userDetails" />
 
     <ImageView
         android:id="@+id/airQualityData"
@@ -153,13 +139,11 @@
         android:id="@+id/start_stop_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
         android:backgroundTint="#C01DDC"
         android:text="Start"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.873"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cxnButton" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView23" />
 
     <ImageView
         android:id="@+id/logMedication"
@@ -179,26 +163,57 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_lungs_no_bg" />
 
-    <TextView
-        android:id="@+id/displayDOB"
-        android:layout_width="141dp"
-        android:layout_height="36dp"
-        android:layout_marginBottom="100dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/imageView16"
-        app:layout_constraintEnd_toStartOf="@+id/start_stop_button"
-        app:layout_constraintHorizontal_bias="0.368"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <Button
         android:id="@+id/notifTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="512dp"
         android:text="notification test"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/displayDOB" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/analysisText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="12dp"
+        android:text="Analysis"
+        app:layout_constraintBottom_toTopOf="@+id/airQualitySegment"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginBottom="12dp"
+        android:text="Profile"
+        android:textColor="#FFFF"
+        app:layout_constraintBottom_toTopOf="@+id/imageView11"
+        app:layout_constraintStart_toEndOf="@+id/analysisText" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="12dp"
+        android:text="Profile Settings"
+        android:textColor="#FFFF"
+        app:layout_constraintBottom_toTopOf="@+id/imageView14"
+        app:layout_constraintStart_toEndOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="12dp"
+        android:text="Biometrics"
+        app:layout_constraintBottom_toTopOf="@+id/imageView16"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
