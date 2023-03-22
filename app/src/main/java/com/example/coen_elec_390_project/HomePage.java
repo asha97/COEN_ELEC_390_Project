@@ -22,9 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
-    Button logoutButton, connectionSettings,startStopButton;
+    Button logoutButton,startStopButton, notifTest;
     ImageView generalSettings, airQualityBtn, userProfileGo, medicationButton;
-    TextView greetingText, nameText, dobText;
+    TextView greetingText;
     FirebaseUser user;
     Stopwatch stopwatch;
     long counter = 0;
@@ -35,14 +35,13 @@ public class HomePage extends AppCompatActivity {
         stopwatch = new Stopwatch();
         startStopButton = findViewById(R.id.start_stop_button);
         logoutButton = findViewById(R.id.logoutBtn);
-        connectionSettings = findViewById(R.id.cxnButton);
         generalSettings = findViewById(R.id.settingButton);
         airQualityBtn = findViewById(R.id.airQualityData);
         userProfileGo = findViewById(R.id.userProfileAccess);
         medicationButton = findViewById(R.id.logMedication);
+        notifTest = findViewById(R.id.notifTest);
 
-        nameText = findViewById(R.id.displayName);
-        dobText = findViewById(R.id.displayDOB);
+
 
         auth = FirebaseAuth.getInstance();
         greetingText = findViewById(R.id.userDetails);
@@ -61,10 +60,12 @@ public class HomePage extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
                         // Set the text of the TextViews to the user's name and dob
-                        String name = snapshot.child("name").getValue(String.class);
+                        /*String name = snapshot.child("name").getValue(String.class);
                         String dob = snapshot.child("dob").getValue(String.class);
                         nameText.setText(name);
                         dobText.setText(dob);
+
+                         */
                     }
                 }
 
@@ -85,13 +86,6 @@ public class HomePage extends AppCompatActivity {
 
         });
 
-        connectionSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openConnectionSettings();
-            }
-
-        });
 
         generalSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +119,13 @@ public class HomePage extends AppCompatActivity {
             }
          });
 
+        notifTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openNotif();
+            }
+        });
+
 
         startStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,8 +148,9 @@ public class HomePage extends AppCompatActivity {
             }
         });
     }
-    public void openConnectionSettings() {
-        Intent intent = new Intent(getApplicationContext(), ConnectionSettings.class);
+
+    public void openNotif() {
+        Intent intent = new Intent(getApplicationContext(), TestNotifActivity.class);
         startActivity(intent);
     }
 

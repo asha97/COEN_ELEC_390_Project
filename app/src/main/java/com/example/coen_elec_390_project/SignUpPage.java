@@ -19,7 +19,6 @@ import android.widget.ProgressBar;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 public class SignUpPage extends AppCompatActivity {
-
     EditText editTextEmail, editTextPassword, editName, editDOB, editLocation, editWeight, editHeight;
     Button regButton, clickingTheLogin;
     FirebaseAuth mAuth;
@@ -37,7 +36,6 @@ public class SignUpPage extends AppCompatActivity {
             openHomePage();
         }
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
