@@ -177,7 +177,7 @@ void loop(){
     Pressure = (float)bme.pressure/100.0;
     Humidity = (float)bme.humidity;
     Gas = (float)bme.gas_resistance / 1000.0;
-    AA = (float)bme.readAltitude(SEALEVELPRESSURE_HPA);
+    AA = (float)bme.readAltitude(SEALEVELPRESSURE_HPA)+90;
 
     //Sparkfun CCS811
     CO2 = (float)mySensor.getCO2();
