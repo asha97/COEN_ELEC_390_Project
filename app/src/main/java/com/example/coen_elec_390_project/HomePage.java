@@ -68,7 +68,7 @@ public class HomePage extends AppCompatActivity {
                     arrayList_result.add(snapshot.getValue().toString());
                 }
                 if (!(counter%2==0)){
-                    System.out.println("Adding data");
+                    //System.out.println("Adding data");
                     altitude_history.add(Float.parseFloat(arrayList_result.get(0)));
                     co2_history.add(Float.parseFloat(arrayList_result.get(1)));
                     gas_history.add(Float.parseFloat(arrayList_result.get(2)));
