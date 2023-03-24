@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
     Button logoutButton,startStopButton, notifTest;
@@ -28,6 +30,15 @@ public class HomePage extends AppCompatActivity {
     FirebaseUser user;
     Stopwatch stopwatch;
     long counter = 0;
+    DatabaseReference reference;
+    ArrayList<Float> temperature_history = new ArrayList<>();
+    ArrayList<Float> humidity_history = new ArrayList<>();
+    ArrayList<Float> altitude_history = new ArrayList<>();
+    ArrayList<Float> co2_history = new ArrayList<>();
+    ArrayList<Float> gas_history = new ArrayList<>();
+    ArrayList<Float> pressure_history = new ArrayList<>();
+    ArrayList<Float> tVOC_history = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +57,53 @@ public class HomePage extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         greetingText = findViewById(R.id.userDetails);
         user = auth.getCurrentUser(); //initialize the current user
+        reference = FirebaseDatabase.getInstance().getReference().child("Sensor");
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<String> arrayList_result = new ArrayList<String>();
+                Iterable<DataSnapshot> it_list = dataSnapshot.getChildren();
+                for (DataSnapshot snapshot:it_list) {
+                    arrayList_result.add(snapshot.getValue().toString());
+                }
+                if (!(counter%2==0)){
+                    //System.out.println("Adding data");
+                    altitude_history.add(Float.parseFloat(arrayList_result.get(0)));
+                    co2_history.add(Float.parseFloat(arrayList_result.get(1)));
+                    gas_history.add(Float.parseFloat(arrayList_result.get(2)));
+                    humidity_history.add(Float.parseFloat(arrayList_result.get(3)));
+                    pressure_history.add(Float.parseFloat(arrayList_result.get(4)));
+                    temperature_history.add(Float.parseFloat(arrayList_result.get(5)));
+                    tVOC_history.add(Float.parseFloat(arrayList_result.get(7)));
+                }
+                else {
+                    // do not collect data
+                }
+
+                //System.out.println("*******ALTITUDE**********");
+                //System.out.println(altitude_history.get(0));
+                //System.out.println("*******CO2**********");
+                //System.out.println(co2_history.get(0));
+                //System.out.println("*******GAS**********");
+                //System.out.println(gas_history.get(0));
+                //System.out.println("*******HUMIDITY**********");
+                //System.out.println(humidity_history.get(0));
+                //System.out.println("*******PRESSURE**********");
+                //System.out.println(pressure_history.get(0));
+                //if(!(temperature_history.isEmpty())) {
+                    //System.out.println("*******TEMPERATURE**********");
+                    //System.out.println(temperature_history.get(temperature_history.size()-1));
+                //}
+                //System.out.println("*******TVOC**********");
+                //System.out.println(tVOC_history.get(0));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         if (user == null){
             openLogin();
