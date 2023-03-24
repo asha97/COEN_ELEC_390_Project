@@ -5,13 +5,13 @@
     android:id="@+id/my_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B6C3EF"
+    android:background="@drawable/gradient_background"
     tools:context=".MedicationLogger">
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="405dp"
-        android:layout_height="577dp"
+        android:layout_width="418dp"
+        android:layout_height="539dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

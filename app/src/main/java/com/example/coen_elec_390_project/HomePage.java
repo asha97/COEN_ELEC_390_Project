@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
     Button logoutButton,startStopButton, notifTest;
-    ImageView generalSettings, airQualityBtn, userProfileGo, medicationButton;
+    ImageView generalSettings, airQualityBtn, userProfileGo, medicationButton, statsButton;
     TextView greetingText;
     FirebaseUser user;
     Stopwatch stopwatch;
@@ -50,9 +50,8 @@ public class HomePage extends AppCompatActivity {
         airQualityBtn = findViewById(R.id.airQualityData);
         userProfileGo = findViewById(R.id.userProfileAccess);
         medicationButton = findViewById(R.id.logMedication);
+        statsButton = findViewById(R.id.statsIcon);
         notifTest = findViewById(R.id.notifTest);
-
-
 
         auth = FirebaseAuth.getInstance();
         greetingText = findViewById(R.id.userDetails);
@@ -177,6 +176,13 @@ public class HomePage extends AppCompatActivity {
             }
          });
 
+        statsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openStatistics();
+            }
+        });
+
         notifTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -212,6 +218,10 @@ public class HomePage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openStatistics() {
+        Intent intent = new Intent(getApplicationContext(), StatisticsPage.class);
+        startActivity(intent);
+    }
     public void openMedication() {
         Intent intent = new Intent(getApplicationContext(), MedicationLogger.class);
         startActivity(intent);
