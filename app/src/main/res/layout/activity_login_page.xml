@@ -4,26 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CED6FF"
+    android:background="@drawable/gradient_background"
     tools:context=".LoginPage">
 
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:layout_marginEnd="248dp"
-        android:layout_marginBottom="592dp"
+        android:layout_width="267dp"
+        android:layout_height="284dp"
+        android:layout_marginEnd="212dp"
+        android:layout_marginBottom="552dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/circle_purple3" />
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="576dp"
+        android:layout_width="242dp"
+        android:layout_height="255dp"
+        android:layout_marginStart="236dp"
+        android:layout_marginTop="548dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/circle_purple1" />

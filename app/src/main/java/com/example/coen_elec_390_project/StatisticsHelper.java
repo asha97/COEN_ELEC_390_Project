@@ -10,7 +10,6 @@ public class StatisticsHelper {
     private ArrayList<Float> gas_history;
     private ArrayList<Float> pressure_history;
     private ArrayList<Float> tVOC_history;
-
     public StatisticsHelper(ArrayList<Float> altitude_history,ArrayList<Float> humidity_history,ArrayList<Float> temperature_history,ArrayList<Float> co2_history,ArrayList<Float> gas_history,ArrayList<Float> pressure_history,ArrayList<Float> tVOC_history ){
         this.altitude_history = altitude_history;
         this.humidity_history = humidity_history;
@@ -20,7 +19,6 @@ public class StatisticsHelper {
         this.pressure_history = pressure_history;
         this.tVOC_history = tVOC_history;
     }
-
     public Float calculateMean_Altitude(){
         Float sum = 00.00f;
         for (Float element:altitude_history) {
@@ -52,7 +50,6 @@ public class StatisticsHelper {
         }
         return (sum/co2_history.size());
     }
-
     public Float calculateMean_Gas(){
         Float sum = 00.00f;
         for (Float element:gas_history) {
@@ -60,7 +57,6 @@ public class StatisticsHelper {
         }
         return (sum/gas_history.size());
     }
-
     public Float calculateMean_Pressure(){
         Float sum = 00.00f;
         for (Float element:pressure_history) {
@@ -68,7 +64,6 @@ public class StatisticsHelper {
         }
         return (sum/pressure_history.size());
     }
-
     public Float calculateMean_tVOC(){
         Float sum = 00.00f;
         for (Float element:tVOC_history) {
@@ -76,7 +71,6 @@ public class StatisticsHelper {
         }
         return (sum/tVOC_history.size());
     }
-
     private Float findMinimum(ArrayList<Float> history_data){
         Float min = history_data.get(0);
         for (Float element:history_data) {
@@ -89,7 +83,6 @@ public class StatisticsHelper {
         }
         return min;
     }
-
     private Float findMaximum(ArrayList<Float> history_data){
         Float max = history_data.get(0);
         for (Float element:history_data) {
@@ -102,64 +95,53 @@ public class StatisticsHelper {
         }
         return max;
     }
-
     public Float calculateMedian_Temperature(){
         Float min = findMinimum(temperature_history);
         Float max = findMaximum(temperature_history);
         return (min+max)/2;
     }
-
     public Float calculateMedian_Humidity(){
         Float min = findMinimum(humidity_history);
         Float max = findMaximum(humidity_history);
         return (min+max)/2;
     }
-
     public Float calculateMedian_Pressure(){
         Float min = findMinimum(pressure_history);
         Float max = findMaximum(pressure_history);
         return (min+max)/2;
     }
-
     public Float calculateMedian_Gas(){
         Float min = findMinimum(gas_history);
         Float max = findMaximum(gas_history);
         return (min+max)/2;
     }
-
     public Float calculateMedian_Altitude(){
         Float min = findMinimum(altitude_history);
         Float max = findMaximum(altitude_history);
         return (min+max)/2;
     }
-
     public Float calculateMedian_Co2(){
         Float min = findMinimum(co2_history);
         Float max = findMaximum(co2_history);
         return (min+max)/2;
     }
-
     public Float calculateMedian_tVOC(){
         Float min = findMinimum(tVOC_history);
         Float max = findMaximum(tVOC_history);
         return (min+max)/2;
     }
-
     public Float calculateMin_Altitude(){
         Float min = findMinimum(altitude_history);
         return min;
     }
-
     public Float calculateMax_Altitude(){
         Float max = findMaximum(altitude_history);
         return max;
     }
-
     public Float calculateMin_Temperature(){
         Float min = findMinimum(temperature_history);
         return min;
     }
-
     public Float calculateMax_Temperature(){
         Float max = findMaximum(temperature_history);
         return max;
@@ -168,7 +150,6 @@ public class StatisticsHelper {
         Float min = findMinimum(humidity_history);
         return min;
     }
-
     public Float calculateMax_Humidity(){
         Float max = findMaximum(humidity_history);
         return max;
@@ -177,7 +158,6 @@ public class StatisticsHelper {
         Float min = findMinimum(pressure_history);
         return min;
     }
-
     public Float calculateMax_Pressure(){
         Float max = findMaximum(pressure_history);
         return max;
@@ -186,7 +166,6 @@ public class StatisticsHelper {
         Float min = findMinimum(gas_history);
         return min;
     }
-
     public Float calculateMax_Gas(){
         Float max = findMaximum(gas_history);
         return max;
@@ -195,7 +174,6 @@ public class StatisticsHelper {
         Float min = findMinimum(tVOC_history);
         return min;
     }
-
     public Float calculateMax_tVOC(){
         Float max = findMaximum(tVOC_history);
         return max;
@@ -204,11 +182,8 @@ public class StatisticsHelper {
         Float min = findMinimum(co2_history);
         return min;
     }
-
     public Float calculateMax_co2(){
         Float max = findMaximum(co2_history);
         return max;
     }
-
-
 }

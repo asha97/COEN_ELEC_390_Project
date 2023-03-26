@@ -28,7 +28,7 @@ import java.util.Locale;
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
     Button logoutButton,startStopButton, notifTest;
-    ImageView generalSettings, airQualityBtn, userProfileGo, medicationButton;
+    ImageView generalSettings, airQualityBtn, userProfileGo, medicationButton, statsButton;
     TextView greetingText;
     FirebaseUser user;
     TextView stopwatch_tv;
@@ -49,7 +49,6 @@ public class HomePage extends AppCompatActivity {
     String timeElapsed;
     Handler handler;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,10 +59,9 @@ public class HomePage extends AppCompatActivity {
         airQualityBtn = findViewById(R.id.airQualityData);
         userProfileGo = findViewById(R.id.userProfileAccess);
         medicationButton = findViewById(R.id.logMedication);
+        statsButton = findViewById(R.id.statsIcon);
         notifTest = findViewById(R.id.notifTest);
         stopwatch_tv = findViewById(R.id.stopwatch_tv);
-
-
 
         auth = FirebaseAuth.getInstance();
         greetingText = findViewById(R.id.userDetails);
@@ -189,6 +187,13 @@ public class HomePage extends AppCompatActivity {
             }
          });
 
+        statsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openStatistics();
+            }
+        });
+
         notifTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -229,6 +234,7 @@ public class HomePage extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
@@ -278,7 +284,18 @@ public class HomePage extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), TestNotifActivity.class);
         startActivity(intent);
     }
-
+    public void openStatistics() {
+        Intent intent = new Intent(getApplicationContext(), StatisticsPage.class);
+    /*
+        intent.putExtra("altitude_history", altitude_history);
+        intent.putExtra("temperature_history", temperature_history);
+        intent.putExtra("humidity_history", humidity_history);
+        intent.putExtra("co2_history", co2_history);
+        intent.putExtra("gas_history", gas_history);
+        intent.putExtra("pressure_history", pressure_history);
+*/
+        startActivity(intent);
+    }
     public void openMedication() {
         Intent intent = new Intent(getApplicationContext(), MedicationLogger.class);
         startActivity(intent);
