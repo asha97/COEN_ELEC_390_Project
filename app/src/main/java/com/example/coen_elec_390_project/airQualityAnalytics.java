@@ -141,8 +141,6 @@ public class airQualityAnalytics extends AppCompatActivity {
         }
     }
 
-
-
     private String convertToFahrenheit(String value){
         double celsiusValue = Double.parseDouble(value);
         return String.valueOf((celsiusValue*1.80000)+32.00);
