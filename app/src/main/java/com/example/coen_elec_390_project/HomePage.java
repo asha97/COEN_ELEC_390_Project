@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,7 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
@@ -28,8 +31,9 @@ public class HomePage extends AppCompatActivity {
     ImageView generalSettings, airQualityBtn, userProfileGo, medicationButton, statsButton;
     TextView greetingText;
     FirebaseUser user;
-    Stopwatch stopwatch;
+    TextView stopwatch_tv;
     long counter = 0;
+
     DatabaseReference reference;
     ArrayList<Float> temperature_history = new ArrayList<>();
     ArrayList<Float> humidity_history = new ArrayList<>();
@@ -38,11 +42,17 @@ public class HomePage extends AppCompatActivity {
     ArrayList<Float> gas_history = new ArrayList<>();
     ArrayList<Float> pressure_history = new ArrayList<>();
     ArrayList<Float> tVOC_history = new ArrayList<>();
+
+    private int seconds = 0;
+    private boolean functioning;
+    private boolean wasFunctioning;
+    String timeElapsed;
+    Handler handler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        stopwatch = new Stopwatch();
         startStopButton = findViewById(R.id.start_stop_button);
         logoutButton = findViewById(R.id.logoutBtn);
         generalSettings = findViewById(R.id.settingButton);
@@ -51,11 +61,14 @@ public class HomePage extends AppCompatActivity {
         medicationButton = findViewById(R.id.logMedication);
         statsButton = findViewById(R.id.statsIcon);
         notifTest = findViewById(R.id.notifTest);
+        stopwatch_tv = findViewById(R.id.stopwatch_tv);
 
         auth = FirebaseAuth.getInstance();
         greetingText = findViewById(R.id.userDetails);
         user = auth.getCurrentUser(); //initialize the current user
         reference = FirebaseDatabase.getInstance().getReference().child("Sensor");
+
+        handler = new Handler();
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -167,7 +180,6 @@ public class HomePage extends AppCompatActivity {
 
         });
 
-
         userProfileGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -194,23 +206,80 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(counter%2 == 0){
-                    stopwatch.start();
-                    startStopButton.setText(R.string.Stop_stopwatch);
-                    startStopButton.setBackgroundColor(Color.RED); // set the background color to red
-                    counter++;
+                    if (counter==0) { // This is for the first time starting the stopwatch
+                        runStopwatch();
+                        functioning = true;
+                        startStopButton.setText(R.string.Stop_stopwatch);
+                        startStopButton.setBackgroundColor(Color.RED); // set the background color to red
+                        counter++;
+                    }
+                    else{ // This is for all the subsequent times starting the stopwatch
+                        runStopwatch();
+                        functioning = true;
+                        seconds = 0;
+                        startStopButton.setText(R.string.Stop_stopwatch);
+                        startStopButton.setBackgroundColor(Color.RED); // set the background color to red
+                        counter++;
+                    }
                 }
                 else{
-                    stopwatch.stop();
                     startStopButton.setText(R.string.Start_stopwatch);
+                    functioning = false;
+                    handler.removeCallbacks(runnable);
+                    timeElapsed = (String)stopwatch_tv.getText();
                     startStopButton.setBackgroundColor(Color.BLUE); // set the background color to green
                     counter++;
-                    //System.out.println(stopwatch.getElapsedTime()); //This is for developer testing
-                    Toast toast = Toast.makeText(getApplicationContext(), stopwatch.getElapsedTime(), Toast.LENGTH_LONG); // This is for demo purposes
-                    toast.show();
+
                 }
             }
         });
     }
+
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("seconds", seconds);
+        outState.putBoolean("functioning", functioning);
+        outState.putBoolean("wasFunctioning", wasFunctioning);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        wasFunctioning = functioning;
+        functioning = false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (wasFunctioning){
+            functioning = true;
+        }
+    }
+
+    private void runStopwatch(){
+        handler.postDelayed(runnable,0);
+    }
+
+    public Runnable runnable = new Runnable() {
+        //final TextView STOPWATCH_TV = (TextView) findViewById(R.id.stopwatch_tv);
+        @Override
+        public void run() {
+            int sec = seconds%60;
+            int min = (seconds%3600)/60;
+            int hrs = seconds/3600;
+
+            String timeString = String.format(Locale.getDefault(), "%d:%02d:%02d", hrs, min, sec);
+            stopwatch_tv.setText(timeString);
+            if (functioning){
+                seconds=seconds+1;
+            }
+            handler.postDelayed(this,1000);
+        }
+    };
+
     public void openNotif() {
         Intent intent = new Intent(getApplicationContext(), TestNotifActivity.class);
         startActivity(intent);
