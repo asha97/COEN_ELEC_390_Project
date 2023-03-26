@@ -14,10 +14,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -95,6 +97,23 @@ public class airQualityAnalytics extends AppCompatActivity {
                             String addBar = "Pressure (Bar): " + convertToBar(snapshot.getValue().toString());
                             list.add(addBar);
                         }
+                        //we want to make sure that the air quality particles are not surpassing the threshold
+                        if (nameMetric[i].equals("CO2 (ppm)")){
+                            int co2PPM = Integer.parseInt(snapshot.getValue().toString());
+
+                            if (co2PPM >= 1000){
+                                Toast.makeText(airQualityAnalytics.this, "CO2 particle is above 1000ppm, be careful!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        if (nameMetric[i].equals("Gas (KOhms)")){
+                            double gasMetric = Double.parseDouble(snapshot.getValue().toString());
+
+                            if (gasMetric >= 100){ // need to change this value for the right gas
+                                Toast.makeText(airQualityAnalytics.this, "TVOC level is too high, be careful!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
                         list.add(addData);
                         i++;
                     }
