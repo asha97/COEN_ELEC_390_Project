@@ -38,7 +38,6 @@ public class HomePage extends AppCompatActivity {
     ArrayList<Float> gas_history = new ArrayList<>();
     ArrayList<Float> pressure_history = new ArrayList<>();
     ArrayList<Float> tVOC_history = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -212,14 +211,20 @@ public class HomePage extends AppCompatActivity {
             }
         });
     }
-
     public void openNotif() {
         Intent intent = new Intent(getApplicationContext(), TestNotifActivity.class);
         startActivity(intent);
     }
-
     public void openStatistics() {
         Intent intent = new Intent(getApplicationContext(), StatisticsPage.class);
+    /*
+        intent.putExtra("altitude_history", altitude_history);
+        intent.putExtra("temperature_history", temperature_history);
+        intent.putExtra("humidity_history", humidity_history);
+        intent.putExtra("co2_history", co2_history);
+        intent.putExtra("gas_history", gas_history);
+        intent.putExtra("pressure_history", pressure_history);
+*/
         startActivity(intent);
     }
     public void openMedication() {
