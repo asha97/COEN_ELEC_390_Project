@@ -10,6 +10,7 @@ public class StatisticsHelper {
     private ArrayList<Float> gas_history;
     private ArrayList<Float> pressure_history;
     private ArrayList<Float> tVOC_history;
+
     public StatisticsHelper(ArrayList<Float> altitude_history,ArrayList<Float> humidity_history,ArrayList<Float> temperature_history,ArrayList<Float> co2_history,ArrayList<Float> gas_history,ArrayList<Float> pressure_history,ArrayList<Float> tVOC_history ){
         this.altitude_history = altitude_history;
         this.humidity_history = humidity_history;
