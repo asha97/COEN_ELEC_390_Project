@@ -1,8 +1,9 @@
 package com.example.coen_elec_390_project;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class StatisticsHelper {
+public class StatisticsHelper implements Serializable {
     private ArrayList<Float> temperature_history;
     private ArrayList<Float> humidity_history;
     private ArrayList<Float> altitude_history;
