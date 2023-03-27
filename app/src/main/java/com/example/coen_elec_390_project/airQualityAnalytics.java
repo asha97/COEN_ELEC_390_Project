@@ -33,6 +33,14 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+
+import android.widget.Toast;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
+
+
 public class airQualityAnalytics extends AppCompatActivity {
     private BarChart barChart;
     private DatabaseReference reference;
@@ -103,6 +111,14 @@ public class airQualityAnalytics extends AppCompatActivity {
 
                             if (co2PPM >= 1000){
                                 Toast.makeText(airQualityAnalytics.this, "CO2 particle is above 1000ppm, be careful!", Toast.LENGTH_SHORT).show();
+
+                                /*
+                                    this is where there is going to be the implementation of the notification
+                                    using the firebasemessaging class
+                                    the basic implementation is done, need to add the send() function, need implementation
+                                 */
+
+
                             }
                         }
 

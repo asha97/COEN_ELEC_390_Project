@@ -5,36 +5,37 @@ import android.os.Looper;
 import android.widget.Toast;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 public class myFirebaseMessagingService extends FirebaseMessagingService{
-    //in app notification
 
+    private static final String CHANNEL_ID = "my_channel_id";
+    private static final int notificationId = 1;
+
+   //this is to have an in-app notification
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         System.out.println("From: " + remoteMessage.getFrom());
-
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
             System.out.println("Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
 
-        // Also if you intend on generating your own notifications as a result of a received FCM
-        // message, here is where that should be initiated. See sendNotification method below.
-
-        sendNotification(remoteMessage.getFrom(), remoteMessage.getNotification().getBody());
+        String title = remoteMessage.getNotification().getTitle();
+        String message = remoteMessage.getNotification().getBody();
+        sendNotification(title, message);
     }
 
-    private void sendNotification(String from, String body){
-        new Handler(Looper.getMainLooper()).post( new Runnable() {
-            @Override
-            public void run(){
-                Toast.makeText(myFirebaseMessagingService.this.getApplicationContext(), from + " -> " + body, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+    private void sendNotification(String title, String message) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+       // notificationManager.notify(notificationId, builder.build());
+    }
 }
