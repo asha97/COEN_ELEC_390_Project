@@ -293,6 +293,7 @@ public class HomePage extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), TestNotifActivity.class);
         startActivity(intent);
     }
+
     public void openStatistics() {
         //TODO: @Asha I want the users to not be able to open up the statistics page until after they've captured a certain interval of time with the stopwatch. We can make the statistics button unclickable until after they stop the timer for the 1st time. We can make it change color.
         Intent intent = new Intent(getApplicationContext(), StatisticsPage.class);

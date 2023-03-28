@@ -229,11 +229,11 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/minimumSet"
+        android:id="@+id/min_alt_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Minimum: "
-        app:layout_constraintBottom_toTopOf="@+id/maximumSet"
+        app:layout_constraintBottom_toTopOf="@+id/max_alt_tv"
         app:layout_constraintEnd_toEndOf="@+id/imageView32"
         app:layout_constraintHorizontal_bias="0.74"
         app:layout_constraintStart_toStartOf="@+id/imageView32"
@@ -241,7 +241,7 @@
         app:layout_constraintVertical_bias="0.428" />
 
     <TextView
-        android:id="@+id/maximumSet"
+        android:id="@+id/max_alt_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Maximum:"
@@ -253,11 +253,11 @@
         app:layout_constraintVertical_bias="0.839" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/avg_alt_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Average:"
-        app:layout_constraintBottom_toTopOf="@+id/textView24"
+        app:layout_constraintBottom_toTopOf="@+id/med_alt_tv"
         app:layout_constraintEnd_toEndOf="@+id/imageView32"
         app:layout_constraintHorizontal_bias="0.278"
         app:layout_constraintStart_toStartOf="@+id/imageView32"
@@ -265,7 +265,7 @@
         app:layout_constraintVertical_bias="0.428" />
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/med_alt_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Median:"
@@ -277,10 +277,10 @@
         app:layout_constraintVertical_bias="0.839" />
 
     <TextView
-        android:id="@+id/textView25"
+        android:id="@+id/avg_co2_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Average:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView34"
         app:layout_constraintEnd_toEndOf="@+id/imageView34"
         app:layout_constraintHorizontal_bias="0.281"
@@ -289,10 +289,10 @@
         app:layout_constraintVertical_bias="0.125" />
 
     <TextView
-        android:id="@+id/textView26"
+        android:id="@+id/med_co2_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Median:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView34"
         app:layout_constraintEnd_toEndOf="@+id/imageView34"
         app:layout_constraintHorizontal_bias="0.281"
@@ -301,10 +301,10 @@
         app:layout_constraintVertical_bias="0.803" />
 
     <TextView
-        android:id="@+id/textView27"
+        android:id="@+id/min_co2_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Minimum:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView34"
         app:layout_constraintEnd_toEndOf="@+id/imageView34"
         app:layout_constraintHorizontal_bias="0.747"
@@ -313,22 +313,22 @@
         app:layout_constraintVertical_bias="0.125" />
 
     <TextView
-        android:id="@+id/textView28"
+        android:id="@+id/max_co2_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Maximum:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView34"
         app:layout_constraintEnd_toEndOf="@+id/imageView34"
         app:layout_constraintHorizontal_bias="0.747"
         app:layout_constraintStart_toStartOf="@+id/imageView34"
-        app:layout_constraintTop_toBottomOf="@+id/textView27"
+        app:layout_constraintTop_toBottomOf="@+id/min_co2_tv"
         app:layout_constraintVertical_bias="0.633" />
 
     <TextView
-        android:id="@+id/textView29"
+        android:id="@+id/avg_gas_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Average:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView35"
         app:layout_constraintEnd_toEndOf="@+id/imageView35"
         app:layout_constraintHorizontal_bias="0.281"
@@ -337,10 +337,10 @@
         app:layout_constraintVertical_bias="0.142" />
 
     <TextView
-        android:id="@+id/textView30"
+        android:id="@+id/med_gas_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Median:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView35"
         app:layout_constraintEnd_toEndOf="@+id/imageView35"
         app:layout_constraintHorizontal_bias="0.281"
@@ -349,10 +349,10 @@
         app:layout_constraintVertical_bias="0.839" />
 
     <TextView
-        android:id="@+id/textView31"
+        android:id="@+id/min_gas_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Minimum:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView35"
         app:layout_constraintEnd_toEndOf="@+id/imageView35"
         app:layout_constraintHorizontal_bias="0.747"
@@ -361,10 +361,10 @@
         app:layout_constraintVertical_bias="0.142" />
 
     <TextView
-        android:id="@+id/textView32"
+        android:id="@+id/max_gas_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Maximum:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView35"
         app:layout_constraintEnd_toEndOf="@+id/imageView35"
         app:layout_constraintHorizontal_bias="0.747"
@@ -373,10 +373,10 @@
         app:layout_constraintVertical_bias="0.839" />
 
     <TextView
-        android:id="@+id/textView33"
+        android:id="@+id/avg_hum_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Average:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView36"
         app:layout_constraintEnd_toEndOf="@+id/imageView36"
         app:layout_constraintHorizontal_bias="0.271"
@@ -385,10 +385,10 @@
         app:layout_constraintVertical_bias="0.142" />
 
     <TextView
-        android:id="@+id/textView34"
+        android:id="@+id/med_hum_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Median:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView36"
         app:layout_constraintEnd_toEndOf="@+id/imageView36"
         app:layout_constraintHorizontal_bias="0.271"
@@ -397,10 +397,10 @@
         app:layout_constraintVertical_bias="0.875" />
 
     <TextView
-        android:id="@+id/textView35"
+        android:id="@+id/min_hum_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Minimum:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView36"
         app:layout_constraintEnd_toEndOf="@+id/imageView36"
         app:layout_constraintHorizontal_bias="0.747"
@@ -409,10 +409,10 @@
         app:layout_constraintVertical_bias="0.142" />
 
     <TextView
-        android:id="@+id/textView36"
+        android:id="@+id/max_hum_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Maximum:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView36"
         app:layout_constraintEnd_toEndOf="@+id/imageView36"
         app:layout_constraintHorizontal_bias="0.747"
@@ -421,10 +421,10 @@
         app:layout_constraintVertical_bias="0.875" />
 
     <TextView
-        android:id="@+id/textView37"
+        android:id="@+id/avg_pre_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Average:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView37"
         app:layout_constraintEnd_toEndOf="@+id/imageView37"
         app:layout_constraintHorizontal_bias="0.281"
@@ -433,10 +433,10 @@
         app:layout_constraintVertical_bias="0.142" />
 
     <TextView
-        android:id="@+id/textView38"
+        android:id="@+id/med_pre_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Median:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView37"
         app:layout_constraintEnd_toEndOf="@+id/imageView37"
         app:layout_constraintHorizontal_bias="0.281"
@@ -445,10 +445,10 @@
         app:layout_constraintVertical_bias="0.857" />
 
     <TextView
-        android:id="@+id/textView39"
+        android:id="@+id/min_pre_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Minimum:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView37"
         app:layout_constraintEnd_toEndOf="@+id/imageView37"
         app:layout_constraintHorizontal_bias="0.747"
@@ -457,10 +457,10 @@
         app:layout_constraintVertical_bias="0.142" />
 
     <TextView
-        android:id="@+id/textView40"
+        android:id="@+id/max_pre_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Maximum:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView37"
         app:layout_constraintEnd_toEndOf="@+id/imageView37"
         app:layout_constraintHorizontal_bias="0.747"
@@ -469,10 +469,10 @@
         app:layout_constraintVertical_bias="0.857" />
 
     <TextView
-        android:id="@+id/textView41"
+        android:id="@+id/avg_tmp_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Average:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView38"
         app:layout_constraintEnd_toEndOf="@+id/imageView38"
         app:layout_constraintHorizontal_bias="0.281"
@@ -481,10 +481,10 @@
         app:layout_constraintVertical_bias="0.16" />
 
     <TextView
-        android:id="@+id/textView42"
+        android:id="@+id/med_tmp_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Median:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView38"
         app:layout_constraintEnd_toEndOf="@+id/imageView38"
         app:layout_constraintHorizontal_bias="0.281"
@@ -493,10 +493,10 @@
         app:layout_constraintVertical_bias="0.875" />
 
     <TextView
-        android:id="@+id/textView43"
+        android:id="@+id/min_tmp_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Minimum:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView38"
         app:layout_constraintEnd_toEndOf="@+id/imageView38"
         app:layout_constraintHorizontal_bias="0.747"
@@ -505,10 +505,10 @@
         app:layout_constraintVertical_bias="0.16" />
 
     <TextView
-        android:id="@+id/textView44"
+        android:id="@+id/max_tmp_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Maximum:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView38"
         app:layout_constraintEnd_toEndOf="@+id/imageView38"
         app:layout_constraintHorizontal_bias="0.747"
@@ -517,10 +517,10 @@
         app:layout_constraintVertical_bias="0.875" />
 
     <TextView
-        android:id="@+id/textView45"
+        android:id="@+id/avg_voc_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Average:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView39"
         app:layout_constraintEnd_toEndOf="@+id/imageView39"
         app:layout_constraintHorizontal_bias="0.281"
@@ -529,10 +529,10 @@
         app:layout_constraintVertical_bias="0.16" />
 
     <TextView
-        android:id="@+id/textView46"
+        android:id="@+id/med_voc_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Median:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView39"
         app:layout_constraintEnd_toEndOf="@+id/imageView39"
         app:layout_constraintHorizontal_bias="0.281"
@@ -541,10 +541,10 @@
         app:layout_constraintVertical_bias="0.839" />
 
     <TextView
-        android:id="@+id/textView47"
+        android:id="@+id/min_voc_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Minimum:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView39"
         app:layout_constraintEnd_toEndOf="@+id/imageView39"
         app:layout_constraintHorizontal_bias="0.747"
@@ -553,10 +553,10 @@
         app:layout_constraintVertical_bias="0.16" />
 
     <TextView
-        android:id="@+id/textView48"
+        android:id="@+id/max_voc_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Maximum:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView39"
         app:layout_constraintEnd_toEndOf="@+id/imageView39"
         app:layout_constraintHorizontal_bias="0.747"
