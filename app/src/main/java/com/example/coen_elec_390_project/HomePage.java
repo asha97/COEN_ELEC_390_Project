@@ -49,6 +49,8 @@ public class HomePage extends AppCompatActivity {
     String timeElapsed;
     Handler handler;
 
+    StatisticsHelper statisticsHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -229,7 +231,14 @@ public class HomePage extends AppCompatActivity {
                     timeElapsed = (String)stopwatch_tv.getText();
                     startStopButton.setBackgroundColor(Color.BLUE); // set the background color to green
                     counter++;
-
+                    statisticsHelper = new StatisticsHelper(altitude_history,humidity_history,temperature_history,co2_history,gas_history,pressure_history,tVOC_history);
+                    altitude_history.clear();
+                    humidity_history.clear();
+                    temperature_history.clear();
+                    co2_history.clear();
+                    gas_history.clear();
+                    pressure_history.clear();
+                    tVOC_history.clear();
                 }
             }
         });
@@ -284,16 +293,11 @@ public class HomePage extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), TestNotifActivity.class);
         startActivity(intent);
     }
+
     public void openStatistics() {
+        //TODO: @Asha I want the users to not be able to open up the statistics page until after they've captured a certain interval of time with the stopwatch. We can make the statistics button unclickable until after they stop the timer for the 1st time. We can make it change color.
         Intent intent = new Intent(getApplicationContext(), StatisticsPage.class);
-    /*
-        intent.putExtra("altitude_history", altitude_history);
-        intent.putExtra("temperature_history", temperature_history);
-        intent.putExtra("humidity_history", humidity_history);
-        intent.putExtra("co2_history", co2_history);
-        intent.putExtra("gas_history", gas_history);
-        intent.putExtra("pressure_history", pressure_history);
-*/
+        intent.putExtra("StatisticsHelper", statisticsHelper);
         startActivity(intent);
     }
     public void openMedication() {
@@ -317,4 +321,5 @@ public class HomePage extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), UserProfile.class);
         startActivity(intent);
     }
+
 }

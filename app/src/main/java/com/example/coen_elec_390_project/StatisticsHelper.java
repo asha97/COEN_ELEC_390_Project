@@ -1,8 +1,10 @@
 package com.example.coen_elec_390_project;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class StatisticsHelper {
+public class StatisticsHelper implements Serializable {
     private ArrayList<Float> temperature_history;
     private ArrayList<Float> humidity_history;
     private ArrayList<Float> altitude_history;
@@ -10,6 +12,7 @@ public class StatisticsHelper {
     private ArrayList<Float> gas_history;
     private ArrayList<Float> pressure_history;
     private ArrayList<Float> tVOC_history;
+
     public StatisticsHelper(ArrayList<Float> altitude_history,ArrayList<Float> humidity_history,ArrayList<Float> temperature_history,ArrayList<Float> co2_history,ArrayList<Float> gas_history,ArrayList<Float> pressure_history,ArrayList<Float> tVOC_history ){
         this.altitude_history = altitude_history;
         this.humidity_history = humidity_history;
@@ -96,39 +99,74 @@ public class StatisticsHelper {
         return max;
     }
     public Float calculateMedian_Temperature(){
-        Float min = findMinimum(temperature_history);
-        Float max = findMaximum(temperature_history);
-        return (min+max)/2;
+        ArrayList<Float> tempArray = temperature_history;
+        Collections.sort(tempArray);
+        if(tempArray.size()%2 == 0){
+            return (tempArray.get(tempArray.size()/2) + tempArray.get(((tempArray.size())-1)/2))/2;
+        }
+        else {
+            return tempArray.get(tempArray.size()/2);
+        }
     }
     public Float calculateMedian_Humidity(){
-        Float min = findMinimum(humidity_history);
-        Float max = findMaximum(humidity_history);
-        return (min+max)/2;
+        ArrayList<Float> tempArray = humidity_history;
+        Collections.sort(tempArray);
+        if(tempArray.size()%2 == 0){
+            return (tempArray.get(tempArray.size()/2) + tempArray.get(((tempArray.size())-1)/2))/2;
+        }
+        else {
+            return tempArray.get(tempArray.size()/2);
+        }
     }
     public Float calculateMedian_Pressure(){
-        Float min = findMinimum(pressure_history);
-        Float max = findMaximum(pressure_history);
-        return (min+max)/2;
+        ArrayList<Float> tempArray = pressure_history;
+        Collections.sort(tempArray);
+        if(tempArray.size()%2 == 0){
+            return (tempArray.get(tempArray.size()/2) + tempArray.get(((tempArray.size())-1)/2))/2;
+        }
+        else {
+            return tempArray.get(tempArray.size()/2);
+        }
     }
     public Float calculateMedian_Gas(){
-        Float min = findMinimum(gas_history);
-        Float max = findMaximum(gas_history);
-        return (min+max)/2;
+        ArrayList<Float> tempArray = gas_history;
+        Collections.sort(tempArray);
+        if(tempArray.size()%2 == 0){
+            return (tempArray.get(tempArray.size()/2) + tempArray.get(((tempArray.size())-1)/2))/2;
+        }
+        else {
+            return tempArray.get(tempArray.size()/2);
+        }
     }
     public Float calculateMedian_Altitude(){
-        Float min = findMinimum(altitude_history);
-        Float max = findMaximum(altitude_history);
-        return (min+max)/2;
+        ArrayList<Float> tempArray = altitude_history;
+        Collections.sort(tempArray);
+        if(tempArray.size()%2 == 0){
+            return (tempArray.get(tempArray.size()/2) + tempArray.get(((tempArray.size())-1)/2))/2;
+        }
+        else {
+            return tempArray.get(tempArray.size()/2);
+        }
     }
     public Float calculateMedian_Co2(){
-        Float min = findMinimum(co2_history);
-        Float max = findMaximum(co2_history);
-        return (min+max)/2;
+        ArrayList<Float> tempArray = co2_history;
+        Collections.sort(tempArray);
+        if(tempArray.size()%2 == 0){
+            return (tempArray.get(tempArray.size()/2) + tempArray.get(((tempArray.size())-1)/2))/2;
+        }
+        else {
+            return tempArray.get(tempArray.size()/2);
+        }
     }
     public Float calculateMedian_tVOC(){
-        Float min = findMinimum(tVOC_history);
-        Float max = findMaximum(tVOC_history);
-        return (min+max)/2;
+        ArrayList<Float> tempArray = tVOC_history;
+        Collections.sort(tempArray);
+        if(tempArray.size()%2 == 0){
+            return (tempArray.get(tempArray.size()/2) + tempArray.get(((tempArray.size())-1)/2))/2;
+        }
+        else {
+            return tempArray.get(tempArray.size()/2);
+        }
     }
     public Float calculateMin_Altitude(){
         Float min = findMinimum(altitude_history);
