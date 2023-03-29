@@ -118,9 +118,12 @@ public class airQualityAnalytics extends AppCompatActivity {
                                     the basic implementation is done, need to add the send() function, need implementation
                                  */
 
-                                String title = "CO2 Level High";
-                                String message = "Be careful! The concentration of CO2 is higher than normal!";
-                                sendMessage(title, message);
+                                String title = "CO2 (ppm)";
+                                String message = co2PPM + "";
+
+                                //call the firebase messaging service object and use the object to get the sendNotification() method
+                                myFirebaseMessagingService msgServ = new myFirebaseMessagingService();
+                                msgServ.sendNotification(title, message);
 
                             }
                         }
@@ -170,6 +173,7 @@ public class airQualityAnalytics extends AppCompatActivity {
         return String.valueOf((hpaValue * 0.001));
     }
 
+ /*
     private void sendMessage(String title, String message) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID")
                 .setSmallIcon(R.drawable.icon_notif)
@@ -180,5 +184,7 @@ public class airQualityAnalytics extends AppCompatActivity {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.notify(1, builder.build());
     }
+
+  */
 
 }
