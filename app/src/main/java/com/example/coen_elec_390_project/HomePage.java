@@ -232,17 +232,22 @@ public class HomePage extends AppCompatActivity {
                     startStopButton.setBackgroundColor(Color.BLUE); // set the background color to green
                     counter++;
                     statisticsHelper = new StatisticsHelper(altitude_history,humidity_history,temperature_history,co2_history,gas_history,pressure_history,tVOC_history);
-                    altitude_history.clear();
-                    humidity_history.clear();
-                    temperature_history.clear();
-                    co2_history.clear();
-                    gas_history.clear();
-                    pressure_history.clear();
-                    tVOC_history.clear();
+                    clearHistories();
                 }
             }
         });
     }
+
+    private void clearHistories() {
+        altitude_history.clear();
+        humidity_history.clear();
+        temperature_history.clear();
+        co2_history.clear();
+        gas_history.clear();
+        pressure_history.clear();
+        tVOC_history.clear();
+    }
+
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
