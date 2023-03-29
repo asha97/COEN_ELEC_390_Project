@@ -79,7 +79,7 @@ public class airQualityAnalytics extends AppCompatActivity {
         barChart.invalidate();
 
         //display into the box the right metrics
-        String [] nameMetric = {"Altitude (m)", "CO2 (ppm)", "Gas (KOhms)", "Humidity (%)", "Pressure (hPa)", "Temperature (*C)", "Elapsed Time (ms)", "tVOC (g*m^-3)" };
+        String [] nameMetric = {"Altitude (m)", "CO2 (ppm)", "Gas (KOhms)", "Humidity (%)", "Pressure (KPa)", "Temperature (*C)", "Elapsed Time (ms)", "tVOC (g*m^-3)" };
 
         // Attach a ValueEventListener to the Firebase database node to get the data
         reference.addValueEventListener(new ValueEventListener() {
@@ -95,14 +95,20 @@ public class airQualityAnalytics extends AppCompatActivity {
                     float value = Float.parseFloat(snapshot.getValue().toString());
                     //not going to be displaying the elapsed time
                     if (i !=6) {
-                        dataSet.addEntry(new BarEntry(i, value, nameMetric[i]));
+                        if (i==4){
+                            //Reducing pressure by a factor of 10: 1000hPa -> 100KPa
+                            dataSet.addEntry(new BarEntry(i, (value/10), nameMetric[i])); // This will add the pressure in KPa to the bar graph
+                        }
+                        else {
+                            dataSet.addEntry(new BarEntry(i, value, nameMetric[i])); //Adding as usual
+                        }
                         String addData = nameMetric[i] + ": " + snapshot.getValue().toString();
                         if (nameMetric[i].equals("Temperature (*C)")){
-                            String addFahrenheit = "Temperature (*F): " + convertToFahrenheit(snapshot.getValue().toString());
+                            String addFahrenheit = "Temperature (*F): " + convertToFahrenheit(value);
                             list.add(addFahrenheit);
                         }
-                        if (nameMetric[i].equals("Pressure (hPa)")){
-                            String addBar = "Pressure (Bar): " + convertToBar(snapshot.getValue().toString());
+                        if (nameMetric[i].equals("Pressure (KPa)")){
+                            String addBar = "Pressure (Bar): " + convertToBar(value/10);
                             list.add(addBar);
                         }
                         //we want to make sure that the air quality particles are not surpassing the threshold
@@ -160,14 +166,12 @@ public class airQualityAnalytics extends AppCompatActivity {
         }
     }
 
-    private String convertToFahrenheit(String value){
-        double celsiusValue = Double.parseDouble(value);
-        return String.valueOf((celsiusValue*1.80000)+32.00);
+    private String convertToFahrenheit(Float value){
+        return String.valueOf((value*1.80000)+32.00);
     }
 
-    private String convertToBar(String value){
-        double hpaValue = Double.parseDouble(value);
-        return String.valueOf((hpaValue * 0.001));
+    private String convertToBar(Float value){
+        return String.valueOf(value * 0.01);
     }
 
     private void sendMessage(String title, String message) {
