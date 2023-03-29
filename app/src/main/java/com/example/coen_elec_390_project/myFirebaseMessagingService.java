@@ -23,11 +23,11 @@ public class myFirebaseMessagingService extends FirebaseMessagingService{
 
         String title = remoteMessage.getNotification().getTitle();
         String message = remoteMessage.getNotification().getBody();
-        sendNotification(title, message);
+        //sendNotification(title, message);
     }
 
 
-
+/*
     //this is going to be sending the notification when the ppm is above 200
     public void sendNotification(String title, String message) {
         // check if the notification is about CO2 and its value is greater than 200
@@ -45,19 +45,8 @@ public class myFirebaseMessagingService extends FirebaseMessagingService{
         }
     }
 
+ */
 
-    /*
-    private void sendNotification(String title, String message) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-       // notificationManager.notify(notificationId, builder.build());
-    }
-
-     */
 }
 
 //---------------------------TEST NOTIF CODE----------------------------------------------------

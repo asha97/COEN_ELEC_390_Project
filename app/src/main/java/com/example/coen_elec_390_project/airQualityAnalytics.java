@@ -40,7 +40,6 @@ import androidx.core.app.NotificationManagerCompat;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 
-
 public class airQualityAnalytics extends AppCompatActivity {
     private BarChart barChart;
     private DatabaseReference reference;
@@ -177,18 +176,5 @@ public class airQualityAnalytics extends AppCompatActivity {
         return String.valueOf(value * 0.01);
     }
 
- /*
-    private void sendMessage(String title, String message) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID")
-                .setSmallIcon(R.drawable.icon_notif)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        notificationManager.notify(1, builder.build());
-    }
-
-  */
 
 }
