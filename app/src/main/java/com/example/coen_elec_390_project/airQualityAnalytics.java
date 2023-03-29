@@ -14,10 +14,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,6 +33,14 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+
+import android.widget.Toast;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
+
+
 public class airQualityAnalytics extends AppCompatActivity {
     private BarChart barChart;
     private DatabaseReference reference;
@@ -95,6 +105,34 @@ public class airQualityAnalytics extends AppCompatActivity {
                             String addBar = "Pressure (Bar): " + convertToBar(snapshot.getValue().toString());
                             list.add(addBar);
                         }
+                        //we want to make sure that the air quality particles are not surpassing the threshold
+                        if (nameMetric[i].equals("CO2 (ppm)")){
+                            int co2PPM = Integer.parseInt(snapshot.getValue().toString());
+
+                            if (co2PPM >= 200){
+                                Toast.makeText(airQualityAnalytics.this, "CO2 particle is above 1000ppm, be careful!", Toast.LENGTH_SHORT).show();
+
+                                /*
+                                    this is where there is going to be the implementation of the notification
+                                    using the firebasemessaging class
+                                    the basic implementation is done, need to add the send() function, need implementation
+                                 */
+
+                                String title = "CO2 Level High";
+                                String message = "Be careful! The concentration of CO2 is higher than normal!";
+                                sendMessage(title, message);
+
+                            }
+                        }
+
+                        if (nameMetric[i].equals("Gas (KOhms)")){
+                            double gasMetric = Double.parseDouble(snapshot.getValue().toString());
+
+                            if (gasMetric >= 100){ // need to change this value for the right gas
+                                Toast.makeText(airQualityAnalytics.this, "TVOC level is too high, be careful!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
                         list.add(addData);
                         i++;
                     }
@@ -122,8 +160,6 @@ public class airQualityAnalytics extends AppCompatActivity {
         }
     }
 
-
-
     private String convertToFahrenheit(String value){
         double celsiusValue = Double.parseDouble(value);
         return String.valueOf((celsiusValue*1.80000)+32.00);
@@ -133,4 +169,16 @@ public class airQualityAnalytics extends AppCompatActivity {
         double hpaValue = Double.parseDouble(value);
         return String.valueOf((hpaValue * 0.001));
     }
+
+    private void sendMessage(String title, String message) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID")
+                .setSmallIcon(R.drawable.icon_notif)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(1, builder.build());
+    }
+
 }

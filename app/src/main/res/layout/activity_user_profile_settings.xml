@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CED6FF"
+    android:background="@drawable/gradient_background"
     tools:context=".UserProfileSettings">
 
     <ImageView
@@ -42,7 +42,7 @@
         android:id="@+id/saveUserProfile"
         android:layout_width="247dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="28dp"
         android:backgroundTint="#004AAD"
         android:text="Update Your Profile"
         app:layout_constraintBottom_toBottomOf="parent"
