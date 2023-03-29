@@ -21,21 +21,20 @@
 
 
 
-// Insert your network credentials
-#define WIFI_SSID "O"
-#define WIFI_PASSWORD "papaya00"
-
 
 // Insert Firebase project API Key
-#define API_KEY "AIzaSyDyBl0v4j8M0uSzvm7Lf37p9wADwBsJZy0"
+#define API_KEY "AIzaSyDxbx2Rge58dtOSzhGUTmYVjDrjGUHdfPo"
 // Insert RTDB URLefine the RTDB URL */
-#define DATABASE_URL "https://test2-5494e-default-rtdb.firebaseio.com/" 
+#define DATABASE_URL "https://dermair-app-default-rtdb.firebaseio.com/" 
 
 //Define Firebase Data object
 FirebaseData fbdo;
-
 FirebaseAuth auth;
 FirebaseConfig config;
+
+
+bool tog;
+bool toggle;
 
 //Adafruit BME680 Variable Declarations
 unsigned long sendDataPrevMillis = 0;
@@ -158,8 +157,11 @@ void setup(){
 
 void loop(){
 
-  while (touchRead(4)<50) {
+  if (touchRead(4)<50) {
     Serial.println("Heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeyyyyyyyyyyyyyyyyyyyyy ;)");
+    tog = 1;
+  } else {
+    tog = 0;
   }
 
 
@@ -200,6 +202,8 @@ void loop(){
     CO2 = (float)mySensor.getCO2();
     tVOC = (float)mySensor.getTVOC();
     elapsedTime = (float)millis();
+
+    toggle = (bool)tog;
     
     
 
@@ -300,6 +304,17 @@ void loop(){
       Serial.println("FAILED");
       Serial.println("\tTYPE: " + fbdo.dataType());
       Serial.println("REASON: " + fbdo.errorReason());
-    }   
+    }
+    if (Firebase.RTDB.setBool(&fbdo, "Toggle", toggle)){
+      Serial.println("PASSED");
+      Serial.println(toggle);
+      Serial.println("PATH: " + fbdo.dataPath());
+      Serial.println("\tTYPE: " + fbdo.dataType());
+    }
+    else {
+      Serial.println("FAILED");
+      Serial.println("\tTYPE: " + fbdo.dataType());
+      Serial.println("REASON: " + fbdo.errorReason());
+    }
   }
 }

@@ -26,9 +26,9 @@
 
 
 // Insert Firebase project API Key
-#define API_KEY "AIzaSyDyBl0v4j8M0uSzvm7Lf37p9wADwBsJZy0"
+#define API_KEY "AIzaSyDxbx2Rge58dtOSzhGUTmYVjDrjGUHdfPo"
 // Insert RTDB URLefine the RTDB URL */
-#define DATABASE_URL "https://test2-5494e-default-rtdb.firebaseio.com/" 
+#define DATABASE_URL "https://dermair-app-default-rtdb.firebaseio.com/" 
 
 //Define Firebase Data object
 FirebaseData fbdo;
