@@ -109,7 +109,7 @@ public class airQualityAnalytics extends AppCompatActivity {
                         if (nameMetric[i].equals("CO2 (ppm)")){
                             int co2PPM = Integer.parseInt(snapshot.getValue().toString());
 
-                            if (co2PPM >= 1000){
+                            if (co2PPM >= 200){
                                 Toast.makeText(airQualityAnalytics.this, "CO2 particle is above 1000ppm, be careful!", Toast.LENGTH_SHORT).show();
 
                                 /*
@@ -118,6 +118,9 @@ public class airQualityAnalytics extends AppCompatActivity {
                                     the basic implementation is done, need to add the send() function, need implementation
                                  */
 
+                                String title = "CO2 Level High";
+                                String message = "Be careful! The concentration of CO2 is higher than normal!";
+                                sendMessage(title, message);
 
                             }
                         }
@@ -166,4 +169,16 @@ public class airQualityAnalytics extends AppCompatActivity {
         double hpaValue = Double.parseDouble(value);
         return String.valueOf((hpaValue * 0.001));
     }
+
+    private void sendMessage(String title, String message) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID")
+                .setSmallIcon(R.drawable.icon_notif)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(1, builder.build());
+    }
+
 }
