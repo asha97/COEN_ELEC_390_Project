@@ -27,7 +27,7 @@ import java.util.Locale;
 
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
-    Button logoutButton,startStopButton, notifTest;
+    Button logoutButton,startStopButton;
     ImageView generalSettings, airQualityBtn, userProfileGo, medicationButton, statsButton;
     TextView greetingText;
     FirebaseUser user;
@@ -62,7 +62,6 @@ public class HomePage extends AppCompatActivity {
         userProfileGo = findViewById(R.id.userProfileAccess);
         medicationButton = findViewById(R.id.logMedication);
         statsButton = findViewById(R.id.statsIcon);
-        notifTest = findViewById(R.id.notifTest);
         stopwatch_tv = findViewById(R.id.stopwatch_tv);
 
         auth = FirebaseAuth.getInstance();
@@ -196,14 +195,6 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        notifTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openNotif();
-            }
-        });
-
-
         startStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -286,11 +277,6 @@ public class HomePage extends AppCompatActivity {
             handler.postDelayed(this,1000);
         }
     };
-
-    public void openNotif() {
-        Intent intent = new Intent(getApplicationContext(), TestNotifActivity.class);
-        startActivity(intent);
-    }
 
     public void openStatistics() {
         //TODO: @Asha I want the users to not be able to open up the statistics page until after they've captured a certain interval of time with the stopwatch. We can make the statistics button unclickable until after they stop the timer for the 1st time. We can make it change color.
