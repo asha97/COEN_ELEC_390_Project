@@ -118,12 +118,12 @@ public class airQualityAnalytics extends AppCompatActivity {
                                     the basic implementation is done, need to add the send() function, need implementation
                                  */
 
-                                String title = "CO2 (ppm)";
-                                String message = co2PPM + "";
+                                //String title = "CO2 (ppm)";
+                                //String message = co2PPM + "";
 
                                 //call the firebase messaging service object and use the object to get the sendNotification() method
-                                myFirebaseMessagingService msgServ = new myFirebaseMessagingService();
-                                msgServ.sendNotification(title, message);
+                                //myFirebaseMessagingService msgServ = new myFirebaseMessagingService();
+                                //msgServ.sendNotification(title, message);
 
                             }
                         }
