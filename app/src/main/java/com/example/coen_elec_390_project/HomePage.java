@@ -25,6 +25,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.Entry;
+
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
     Button logoutButton,startStopButton, notifTest;
@@ -51,10 +56,14 @@ public class HomePage extends AppCompatActivity {
 
     StatisticsHelper statisticsHelper;
 
+    private LineChart lineChart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        //referencing to the xml file
         startStopButton = findViewById(R.id.start_stop_button);
         logoutButton = findViewById(R.id.logoutBtn);
         generalSettings = findViewById(R.id.settingButton);
@@ -64,14 +73,29 @@ public class HomePage extends AppCompatActivity {
         statsButton = findViewById(R.id.statsIcon);
         notifTest = findViewById(R.id.notifTest);
         stopwatch_tv = findViewById(R.id.stopwatch_tv);
-
-        auth = FirebaseAuth.getInstance();
+        lineChart = findViewById(R.id.chart);
         greetingText = findViewById(R.id.userDetails);
+
+        //firebase instantiation and fetching of data set up
+        auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser(); //initialize the current user
         reference = FirebaseDatabase.getInstance().getReference().child("Sensor");
-
         handler = new Handler();
+/*
+        //------------------------line chart set up-----------------------------------------------
+        LineDataSet dataSet = new LineDataSet(new ArrayList<Entry>(), "Sensor Data");
 
+        // colors of chart
+        dataSet.setColor(R.color.purple_500);
+        dataSet.setValueTextColor(R.color.black);
+
+        // add data of linechart into object
+        LineData lineData = new LineData(dataSet);
+        lineChart.setData(lineData);
+        lineChart.invalidate();
+
+
+ */
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -110,6 +134,20 @@ public class HomePage extends AppCompatActivity {
                 //}
                 //System.out.println("*******TVOC**********");
                 //System.out.println(tVOC_history.get(0));
+
+                // Add data to the LineChart view
+                System.out.println("number of elements in the array: " +temperature_history.size() );
+/*
+                ArrayList<Entry> entries = new ArrayList<Entry>();
+                for (int i = 0; i < temperature_history.size(); i++) {
+                    entries.add(new Entry(i, temperature_history.get(i)));
+                }
+                LineDataSet dataSet = (LineDataSet) lineChart.getData().getDataSetByIndex(0);
+                dataSet.setValues(entries);
+                lineChart.getData().notifyDataChanged();
+                lineChart.notifyDataSetChanged();
+ */
+
             }
 
             @Override
@@ -118,6 +156,7 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        //this is going to be for the greeting message on the top, based on the name of the user
         if (user == null){
             openLogin();
         } else {
@@ -147,6 +186,7 @@ public class HomePage extends AppCompatActivity {
             });
         }
 
+        //logout button implementation
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -157,7 +197,7 @@ public class HomePage extends AppCompatActivity {
 
         });
 
-
+        //going to the settings page
         generalSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -166,6 +206,7 @@ public class HomePage extends AppCompatActivity {
 
         });
 
+        //going to the air quality page to see the detailed views of the metrics
         airQualityBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -182,6 +223,7 @@ public class HomePage extends AppCompatActivity {
 
         });
 
+        //look at the user profile and the information about the user
         userProfileGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

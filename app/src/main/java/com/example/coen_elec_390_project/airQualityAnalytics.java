@@ -175,6 +175,4 @@ public class airQualityAnalytics extends AppCompatActivity {
     private String convertToBar(Float value){
         return String.valueOf(value * 0.01);
     }
-
-
 }
