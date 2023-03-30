@@ -23,7 +23,7 @@ public class UserProfileSettings extends AppCompatActivity {
 
     Button saveUser;
     EditText user_name, user_date_of_birth, user_location, user_height, user_weight;
-
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +38,11 @@ public class UserProfileSettings extends AppCompatActivity {
 
         // Fetch the data from Firebase database for the current user
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("users").child(uid);
         userReference.addValueEventListener((new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
+                user = dataSnapshot.getValue(User.class);
             }
 
             @Override
@@ -63,26 +62,32 @@ public class UserProfileSettings extends AppCompatActivity {
                 String height = user_height.getText().toString();
                 String weight = user_weight.getText().toString();
 
-                //make sure that the updates happen to the current user!!!
-//                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+                // verify which fields are filled to update that information only for the user update
+                if(!name.isEmpty()) {
+                    user.setName(name);
+                }
+                if(!dob.isEmpty()) {
+                    user.setDoB(dob);
+                }
+                if(!location.isEmpty()) {
+                    user.setLocation(location);
+                }
+                if(!height.isEmpty()) {
+                    user.setHeight(Integer.parseInt(height));
+                }
+                if(!weight.isEmpty()) {
+                    user.setWeight(Double.parseDouble(weight));
+                }
 
-                User userUpdate = new User(name, dob, location, height, weight, email);
-
-                userReference.setValue(userUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
+                userReference.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    // display a Toast message to inform that the update is done successfully
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()) {
                             Toast.makeText(UserProfileSettings.this, "User Profile has been saved successfully", Toast.LENGTH_SHORT).show();
                         }
-                        else {
-                            Toast.makeText(UserProfileSettings.this, "Error: The user profile cannot get updated", Toast.LENGTH_SHORT).show();
-                        }
                     }
                 });
-
-                // need to change this to update, but need to find code
-//                user.writeToFirebase();
 
                 //open directly once done signing up
                 openHomePage();
