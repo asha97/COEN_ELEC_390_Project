@@ -4,9 +4,11 @@
     <string name="click_to_register">Click to Register</string>
     <string name="Stop_stopwatch">Stop</string>
     <string name="Start_stopwatch">Start</string>
-    <string name ="average">Average: %1$s</string>
-    <string name ="median">Median: %1$s</string>
-    <string name ="minimum">Minimum: %1$s</string>
-    <string name ="maximum">Maximum: %1$s</string>
+    <string name="average">Average: %1$s</string>
+    <string name="median">Median: %1$s</string>
+    <string name="minimum">Minimum: %1$s</string>
+    <string name="maximum">Maximum: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
