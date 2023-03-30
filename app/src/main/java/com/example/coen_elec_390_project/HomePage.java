@@ -25,6 +25,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.Entry;
+
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
     Button logoutButton,startStopButton, notifTest;
@@ -59,6 +64,9 @@ public class HomePage extends AppCompatActivity {
 
     StatisticsHelper statisticsHelper;
 
+    private LineChart lineChart;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,13 +80,31 @@ public class HomePage extends AppCompatActivity {
         statsButton = findViewById(R.id.statsIcon);
         notifTest = findViewById(R.id.notifTest);
         stopwatch_tv = findViewById(R.id.stopwatch_tv);
+        greetingText = findViewById(R.id.userDetails);
+        lineChart = findViewById(R.id.chart);
+
 
         auth = FirebaseAuth.getInstance();
-        greetingText = findViewById(R.id.userDetails);
         user = auth.getCurrentUser(); //initialize the current user
         reference = FirebaseDatabase.getInstance().getReference().child("Sensor");
 
         handler = new Handler();
+
+
+        //------------------------line chart set up-----------------------------------------------
+        LineDataSet dataSet = new LineDataSet(new ArrayList<Entry>(), "Sensor Data");
+
+        // colors of chart
+        dataSet.setColor(R.color.purple_500);
+        dataSet.setValueTextColor(R.color.black);
+
+        // add data of linechart into object
+        LineData lineData = new LineData(dataSet);
+        lineChart.setData(lineData);
+        lineChart.invalidate();
+
+
+
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -104,6 +130,15 @@ public class HomePage extends AppCompatActivity {
                 else {
                     // do not collect data
                 }
+
+                ArrayList<Entry> entries = new ArrayList<Entry>();
+                for (int i = 0; i < temperature_continous.size(); i++) {
+                    entries.add(new Entry(i, temperature_continous.get(i)));
+                }
+                LineDataSet dataSet = (LineDataSet) lineChart.getData().getDataSetByIndex(0);
+                dataSet.setValues(entries);
+                lineChart.getData().notifyDataChanged();
+                lineChart.notifyDataSetChanged();
 
             }
 

@@ -263,5 +263,13 @@
         app:layout_constraintStart_toStartOf="@+id/imageView6"
         app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_width="323dp"
+        android:layout_height="194dp"
+        app:layout_constraintBottom_toBottomOf="@+id/lineChartDisplay"
+        app:layout_constraintEnd_toEndOf="@+id/lineChartDisplay"
+        app:layout_constraintStart_toStartOf="@+id/lineChartDisplay"
+        app:layout_constraintTop_toTopOf="@+id/lineChartDisplay" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
