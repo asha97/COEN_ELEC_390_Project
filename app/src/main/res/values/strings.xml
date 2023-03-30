@@ -8,5 +8,5 @@
     <string name ="median">Median: %1$s</string>
     <string name ="minimum">Minimum: %1$s</string>
     <string name ="maximum">Maximum: %1$s</string>
-
+<!--    <string name = "change_user_info">Click to Change User Profile</string>-->
 </resources>
