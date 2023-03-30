@@ -3,6 +3,10 @@ package com.example.coen_elec_390_project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -35,6 +39,8 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -48,6 +54,12 @@ public class airQualityAnalytics extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_air_quality_analytics);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
 
         //this is going to be displaying the back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -84,7 +96,7 @@ public class airQualityAnalytics extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // clear data to make sure there isnt anything else
+                // clear data to make sure there isn't anything else
                 dataSet.clear();
                 list.clear();
 
@@ -151,6 +163,142 @@ public class airQualityAnalytics extends AppCompatActivity {
                 barChart.notifyDataSetChanged();
                 barChart.invalidate();
                 adapter.notifyDataSetChanged();
+
+
+                //----------------------CREATION OF NOTIFICATIONS--------------------------//
+                String co2String = list.get(1);
+                String[] value1 = co2String.split(": ", 2);
+                double co2Value = Double.parseDouble(value1[1]);
+
+//                String gasString = list.get(2);
+//                String [] value2 = gasString.split(": ", 2);
+//                double gasValue = Double.parseDouble(value2[1]);
+
+                if(co2Value > 1000) {
+                    //notification code for high CO2 warning
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(airQualityAnalytics.this, "My Notification");
+                    builder.setContentTitle("Warning: There is high CO2 exposure");
+                    builder.setContentText("Make sure to wear a mask or leave the premises!");
+                    builder.setSmallIcon(R.drawable.ic_launcher_background);
+                    builder.setAutoCancel(true);
+
+                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(airQualityAnalytics.this);
+                    if (ActivityCompat.checkSelfPermission(airQualityAnalytics.this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+                    managerCompat.notify(1, builder.build());
+                }
+
+                String humidityString = list.get(3);
+                String [] value3 = humidityString.split(": ", 2);
+                double humidityValue = Double.parseDouble(value3[1]);
+
+                if(humidityValue > 50.00000) {
+                    //notification code for high humidity warning
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(airQualityAnalytics.this, "My Notification");
+                    builder.setContentTitle("Warning: There is high humidity levels");
+                    builder.setContentText("Make sure to have an inhaler if needed or leave the premises!");
+                    builder.setSmallIcon(R.drawable.ic_launcher_background);
+                    builder.setAutoCancel(true);
+
+                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(airQualityAnalytics.this);
+                    if (ActivityCompat.checkSelfPermission(airQualityAnalytics.this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+                    managerCompat.notify(2, builder.build());
+                }
+
+                String pressureString = list.get(4);
+                String [] value4 = pressureString.split(": ", 2);
+                double pressureValue = Double.parseDouble(value4[1]);
+
+                if(pressureValue > 1000) {
+                    //notification code for high pressure warning
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(airQualityAnalytics.this, "My Notification");
+                    builder.setContentTitle("Warning: There is high pressure levels");
+                    builder.setContentText("Make sure to have an inhaler if needed or leave the premises!");
+                    builder.setSmallIcon(R.drawable.ic_launcher_background);
+                    builder.setAutoCancel(true);
+
+                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(airQualityAnalytics.this);
+                    if (ActivityCompat.checkSelfPermission(airQualityAnalytics.this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+                    managerCompat.notify(3, builder.build());
+                }
+
+                String temperatureString = list.get(5);
+                String [] value5 = temperatureString.split(": ", 2);
+                double temperatureValue = Double.parseDouble(value5[1]);
+
+                if(temperatureValue > 32.00000) {
+                    //notification code for high temperature warning
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(airQualityAnalytics.this, "My Notification");
+                    builder.setContentTitle("Warning: You are in a high temperature area");
+                    builder.setContentText("Make sure to wear appropriate clothing or leave the premises!");
+                    builder.setSmallIcon(R.drawable.ic_launcher_background);
+                    builder.setAutoCancel(true);
+
+                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(airQualityAnalytics.this);
+                    if (ActivityCompat.checkSelfPermission(airQualityAnalytics.this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+                    managerCompat.notify(4, builder.build());
+                }
+
+                String tVOCString = list.get(7);
+                String [] value7 = tVOCString.split(": ", 2);
+                double tVOCValue = Double.parseDouble(value7[1]);
+
+                if(tVOCValue > 0.001) {
+                    //notification code for high tVOC warning
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(airQualityAnalytics.this, "My Notification");
+                    builder.setContentTitle("Warning: There are high amounts of particles in this area");
+                    builder.setContentText("Make sure to wear a mask or leave the premises!");
+                    builder.setSmallIcon(R.drawable.ic_launcher_background);
+                    builder.setAutoCancel(true);
+
+                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(airQualityAnalytics.this);
+                    if (ActivityCompat.checkSelfPermission(airQualityAnalytics.this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+                    managerCompat.notify(5, builder.build());
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
