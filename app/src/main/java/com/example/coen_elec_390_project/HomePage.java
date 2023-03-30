@@ -43,6 +43,14 @@ public class HomePage extends AppCompatActivity {
     ArrayList<Float> pressure_history = new ArrayList<>();
     ArrayList<Float> tVOC_history = new ArrayList<>();
 
+    ArrayList<Float> temperature_continous = new ArrayList<>();
+    ArrayList<Float> humidity_continous = new ArrayList<>();
+    ArrayList<Float> altitude_continous = new ArrayList<>();
+    ArrayList<Float> co2_continous = new ArrayList<>();
+    ArrayList<Float> gas_continous = new ArrayList<>();
+    ArrayList<Float> pressure_continous = new ArrayList<>();
+    ArrayList<Float> tVOC_continous = new ArrayList<>();
+
     private int seconds = 0;
     private boolean functioning;
     private boolean wasFunctioning;
@@ -80,8 +88,11 @@ public class HomePage extends AppCompatActivity {
                 for (DataSnapshot snapshot:it_list) {
                     arrayList_result.add(snapshot.getValue().toString());
                 }
+                temperature_continous.add(Float.parseFloat(arrayList_result.get(5)));
+                System.out.println(temperature_continous.get(temperature_continous.size()-1));
+                //TODO: Finish collecting data for every metric continously @Asha @Pavi
+
                 if (!(counter%2==0)){
-                    //System.out.println("Adding data");
                     altitude_history.add(Float.parseFloat(arrayList_result.get(0)));
                     co2_history.add(Float.parseFloat(arrayList_result.get(1)));
                     gas_history.add(Float.parseFloat(arrayList_result.get(2)));
@@ -94,22 +105,6 @@ public class HomePage extends AppCompatActivity {
                     // do not collect data
                 }
 
-                //System.out.println("*******ALTITUDE**********");
-                //System.out.println(altitude_history.get(0));
-                //System.out.println("*******CO2**********");
-                //System.out.println(co2_history.get(0));
-                //System.out.println("*******GAS**********");
-                //System.out.println(gas_history.get(0));
-                //System.out.println("*******HUMIDITY**********");
-                //System.out.println(humidity_history.get(0));
-                //System.out.println("*******PRESSURE**********");
-                //System.out.println(pressure_history.get(0));
-                //if(!(temperature_history.isEmpty())) {
-                    //System.out.println("*******TEMPERATURE**********");
-                    //System.out.println(temperature_history.get(temperature_history.size()-1));
-                //}
-                //System.out.println("*******TVOC**********");
-                //System.out.println(tVOC_history.get(0));
             }
 
             @Override
