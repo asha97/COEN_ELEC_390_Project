@@ -16,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
         signUpBtn = findViewById(R.id.signUpButtonHome);
         loginBtn = findViewById(R.id.loginButtonHome);
-        homePageBtn = findViewById(R.id.homePageBtn);
+
+        //going to the specific pages
         signUpBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -31,19 +32,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        homePageBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public  void onClick(View v){
-                goToHome();
-            }
-        });
-
-    }
-
-    private void goToHome(){
-        Intent intent = new Intent(this, HomePage.class);
-        startActivity(intent);
     }
     private void goToLogin(){
         Intent intent = new Intent(this, LoginPage.class);

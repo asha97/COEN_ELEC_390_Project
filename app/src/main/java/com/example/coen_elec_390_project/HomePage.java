@@ -66,7 +66,6 @@ public class HomePage extends AppCompatActivity {
 
     private LineChart lineChart;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,19 +77,16 @@ public class HomePage extends AppCompatActivity {
         userProfileGo = findViewById(R.id.userProfileAccess);
         medicationButton = findViewById(R.id.logMedication);
         statsButton = findViewById(R.id.statsIcon);
-        notifTest = findViewById(R.id.notifTest);
         stopwatch_tv = findViewById(R.id.stopwatch_tv);
         greetingText = findViewById(R.id.userDetails);
         lineChart = findViewById(R.id.chart);
-
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser(); //initialize the current user
         reference = FirebaseDatabase.getInstance().getReference().child("Sensor");
 
         handler = new Handler();
-
-
+ /*
         //------------------------line chart set up-----------------------------------------------
         LineDataSet dataSet = new LineDataSet(new ArrayList<Entry>(), "Sensor Data");
 
@@ -102,7 +98,7 @@ public class HomePage extends AppCompatActivity {
         LineData lineData = new LineData(dataSet);
         lineChart.setData(lineData);
         lineChart.invalidate();
-
+*/
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -128,7 +124,7 @@ public class HomePage extends AppCompatActivity {
                 else {
                     // do not collect data
                 }
-
+/*
                 ArrayList<Entry> entries = new ArrayList<Entry>();
                 for (int i = 0; i < temperature_continous.size(); i++) {
                     entries.add(new Entry(i, temperature_continous.get(i)));
@@ -140,6 +136,8 @@ public class HomePage extends AppCompatActivity {
                 lineChart.getData().notifyDataChanged();
                 lineChart.notifyDataSetChanged();
 
+
+ */
             }
 
             @Override
@@ -225,15 +223,6 @@ public class HomePage extends AppCompatActivity {
                 openStatistics();
             }
         });
-
-        notifTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openNotif();
-            }
-        });
-
-
         startStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -322,10 +311,7 @@ public class HomePage extends AppCompatActivity {
         }
     };
 
-    public void openNotif() {
-        Intent intent = new Intent(getApplicationContext(), TestNotifActivity.class);
-        startActivity(intent);
-    }
+
 
     public void openStatistics() {
         //TODO: @Asha I want the users to not be able to open up the statistics page until after they've captured a certain interval of time with the stopwatch. We can make the statistics button unclickable until after they stop the timer for the 1st time. We can make it change color.
