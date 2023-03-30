@@ -104,8 +104,6 @@ public class HomePage extends AppCompatActivity {
         lineChart.invalidate();
 
 
-
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -135,6 +133,8 @@ public class HomePage extends AppCompatActivity {
                 for (int i = 0; i < temperature_continous.size(); i++) {
                     entries.add(new Entry(i, temperature_continous.get(i)));
                 }
+
+                //setting values and putting it into the graph
                 LineDataSet dataSet = (LineDataSet) lineChart.getData().getDataSetByIndex(0);
                 dataSet.setValues(entries);
                 lineChart.getData().notifyDataChanged();
