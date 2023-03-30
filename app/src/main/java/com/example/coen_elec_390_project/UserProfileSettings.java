@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,18 +38,12 @@ public class UserProfileSettings extends AppCompatActivity {
 
         // Fetch the data from Firebase database for the current user
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("users").child(uid);
         userReference.addValueEventListener((new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-                if(user != null) {
-                    user_name.setText(user.getName());
-                    user_date_of_birth.setText(user.getDoB());
-                    user_location.setText(user.getLocation());
-                    user_height.setText(user.getHeight());
-                    user_weight.setText((int) user.getWeight());
-                }
             }
 
             @Override
@@ -72,7 +69,17 @@ public class UserProfileSettings extends AppCompatActivity {
 
                 User userUpdate = new User(name, dob, location, height, weight, email);
 
-
+                userReference.setValue(userUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()) {
+                            Toast.makeText(UserProfileSettings.this, "User Profile has been saved successfully", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(UserProfileSettings.this, "Error: The user profile cannot get updated", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
                 // need to change this to update, but need to find code
 //                user.writeToFirebase();
