@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Objects;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.LineData;
@@ -66,6 +67,8 @@ public class HomePage extends AppCompatActivity {
     StatisticsHelper statisticsHelper;
 
     private LineChart lineChart;
+    ArrayList<Entry> temperature_data;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,36 +91,31 @@ public class HomePage extends AppCompatActivity {
 
         handler = new Handler();
 
-        //------------------------line chart set up-----------------------------------------------
-        LineDataSet dataSet = new LineDataSet(new ArrayList<Entry>(), "Sensor Data");
 
-        // colors of chart
-        dataSet.setColor(R.color.purple_500);
-        dataSet.setValueTextColor(R.color.black);
-
-        // add data of linechart into object
-        LineData lineData = new LineData(dataSet);
-        lineChart.setData(lineData);
-        lineChart.invalidate();
-
-        String [] nameMetric = {"Altitude (m)", "CO2 (ppm)", "Gas (KOhms)", "Humidity (%)", "Pressure (KPa)", "Temperature (*C)", "Elapsed Time (ms)", "tVOC (g*m^-3)" };
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<String> arrayList_result = new ArrayList<String>();
                 Iterable<DataSnapshot> it_list = dataSnapshot.getChildren();
-                int i = 0;
+                temperature_data = new ArrayList<>();
+                float i = 0;
+                int j = 0;
                 for (DataSnapshot snapshot:it_list) {
+                    i++;
                     arrayList_result.add(snapshot.getValue().toString());
-                    if (i != 6){
-                        //dataSet.addEntry(new BarEntry(i, nameMetric[i])); // This will add the pressure in KPa to the bar graph
+                    if(j == 5){
+                        temperature_data.add(new Entry(i,Float.parseFloat(snapshot.getValue().toString())));
                     }
-
-
+                    j++;
                 }
-                temperature_continous.add(Float.parseFloat(arrayList_result.get(5)));
-                System.out.println(temperature_continous.get(temperature_continous.size()-1));
-                //TODO: Finish collecting data for every metric continously @Asha @Pavi
+                j=0;
+                final LineDataSet ldSet = new LineDataSet(temperature_data, "Temperature");
+                LineData lineData = new LineData(ldSet);
+                lineChart.setData(lineData);
+                lineChart.notifyDataSetChanged();
+                //TODO: make the line appear
+                lineChart.invalidate();
+
 
                 if (!(counter%2==0)){
                     altitude_history.add(Float.parseFloat(arrayList_result.get(0)));
@@ -131,18 +129,6 @@ public class HomePage extends AppCompatActivity {
                 else {
                     // do not collect data
                 }
-
-                ArrayList<Entry> entries = new ArrayList<Entry>();
-
-
-                //setting values and putting it into the graph
-                LineDataSet dataSet = (LineDataSet) lineChart.getData().getDataSetByIndex(0);
-                dataSet.setValues(entries);
-                lineChart.getData().notifyDataChanged();
-                lineChart.notifyDataSetChanged();
-
-
-
             }
 
             @Override
