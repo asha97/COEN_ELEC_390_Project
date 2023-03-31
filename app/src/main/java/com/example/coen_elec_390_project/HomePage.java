@@ -89,7 +89,7 @@ public class HomePage extends AppCompatActivity {
         handler = new Handler();
 
         //------------------------line chart set up-----------------------------------------------
-        LineDataSet dataSet = new LineDataSet(new ArrayList<LineEntry>(), "Sensor Data");
+        LineDataSet dataSet = new LineDataSet(new ArrayList<Entry>(), "Sensor Data");
 
         // colors of chart
         dataSet.setColor(R.color.purple_500);
@@ -110,8 +110,9 @@ public class HomePage extends AppCompatActivity {
                 for (DataSnapshot snapshot:it_list) {
                     arrayList_result.add(snapshot.getValue().toString());
                     if (i != 6){
-                        dataSet.addEntry(new BarEntry(i, nameMetric[i])); // This will add the pressure in KPa to the bar graph
+                        //dataSet.addEntry(new BarEntry(i, nameMetric[i])); // This will add the pressure in KPa to the bar graph
                     }
+
 
                 }
                 temperature_continous.add(Float.parseFloat(arrayList_result.get(5)));
