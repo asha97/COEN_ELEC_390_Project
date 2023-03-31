@@ -31,6 +31,7 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
@@ -63,12 +64,10 @@ public class HomePage extends AppCompatActivity {
     private boolean wasFunctioning;
     String timeElapsed;
     Handler handler;
-
     StatisticsHelper statisticsHelper;
-
     private LineChart lineChart;
     ArrayList<Entry> temperature_data;
-
+    ArrayList<Entry> pressure_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,27 +89,46 @@ public class HomePage extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference().child("Sensor");
 
         handler = new Handler();
-
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<String> arrayList_result = new ArrayList<String>();
                 Iterable<DataSnapshot> it_list = dataSnapshot.getChildren();
                 temperature_data = new ArrayList<>();
+                pressure_data = new ArrayList<>();
+
+
                 float i = 0;
                 int j = 0;
                 for (DataSnapshot snapshot:it_list) {
                     i++;
                     arrayList_result.add(snapshot.getValue().toString());
+
+                    if(j == 4){
+                        pressure_data.add(new Entry(i,Float.parseFloat(snapshot.getValue().toString())));
+                    }
+
                     if(j == 5){
                         temperature_data.add(new Entry(i,Float.parseFloat(snapshot.getValue().toString())));
                     }
                     j++;
                 }
                 j=0;
+
+                //temperature line
                 final LineDataSet ldSet = new LineDataSet(temperature_data, "Temperature");
-                LineData lineData = new LineData(ldSet);
+                ldSet.setColor(Color.RED);
+
+                //pressure line
+                final LineDataSet pressureSet = new LineDataSet(pressure_data, "Pressure");
+                ldSet.setColor(Color.BLACK);
+
+                ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+                dataSets.add(ldSet);
+                dataSets.add(pressureSet);
+
+
+                LineData lineData = new LineData(dataSets);
                 lineChart.setData(lineData);
                 lineChart.notifyDataSetChanged();
                 //TODO: make the line appear
