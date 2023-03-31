@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.data.BarEntry;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +25,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Objects;
+
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
@@ -56,8 +64,10 @@ public class HomePage extends AppCompatActivity {
     private boolean wasFunctioning;
     String timeElapsed;
     Handler handler;
-
     StatisticsHelper statisticsHelper;
+    private LineChart lineChart;
+    ArrayList<Entry> temperature_data;
+    ArrayList<Entry> pressure_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,27 +80,60 @@ public class HomePage extends AppCompatActivity {
         userProfileGo = findViewById(R.id.userProfileAccess);
         medicationButton = findViewById(R.id.logMedication);
         statsButton = findViewById(R.id.statsIcon);
-        notifTest = findViewById(R.id.notifTest);
         stopwatch_tv = findViewById(R.id.stopwatch_tv);
+        greetingText = findViewById(R.id.userDetails);
+        lineChart = findViewById(R.id.chart);
 
         auth = FirebaseAuth.getInstance();
-        greetingText = findViewById(R.id.userDetails);
         user = auth.getCurrentUser(); //initialize the current user
         reference = FirebaseDatabase.getInstance().getReference().child("Sensor");
 
         handler = new Handler();
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<String> arrayList_result = new ArrayList<String>();
                 Iterable<DataSnapshot> it_list = dataSnapshot.getChildren();
+                temperature_data = new ArrayList<>();
+                pressure_data = new ArrayList<>();
+
+
+                float i = 0;
+                int j = 0;
                 for (DataSnapshot snapshot:it_list) {
+                    i++;
                     arrayList_result.add(snapshot.getValue().toString());
+
+                    if(j == 4){
+                        pressure_data.add(new Entry(i,Float.parseFloat(snapshot.getValue().toString())));
+                    }
+
+                    if(j == 5){
+                        temperature_data.add(new Entry(i,Float.parseFloat(snapshot.getValue().toString())));
+                    }
+                    j++;
                 }
-                temperature_continous.add(Float.parseFloat(arrayList_result.get(5)));
-                System.out.println(temperature_continous.get(temperature_continous.size()-1));
-                //TODO: Finish collecting data for every metric continously @Asha @Pavi
+                j=0;
+
+                //temperature line
+                final LineDataSet ldSet = new LineDataSet(temperature_data, "Temperature");
+                ldSet.setColor(Color.RED);
+
+                //pressure line
+                final LineDataSet pressureSet = new LineDataSet(pressure_data, "Pressure");
+                ldSet.setColor(Color.BLACK);
+
+                ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+                dataSets.add(ldSet);
+                dataSets.add(pressureSet);
+
+
+                LineData lineData = new LineData(dataSets);
+                lineChart.setData(lineData);
+                lineChart.notifyDataSetChanged();
+                //TODO: make the line appear
+                lineChart.invalidate();
+
 
                 if (!(counter%2==0)){
                     altitude_history.add(Float.parseFloat(arrayList_result.get(0)));
@@ -104,7 +147,6 @@ public class HomePage extends AppCompatActivity {
                 else {
                     // do not collect data
                 }
-
             }
 
             @Override
@@ -190,15 +232,6 @@ public class HomePage extends AppCompatActivity {
                 openStatistics();
             }
         });
-
-        notifTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openNotif();
-            }
-        });
-
-
         startStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -287,10 +320,7 @@ public class HomePage extends AppCompatActivity {
         }
     };
 
-    public void openNotif() {
-        Intent intent = new Intent(getApplicationContext(), TestNotifActivity.class);
-        startActivity(intent);
-    }
+
 
     public void openStatistics() {
         //TODO: @Asha I want the users to not be able to open up the statistics page until after they've captured a certain interval of time with the stopwatch. We can make the statistics button unclickable until after they stop the timer for the 1st time. We can make it change color.
