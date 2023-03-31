@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.data.BarEntry;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -86,9 +87,9 @@ public class HomePage extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference().child("Sensor");
 
         handler = new Handler();
- /*
+
         //------------------------line chart set up-----------------------------------------------
-        LineDataSet dataSet = new LineDataSet(new ArrayList<Entry>(), "Sensor Data");
+        LineDataSet dataSet = new LineDataSet(new ArrayList<LineEntry>(), "Sensor Data");
 
         // colors of chart
         dataSet.setColor(R.color.purple_500);
@@ -98,15 +99,20 @@ public class HomePage extends AppCompatActivity {
         LineData lineData = new LineData(dataSet);
         lineChart.setData(lineData);
         lineChart.invalidate();
-*/
 
+        String [] nameMetric = {"Altitude (m)", "CO2 (ppm)", "Gas (KOhms)", "Humidity (%)", "Pressure (KPa)", "Temperature (*C)", "Elapsed Time (ms)", "tVOC (g*m^-3)" };
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<String> arrayList_result = new ArrayList<String>();
                 Iterable<DataSnapshot> it_list = dataSnapshot.getChildren();
+                int i = 0;
                 for (DataSnapshot snapshot:it_list) {
                     arrayList_result.add(snapshot.getValue().toString());
+                    if (i != 6){
+                        dataSet.addEntry(new BarEntry(i, nameMetric[i])); // This will add the pressure in KPa to the bar graph
+                    }
+
                 }
                 temperature_continous.add(Float.parseFloat(arrayList_result.get(5)));
                 System.out.println(temperature_continous.get(temperature_continous.size()-1));
@@ -124,11 +130,9 @@ public class HomePage extends AppCompatActivity {
                 else {
                     // do not collect data
                 }
-/*
+
                 ArrayList<Entry> entries = new ArrayList<Entry>();
-                for (int i = 0; i < temperature_continous.size(); i++) {
-                    entries.add(new Entry(i, temperature_continous.get(i)));
-                }
+
 
                 //setting values and putting it into the graph
                 LineDataSet dataSet = (LineDataSet) lineChart.getData().getDataSetByIndex(0);
@@ -137,7 +141,7 @@ public class HomePage extends AppCompatActivity {
                 lineChart.notifyDataSetChanged();
 
 
- */
+
             }
 
             @Override
