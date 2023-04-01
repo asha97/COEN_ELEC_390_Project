@@ -50,6 +50,7 @@ public class HomePage extends AppCompatActivity {
     String timeElapsed;
     Handler handler;
     private LineChart lineChart;
+    ArrayList<Entry> altitude_data;
     ArrayList<Entry> co2_data;
     ArrayList<Entry> gas_data;
     ArrayList<Entry> humidity_data;
@@ -93,6 +94,7 @@ public class HomePage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<String> arrayList_result = new ArrayList<String>();
                 Iterable<DataSnapshot> it_list = dataSnapshot.getChildren();
+                altitude_data = new ArrayList<>();
                 co2_data = new ArrayList<>();
                 gas_data = new ArrayList<>();
                 humidity_data = new ArrayList<>();
@@ -105,6 +107,9 @@ public class HomePage extends AppCompatActivity {
                 for (DataSnapshot snapshot:it_list) {
                     i++;
                     arrayList_result.add(snapshot.getValue().toString());
+                    if(j == 0){
+                        altitude_data.add(new Entry(i,Float.parseFloat(snapshot.getValue().toString())));
+                    }
                     if(j == 1){
                         co2_data.add(new Entry(i,Float.parseFloat(snapshot.getValue().toString())));
                     }
@@ -127,7 +132,7 @@ public class HomePage extends AppCompatActivity {
                 }
                 j=0;
 
-                if(temperature_history.isEmpty() || pressure_history.isEmpty()) {
+                if(co2_history.isEmpty() || gas_history.isEmpty() || humidity_history.isEmpty() || pressure_history.isEmpty() || temperature_history.isEmpty() || tVOC_history.isEmpty()) {
                     lineChart.setVisibility(View.GONE);
                 }
                 else {
