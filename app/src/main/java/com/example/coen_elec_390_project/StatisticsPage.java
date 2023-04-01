@@ -87,6 +87,7 @@ public class StatisticsPage extends AppCompatActivity {
         med_pre=(TextView) findViewById(R.id.med_pre_tv);
         med_tmp=(TextView) findViewById(R.id.med_tmp_tv);
         med_voc=(TextView) findViewById(R.id.med_voc_tv);
+
         Resources res = getResources();
 
         String temp = String.format(res.getString(R.string.minimum), String.valueOf(decimalFormat.format(statisticsHelper.calculateMin_Altitude())));
@@ -168,10 +169,10 @@ public class StatisticsPage extends AppCompatActivity {
         med_pre.setText(medPre);
 
         String medTmp = String.format(res.getString(R.string.median), String.valueOf(decimalFormat.format(statisticsHelper.calculateMedian_Temperature())));
-        med_pre.setText(medTmp);
+        med_tmp.setText(medTmp);
 
         String medVoc = String.format(res.getString(R.string.median), String.valueOf(decimalFormat.format(statisticsHelper.calculateMedian_tVOC())));
-        med_pre.setText(medVoc);
+        med_voc.setText(medVoc);
 
     }
 
