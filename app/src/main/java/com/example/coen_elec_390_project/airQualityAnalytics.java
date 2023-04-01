@@ -15,6 +15,8 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.components.YAxis;
+
 
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -144,24 +146,33 @@ public class airQualityAnalytics extends AppCompatActivity {
                     }
                 }
 
+                //custom colors for the bar graph
+                int customColor1 = Color.rgb(173, 141, 242); // light purple
+                int customColor2 = Color.rgb(137, 94, 230); // darker light
+                int customColor3 = Color.rgb(112, 66, 212); // darker darker light purple
+                int customColor4 = Color.rgb(84, 81, 245); // blue purple
+                int customColor5 = Color.rgb(59, 71, 245); // blue ish purple
+                int customColor6 = Color.rgb(36, 71, 242); // blue
+
+
                 //define each data set in order to add them into the barDataSets
                 BarDataSet altitudeSet = new BarDataSet(altitude_data, "Altitude (m)");
-                altitudeSet.setColor(Color.RED);
+                altitudeSet.setColor(customColor1);
 
                 BarDataSet co2Set = new BarDataSet(co2_data, "CO2 (ppm)");
-                co2Set.setColor(Color.BLUE);
+                co2Set.setColor(customColor2);
 
                 BarDataSet gasSet = new BarDataSet(gas_data, "Gas (KOhms)");
-                gasSet.setColor(Color.BLACK);
+                gasSet.setColor(customColor3);
 
                 BarDataSet humiditySet = new BarDataSet(humidity_data, "Humidity (%)");
-                humiditySet.setColor(Color.CYAN);
+                humiditySet.setColor(customColor4);
 
                 BarDataSet pressureSet = new BarDataSet(pressure_data, "Pressure (KPa)");
-                pressureSet.setColor(Color.YELLOW);
+                pressureSet.setColor(customColor5);
 
                 BarDataSet temperatureSet = new BarDataSet(temperature_data, "Temperature (*C)");
-                temperatureSet.setColor(Color.GREEN);
+                temperatureSet.setColor(customColor6);
 
                 ArrayList<IBarDataSet> barDataSets = new ArrayList<>();
 
@@ -172,10 +183,28 @@ public class airQualityAnalytics extends AppCompatActivity {
                 barDataSets.add(pressureSet);
                 barDataSets.add(temperatureSet);
 
-
                 // add data sets into the bar chart
                 BarData barData = new BarData(barDataSets);
                 barChart.setData(barData);
+
+                //change color of the background of the barchart
+                int customChartBg = Color.rgb(222,229,255);
+
+                barChart.setBackgroundColor(customChartBg);
+
+                // Remove the grid
+                XAxis xAxis = barChart.getXAxis();
+                xAxis.setDrawGridLines(false);
+                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                xAxis.setDrawAxisLine(true);
+
+                YAxis leftAxis = barChart.getAxisLeft();
+                leftAxis.setDrawGridLines(false);
+                leftAxis.setDrawAxisLine(true);
+
+                YAxis rightAxis = barChart.getAxisRight();
+                rightAxis.setDrawGridLines(false);
+                rightAxis.setDrawAxisLine(false);
 
                 barData.notifyDataChanged();
                 barChart.notifyDataSetChanged();
