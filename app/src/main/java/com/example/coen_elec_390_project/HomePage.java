@@ -108,25 +108,36 @@ public class HomePage extends AppCompatActivity {
                 }
                 j=0;
 
-                //temperature line
-                final LineDataSet ldSet = new LineDataSet(temperature_data, "Temperature");
-                ldSet.setColor(Color.RED);
+                if(temperature_history.isEmpty() || pressure_history.isEmpty()) {
+                    lineChart.setVisibility(View.GONE);
+                }
+                else {
+                    //temperature line
+                    for(int z = 0; z < temperature_history.size(); z++) {
+                        temperature_data.add(new Entry(z+1, temperature_history.get(z)));
+                    }
+                    final LineDataSet ldSet = new LineDataSet(temperature_data, "Temperature");
+                    ldSet.setColor(Color.RED);
 
-                //pressure line
-                final LineDataSet pressureSet = new LineDataSet(pressure_data, "Pressure");
-                ldSet.setColor(Color.BLACK);
+                    //pressure line
+                    for(int z = 0; z < pressure_history.size(); z++) {
+                        pressure_data.add(new Entry(z+1, pressure_history.get(z)));
+                    }
+                    final LineDataSet pressureSet = new LineDataSet(pressure_data, "Pressure");
+                    ldSet.setColor(Color.BLACK);
 
-                ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-                dataSets.add(ldSet);
-                dataSets.add(pressureSet);
+                    ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+                    dataSets.add(ldSet);
+                    dataSets.add(pressureSet);
 
+                    LineData lineData = new LineData(dataSets);
 
-                LineData lineData = new LineData(dataSets);
-                lineChart.setData(lineData);
-                lineChart.notifyDataSetChanged();
-                //TODO: make the line appear
-                lineChart.invalidate();
-
+                    lineChart.setData(lineData);
+                    lineChart.notifyDataSetChanged();
+                    //TODO: make the line appear
+                    lineChart.setVisibility(View.VISIBLE);
+                    lineChart.invalidate();
+                }
 
                 if (!(counter%2==0)){
                     altitude_history.add(Float.parseFloat(arrayList_result.get(0)));
