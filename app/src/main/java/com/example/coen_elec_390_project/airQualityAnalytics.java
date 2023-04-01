@@ -37,6 +37,8 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import android.widget.Toast;
 
@@ -45,6 +47,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
+
 
 public class airQualityAnalytics extends AppCompatActivity {
     private BarChart barChart;
@@ -77,6 +80,10 @@ public class airQualityAnalytics extends AppCompatActivity {
 
         //----------------------CREATION OF BARCHART--------------------------//
 
+
+       // ArrayList<BarEntry> entries = new ArrayList<>();
+
+/*
         // container for data
         BarDataSet dataSet = new BarDataSet(new ArrayList<BarEntry>(), "Sensor Data");
 
@@ -88,6 +95,8 @@ public class airQualityAnalytics extends AppCompatActivity {
         BarData barData = new BarData(dataSet);
         barChart.setData(barData);
         barChart.invalidate();
+   */
+
 
         //display into the box the right metrics
         String [] nameMetric = {"Altitude (m)", "CO2 (ppm)", "Gas (KOhms)", "Humidity (%)", "Pressure (KPa)", "Temperature (*C)", "Elapsed Time (ms)", "tVOC (g*m^-3)" };
@@ -97,10 +106,16 @@ public class airQualityAnalytics extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // clear data to make sure there isn't anything else
-                dataSet.clear();
+                //dataSet.clear();
+
+                // clear data to make sure there isn't anything else
                 list.clear();
 
-                // looping in data
+                // Create ArrayList to hold bar entries
+// Create ArrayList to hold bar entries
+                ArrayList<BarEntry> entries = new ArrayList<>();
+
+// looping in data
                 int i = 0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     float value = Float.parseFloat(snapshot.getValue().toString());
@@ -108,49 +123,20 @@ public class airQualityAnalytics extends AppCompatActivity {
                     if (i !=6) {
                         if (i==4){
                             //Reducing pressure by a factor of 10: 1000hPa -> 100KPa
-                            dataSet.addEntry(new BarEntry(i, (value/10), nameMetric[i])); // This will add the pressure in KPa to the bar graph
+                            entries.add(new BarEntry(i, (value/10))); // This will add the pressure in KPa to the bar graph
                         }
                         else {
-                            dataSet.addEntry(new BarEntry(i, value, nameMetric[i])); //Adding as usual
+                            entries.add(new BarEntry(i, value)); //Adding as usual
                         }
-                        String addData = nameMetric[i] + ": " + snapshot.getValue().toString();
-                        if (nameMetric[i].equals("Temperature (*C)")){
+                        String label = nameMetric[i];
+                        String addData = label + ": " + snapshot.getValue().toString();
+                        if (label.equals("Temperature (*C)")){
                             String addFahrenheit = "Temperature (*F): " + convertToFahrenheit(value);
                             list.add(addFahrenheit);
                         }
-                        if (nameMetric[i].equals("Pressure (KPa)")){
+                        if (label.equals("Pressure (KPa)")){
                             String addBar = "Pressure (Bar): " + convertToBar(value/10);
                             list.add(addBar);
-                        }
-                        //we want to make sure that the air quality particles are not surpassing the threshold
-                        if (nameMetric[i].equals("CO2 (ppm)")){
-                            int co2PPM = Integer.parseInt(snapshot.getValue().toString());
-
-                            if (co2PPM >= 200){
-//                                Toast.makeText(airQualityAnalytics.this, "CO2 particle is above 1000ppm, be careful!", Toast.LENGTH_SHORT).show();
-
-                                /*
-                                    this is where there is going to be the implementation of the notification
-                                    using the firebasemessaging class
-                                    the basic implementation is done, need to add the send() function, need implementation
-                                 */
-
-                                //String title = "CO2 (ppm)";
-                                //String message = co2PPM + "";
-
-                                //call the firebase messaging service object and use the object to get the sendNotification() method
-                                //myFirebaseMessagingService msgServ = new myFirebaseMessagingService();
-                                //msgServ.sendNotification(title, message);
-
-                            }
-                        }
-
-                        if (nameMetric[i].equals("Gas (KOhms)")){
-                            double gasMetric = Double.parseDouble(snapshot.getValue().toString());
-
-                            if (gasMetric >= 100){ // need to change this value for the right gas
-                               // Toast.makeText(airQualityAnalytics.this, "TVOC level is too high, be careful!", Toast.LENGTH_SHORT).show();
-                            }
                         }
 
                         list.add(addData);
@@ -158,11 +144,42 @@ public class airQualityAnalytics extends AppCompatActivity {
                     }
                 }
 
-                // notification that data in chart has been updated
+// Create new BarDataSet using entries ArrayList
+                BarDataSet dataSet = new BarDataSet(entries, "Sensor Data");
+
+// colors of chart
+                dataSet.setColors(new int[] { R.color.purple_500 });
+                dataSet.setValueTextColor(R.color.black);
+
+// add data of barchart into object
+                BarData barData = new BarData(dataSet);
+                barChart.setData(barData);
+                barChart.invalidate();
+
+// set labels for each of the entries
+                String[] labels = new String[nameMetric.length];
+                for (int j = 0; j < nameMetric.length; j++) {
+                    labels[j] = nameMetric[j];
+                }
+                /*
+                1. altitude
+                2. co2
+                3. gas
+                4. humidity
+                5. pressure kpa
+                6. temperature
+                 */
+
+
+                XAxis xAxis = barChart.getXAxis();
+                xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+
+// notification that data in chart has been updated
                 barData.notifyDataChanged();
                 barChart.notifyDataSetChanged();
                 barChart.invalidate();
                 adapter.notifyDataSetChanged();
+
 
 
                 //----------------------CREATION OF NOTIFICATIONS--------------------------//
@@ -315,14 +332,11 @@ public class airQualityAnalytics extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
     private String convertToFahrenheit(Float value){
         return String.valueOf((value*1.80000)+32.00);
     }
-
     private String convertToBar(Float value){
         return String.valueOf(value * 0.01);
     }
-
 
 }
