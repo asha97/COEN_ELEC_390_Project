@@ -43,31 +43,17 @@ public class HomePage extends AppCompatActivity {
     long counter = 0;
 
     DatabaseReference reference;
-    ArrayList<Float> temperature_history = new ArrayList<>();
-    ArrayList<Float> humidity_history = new ArrayList<>();
-    ArrayList<Float> altitude_history = new ArrayList<>();
-    ArrayList<Float> co2_history = new ArrayList<>();
-    ArrayList<Float> gas_history = new ArrayList<>();
-    ArrayList<Float> pressure_history = new ArrayList<>();
-    ArrayList<Float> tVOC_history = new ArrayList<>();
-
-    ArrayList<Float> temperature_continous = new ArrayList<>();
-    ArrayList<Float> humidity_continous = new ArrayList<>();
-    ArrayList<Float> altitude_continous = new ArrayList<>();
-    ArrayList<Float> co2_continous = new ArrayList<>();
-    ArrayList<Float> gas_continous = new ArrayList<>();
-    ArrayList<Float> pressure_continous = new ArrayList<>();
-    ArrayList<Float> tVOC_continous = new ArrayList<>();
 
     private int seconds = 0;
     private boolean functioning;
     private boolean wasFunctioning;
     String timeElapsed;
     Handler handler;
-    StatisticsHelper statisticsHelper;
     private LineChart lineChart;
     ArrayList<Entry> temperature_data;
     ArrayList<Entry> pressure_data;
+
+    StatisticsHelper globalHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,12 +70,21 @@ public class HomePage extends AppCompatActivity {
         greetingText = findViewById(R.id.userDetails);
         lineChart = findViewById(R.id.chart);
 
+        ArrayList<Float> temperature_history = new ArrayList<>();
+        ArrayList<Float> humidity_history = new ArrayList<>();
+        ArrayList<Float> altitude_history = new ArrayList<>();
+        ArrayList<Float> co2_history = new ArrayList<>();
+        ArrayList<Float> gas_history = new ArrayList<>();
+        ArrayList<Float> pressure_history = new ArrayList<>();
+        ArrayList<Float> tVOC_history = new ArrayList<>();
+
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser(); //initialize the current user
         reference = FirebaseDatabase.getInstance().getReference().child("Sensor");
 
         handler = new Handler();
         reference.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<String> arrayList_result = new ArrayList<String>();
@@ -97,13 +92,11 @@ public class HomePage extends AppCompatActivity {
                 temperature_data = new ArrayList<>();
                 pressure_data = new ArrayList<>();
 
-
                 float i = 0;
                 int j = 0;
                 for (DataSnapshot snapshot:it_list) {
                     i++;
                     arrayList_result.add(snapshot.getValue().toString());
-
                     if(j == 4){
                         pressure_data.add(new Entry(i,Float.parseFloat(snapshot.getValue().toString())));
                     }
@@ -144,8 +137,9 @@ public class HomePage extends AppCompatActivity {
                     temperature_history.add(Float.parseFloat(arrayList_result.get(5)));
                     tVOC_history.add(Float.parseFloat(arrayList_result.get(7)));
                 }
-                else {
-                    // do not collect data
+                 if(counter%2==0 && counter!=0) {
+                    StatisticsHelper statisticsHelper = new StatisticsHelper(altitude_history,humidity_history,temperature_history,co2_history,gas_history,pressure_history,tVOC_history);
+                    globalHelper = statisticsHelper;
                 }
             }
 
@@ -233,6 +227,7 @@ public class HomePage extends AppCompatActivity {
             }
         });
         startStopButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 if(counter%2 == 0){
@@ -259,22 +254,18 @@ public class HomePage extends AppCompatActivity {
                     timeElapsed = (String)stopwatch_tv.getText();
                     startStopButton.setBackgroundColor(Color.BLUE); // set the background color to green
                     counter++;
-                    statisticsHelper = new StatisticsHelper(altitude_history,humidity_history,temperature_history,co2_history,gas_history,pressure_history,tVOC_history);
-                    clearHistories();
+//                    altitude_history.clear();
+//                    humidity_history.clear();
+//                    temperature_history.clear();
+//                    co2_history.clear();
+//                    gas_history.clear();
+//                    pressure_history.clear();
+//                    tVOC_history.clear();
                 }
             }
         });
     }
 
-    private void clearHistories() {
-        altitude_history.clear();
-        humidity_history.clear();
-        temperature_history.clear();
-        co2_history.clear();
-        gas_history.clear();
-        pressure_history.clear();
-        tVOC_history.clear();
-    }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
@@ -325,7 +316,7 @@ public class HomePage extends AppCompatActivity {
     public void openStatistics() {
         //TODO: @Asha I want the users to not be able to open up the statistics page until after they've captured a certain interval of time with the stopwatch. We can make the statistics button unclickable until after they stop the timer for the 1st time. We can make it change color.
         Intent intent = new Intent(getApplicationContext(), StatisticsPage.class);
-        intent.putExtra("StatisticsHelper", statisticsHelper);
+        intent.putExtra("StatisticsHelper", globalHelper);
         startActivity(intent);
     }
     public void openMedication() {
