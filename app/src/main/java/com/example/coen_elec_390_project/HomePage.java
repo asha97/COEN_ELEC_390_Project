@@ -115,33 +115,11 @@ public class HomePage extends AppCompatActivity {
                 }
                 j=0;
 
-//                //temperature line
-//                temperature_data = new ArrayList<>();
-//                for(int z = 0; z < temperature_history.size(); z++) {
-//                    temperature_data.add(new Entry(z+1, temperature_history.get(z)));
-//                }
-//                final LineDataSet ldSet = new LineDataSet(temperature_data, "Temperature");
-//                ldSet.setColor(Color.RED);
-//
-//                //pressure line
-//                pressure_data = new ArrayList<>();
-//                for(int z = 0; z < pressure_history.size(); z++) {
-//                    pressure_data.add(new Entry(z+1, pressure_history.get(z)));
-//                }
-//                final LineDataSet pressureSet = new LineDataSet(pressure_data, "Pressure");
-//                ldSet.setColor(Color.BLACK);
-//
-//                ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-//                dataSets.add(ldSet);
-//                dataSets.add(pressureSet);
-
-//                LineData lineData = new LineData(dataSets);
                 if(temperature_history.isEmpty() || pressure_history.isEmpty()) {
                     lineChart.setVisibility(View.GONE);
                 }
                 else {
                     //temperature line
-//                    temperature_data.clear();
                     for(int z = 0; z < temperature_history.size(); z++) {
                         temperature_data.add(new Entry(z+1, temperature_history.get(z)));
                     }
@@ -149,7 +127,6 @@ public class HomePage extends AppCompatActivity {
                     ldSet.setColor(Color.RED);
 
                     //pressure line
-//                    pressure_data.clear();
                     for(int z = 0; z < pressure_history.size(); z++) {
                         pressure_data.add(new Entry(z+1, pressure_history.get(z)));
                     }
@@ -168,38 +145,6 @@ public class HomePage extends AppCompatActivity {
                     lineChart.setVisibility(View.VISIBLE);
                     lineChart.invalidate();
                 }
-
-//                lineChart.setData(lineData);
-//                lineChart.notifyDataSetChanged();
-//                //TODO: make the line appear
-//                lineChart.invalidate();
-
-//                Entry lastTemperatureEntry = temperature_data.get(temperature_data.size());
-//                float xValueTemp = lastTemperatureEntry.getX();
-//                float yValueTemp = lastTemperatureEntry.getY();
-//
-//                LineData lineData = new LineData(dataSets);
-//                if (lineData != null && lineData.getDataSetCount() > 0) {
-//                    ILineDataSet dataSet = lineData.getDataSetByIndex(0);
-//                    if (dataSet != null && dataSet.getEntryCount() > 0) {
-//                        dataSet.addEntry(new Entry(xValueTemp, yValueTemp));
-//                        lineChart.notifyDataSetChanged();
-//                        lineChart.invalidate();
-//                    }
-//                }
-//
-//                Entry lastPressureEntry = pressure_data.get(pressure_data.size());
-//                float xValuePressure = lastPressureEntry.getX();
-//                float yValuePressure = lastPressureEntry.getY();
-//
-//                if (lineData != null && lineData.getDataSetCount() > 0) {
-//                    ILineDataSet dataSet = lineData.getDataSetByIndex(0);
-//                    if (dataSet != null && dataSet.getEntryCount() > 0) {
-//                        dataSet.addEntry(new Entry(xValuePressure, yValuePressure));
-//                        lineChart.notifyDataSetChanged();
-//                        lineChart.invalidate();
-//                    }
-//                }
 
                 if (!(counter%2==0)){
                     altitude_history.add(Float.parseFloat(arrayList_result.get(0)));
