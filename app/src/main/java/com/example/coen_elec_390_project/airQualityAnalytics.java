@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -25,6 +27,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,8 +50,6 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
-
-
 public class airQualityAnalytics extends AppCompatActivity {
     private BarChart barChart;
     private DatabaseReference reference;
@@ -80,24 +81,6 @@ public class airQualityAnalytics extends AppCompatActivity {
 
         //----------------------CREATION OF BARCHART--------------------------//
 
-
-       // ArrayList<BarEntry> entries = new ArrayList<>();
-
-/*
-        // container for data
-        BarDataSet dataSet = new BarDataSet(new ArrayList<BarEntry>(), "Sensor Data");
-
-        // colors of chart
-        dataSet.setColors(new int[] { R.color.purple_500 });
-        dataSet.setValueTextColor(R.color.black);
-
-        // add data of barchart into object
-        BarData barData = new BarData(dataSet);
-        barChart.setData(barData);
-        barChart.invalidate();
-   */
-
-
         //display into the box the right metrics
         String [] nameMetric = {"Altitude (m)", "CO2 (ppm)", "Gas (KOhms)", "Humidity (%)", "Pressure (KPa)", "Temperature (*C)", "Elapsed Time (ms)", "tVOC (g*m^-3)" };
 
@@ -105,35 +88,52 @@ public class airQualityAnalytics extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // clear data to make sure there isn't anything else
-                //dataSet.clear();
 
                 // clear data to make sure there isn't anything else
                 list.clear();
 
                 // Create ArrayList to hold bar entries
-// Create ArrayList to hold bar entries
-                ArrayList<BarEntry> entries = new ArrayList<>();
+                ArrayList<BarEntry> altitude_data = new ArrayList<>();
+                ArrayList<BarEntry> co2_data = new ArrayList<>();
+                ArrayList<BarEntry> gas_data = new ArrayList<>();
+                ArrayList<BarEntry> humidity_data = new ArrayList<>();
+                ArrayList<BarEntry> pressure_data = new ArrayList<>();
+                ArrayList<BarEntry> temperature_data = new ArrayList<>();
 
-// looping in data
                 int i = 0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     float value = Float.parseFloat(snapshot.getValue().toString());
                     //not going to be displaying the elapsed time
                     if (i !=6) {
+                        if(i==0){ //
+                            altitude_data.add(new BarEntry(i, value));
+                        }
+                        if(i==1){
+                            co2_data.add(new BarEntry(i, value));
+                        }
+                        if(i==2){
+                            gas_data.add(new BarEntry(i, value));
+                        }
+                        if(i==3){
+                            humidity_data.add(new BarEntry(i,value));
+                        }
                         if (i==4){
                             //Reducing pressure by a factor of 10: 1000hPa -> 100KPa
-                            entries.add(new BarEntry(i, (value/10))); // This will add the pressure in KPa to the bar graph
+                            pressure_data.add(new BarEntry(i, (value/10))); // This will add the pressure in KPa to the bar graph
                         }
-                        else {
-                            entries.add(new BarEntry(i, value)); //Adding as usual
+                        if(i==5){
+                            temperature_data.add(new BarEntry(i, value));
                         }
+
+                        //adding temperature into Fahrenheit in the listview only
                         String label = nameMetric[i];
                         String addData = label + ": " + snapshot.getValue().toString();
                         if (label.equals("Temperature (*C)")){
                             String addFahrenheit = "Temperature (*F): " + convertToFahrenheit(value);
                             list.add(addFahrenheit);
                         }
+
+                        //adding pressure into Bar in the listview only
                         if (label.equals("Pressure (KPa)")){
                             String addBar = "Pressure (Bar): " + convertToBar(value/10);
                             list.add(addBar);
@@ -144,42 +144,43 @@ public class airQualityAnalytics extends AppCompatActivity {
                     }
                 }
 
-// Create new BarDataSet using entries ArrayList
-                BarDataSet dataSet = new BarDataSet(entries, "Sensor Data");
+                //define each data set in order to add them into the barDataSets
+                BarDataSet altitudeSet = new BarDataSet(altitude_data, "Altitude (m)");
+                altitudeSet.setColor(Color.RED);
 
-// colors of chart
-                dataSet.setColors(new int[] { R.color.purple_500 });
-                dataSet.setValueTextColor(R.color.black);
+                BarDataSet co2Set = new BarDataSet(co2_data, "CO2 (ppm)");
+                co2Set.setColor(Color.BLUE);
 
-// add data of barchart into object
-                BarData barData = new BarData(dataSet);
+                BarDataSet gasSet = new BarDataSet(gas_data, "Gas (KOhms)");
+                gasSet.setColor(Color.BLACK);
+
+                BarDataSet humiditySet = new BarDataSet(humidity_data, "Humidity (%)");
+                humiditySet.setColor(Color.CYAN);
+
+                BarDataSet pressureSet = new BarDataSet(pressure_data, "Pressure (KPa)");
+                pressureSet.setColor(Color.YELLOW);
+
+                BarDataSet temperatureSet = new BarDataSet(temperature_data, "Temperature (*C)");
+                temperatureSet.setColor(Color.GREEN);
+
+                ArrayList<IBarDataSet> barDataSets = new ArrayList<>();
+
+                barDataSets.add(altitudeSet);
+                barDataSets.add(co2Set);
+                barDataSets.add(gasSet);
+                barDataSets.add(humiditySet);
+                barDataSets.add(pressureSet);
+                barDataSets.add(temperatureSet);
+
+
+                // add data sets into the bar chart
+                BarData barData = new BarData(barDataSets);
                 barChart.setData(barData);
-                barChart.invalidate();
 
-// set labels for each of the entries
-                String[] labels = new String[nameMetric.length];
-                for (int j = 0; j < nameMetric.length; j++) {
-                    labels[j] = nameMetric[j];
-                }
-                /*
-                1. altitude
-                2. co2
-                3. gas
-                4. humidity
-                5. pressure kpa
-                6. temperature
-                 */
-
-
-                XAxis xAxis = barChart.getXAxis();
-                xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
-
-// notification that data in chart has been updated
                 barData.notifyDataChanged();
                 barChart.notifyDataSetChanged();
                 barChart.invalidate();
                 adapter.notifyDataSetChanged();
-
 
 
                 //----------------------CREATION OF NOTIFICATIONS--------------------------//
