@@ -127,7 +127,7 @@ public class airQualityAnalytics extends AppCompatActivity {
                             int co2PPM = Integer.parseInt(snapshot.getValue().toString());
 
                             if (co2PPM >= 200){
-                                Toast.makeText(airQualityAnalytics.this, "CO2 particle is above 1000ppm, be careful!", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(airQualityAnalytics.this, "CO2 particle is above 1000ppm, be careful!", Toast.LENGTH_SHORT).show();
 
                                 /*
                                     this is where there is going to be the implementation of the notification
@@ -149,7 +149,7 @@ public class airQualityAnalytics extends AppCompatActivity {
                             double gasMetric = Double.parseDouble(snapshot.getValue().toString());
 
                             if (gasMetric >= 100){ // need to change this value for the right gas
-                                Toast.makeText(airQualityAnalytics.this, "TVOC level is too high, be careful!", Toast.LENGTH_SHORT).show();
+                               // Toast.makeText(airQualityAnalytics.this, "TVOC level is too high, be careful!", Toast.LENGTH_SHORT).show();
                             }
                         }
 
