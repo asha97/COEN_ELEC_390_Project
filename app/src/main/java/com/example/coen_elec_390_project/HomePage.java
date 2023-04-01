@@ -120,7 +120,7 @@ public class HomePage extends AppCompatActivity {
                     if(j == 5){
                         temperature_data.add(new Entry(i,Float.parseFloat(snapshot.getValue().toString())));
                     }
-                    if(j == 6){
+                    if(j == 7){
                         tVOC_data.add(new Entry(i,Float.parseFloat(snapshot.getValue().toString())));
                     }
                     j++;
@@ -163,7 +163,7 @@ public class HomePage extends AppCompatActivity {
                     for(int z = 0; z < temperature_history.size(); z++) {
                         temperature_data.add(new Entry(z+1, temperature_history.get(z)));
                     }
-                    final LineDataSet temperatureSet = new LineDataSet(temperature_data, "Temperature");
+                    final LineDataSet temperatureSet = new LineDataSet(temperature_data, "Temp");
                     temperatureSet.setColor(Color.RED);
 
                     //tVOC line
