@@ -133,6 +133,11 @@ public class HomePage extends AppCompatActivity {
                     LineData lineData = new LineData(dataSets);
 
                     lineChart.setData(lineData);
+
+                    //change color of the background of the barchart
+                    int customChartBg = Color.rgb(222,229,255);
+                    lineChart.setBackgroundColor(customChartBg);
+
                     lineChart.notifyDataSetChanged();
                     //TODO: make the line appear
                     lineChart.setVisibility(View.VISIBLE);

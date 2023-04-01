@@ -189,7 +189,6 @@ public class airQualityAnalytics extends AppCompatActivity {
 
                 //change color of the background of the barchart
                 int customChartBg = Color.rgb(222,229,255);
-
                 barChart.setBackgroundColor(customChartBg);
 
                 // Remove the grid
