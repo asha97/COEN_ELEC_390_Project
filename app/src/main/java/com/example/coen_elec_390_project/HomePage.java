@@ -50,7 +50,6 @@ public class HomePage extends AppCompatActivity {
     String timeElapsed;
     Handler handler;
     private LineChart lineChart;
-    ArrayList<Entry> altitude_data;
     ArrayList<Entry> co2_data;
     ArrayList<Entry> gas_data;
     ArrayList<Entry> humidity_data;
@@ -94,7 +93,6 @@ public class HomePage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<String> arrayList_result = new ArrayList<String>();
                 Iterable<DataSnapshot> it_list = dataSnapshot.getChildren();
-                altitude_data = new ArrayList<>();
                 co2_data = new ArrayList<>();
                 gas_data = new ArrayList<>();
                 humidity_data = new ArrayList<>();
@@ -107,11 +105,10 @@ public class HomePage extends AppCompatActivity {
                 for (DataSnapshot snapshot:it_list) {
                     i++;
                     arrayList_result.add(snapshot.getValue().toString());
-                    if(j == 0){
-                        altitude_data.add(new Entry(i,Float.parseFloat(snapshot.getValue().toString())));
-                    }
                     if(j == 1){
-                        co2_data.add(new Entry(i,Float.parseFloat(snapshot.getValue().toString())));
+                        float rawCO2 = Float.parseFloat(snapshot.getValue().toString());
+                        double changedUnitCO2 = rawCO2 * 0.01;
+                        co2_data.add(new Entry(i, (float) changedUnitCO2));
                     }
                     if(j == 2){
                         gas_data.add(new Entry(i,Float.parseFloat(snapshot.getValue().toString())));
@@ -120,7 +117,9 @@ public class HomePage extends AppCompatActivity {
                         humidity_data.add(new Entry(i,Float.parseFloat(snapshot.getValue().toString())));
                     }
                     if(j == 4){
-                        pressure_data.add(new Entry(i,Float.parseFloat(snapshot.getValue().toString())));
+                        float rawPressure = Float.parseFloat(snapshot.getValue().toString());
+                        double changedUnitPressure = rawPressure * 0.01;
+                        pressure_data.add(new Entry(i, (float) changedUnitPressure));
                     }
                     if(j == 5){
                         temperature_data.add(new Entry(i,Float.parseFloat(snapshot.getValue().toString())));
