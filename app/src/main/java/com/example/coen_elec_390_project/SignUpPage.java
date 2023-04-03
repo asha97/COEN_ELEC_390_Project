@@ -132,18 +132,18 @@ public class SignUpPage extends AppCompatActivity {
     public void openHomePage() {
         Intent intent = new Intent(getApplicationContext(), HomePage.class);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
     //open the user profile settings activity
     public void openUserSettings() {
         Intent intent = new Intent(getApplicationContext(), UserProfileSettings.class);
         startActivity(intent);
-        finish();
+        //finish();
     }
     public void openLogin() {
         Intent intent = new Intent(getApplicationContext(), LoginPage.class);
         startActivity(intent);
-        finish();
+        //finish();
     }
 }
