@@ -36,7 +36,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
     Button logoutButton,startStopButton, notifTest;
-    ImageView generalSettings, airQualityBtn, userProfileGo, medicationButton, statsButton;
+    ImageView generalSettings, airQualityBtn, userProfileGo, statsButton;
     TextView greetingText;
     FirebaseUser user;
     TextView stopwatch_tv;
@@ -64,7 +64,6 @@ public class HomePage extends AppCompatActivity {
         generalSettings = findViewById(R.id.settingButton);
         airQualityBtn = findViewById(R.id.airQualityData);
         userProfileGo = findViewById(R.id.userProfileAccess);
-        medicationButton = findViewById(R.id.logMedication);
         statsButton = findViewById(R.id.statsIcon);
         stopwatch_tv = findViewById(R.id.stopwatch_tv);
         greetingText = findViewById(R.id.userDetails);
@@ -221,14 +220,6 @@ public class HomePage extends AppCompatActivity {
 
         });
 
-        medicationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openMedication();
-            }
-
-        });
-
         userProfileGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -333,10 +324,6 @@ public class HomePage extends AppCompatActivity {
         //TODO: @Asha I want the users to not be able to open up the statistics page until after they've captured a certain interval of time with the stopwatch. We can make the statistics button unclickable until after they stop the timer for the 1st time. We can make it change color.
         Intent intent = new Intent(getApplicationContext(), StatisticsPage.class);
         intent.putExtra("StatisticsHelper", globalHelper);
-        startActivity(intent);
-    }
-    public void openMedication() {
-        Intent intent = new Intent(getApplicationContext(), MedicationLogger.class);
         startActivity(intent);
     }
     public void openLogin() {
