@@ -1,7 +1,9 @@
-//Time, WiFi and Firebase Libraries
 #include <Arduino.h>
+
+//Time, WiFi and Firebase Libraries
 #include <time.h>
 #include <WiFi.h>
+#include <WiFiManager.h> // https://github.com/tzapu/WiFiManager
 #include <Firebase_ESP_Client.h>
 //Provide the token generation process info.
 #include "addons/TokenHelper.h"
@@ -21,10 +23,6 @@
 
 
 
-// Insert your network credentials
-#define WIFI_SSID "O"
-#define WIFI_PASSWORD "00000000"
-
 
 // Insert Firebase project API Key
 #define API_KEY "AIzaSyDxbx2Rge58dtOSzhGUTmYVjDrjGUHdfPo"
@@ -33,9 +31,12 @@
 
 //Define Firebase Data object
 FirebaseData fbdo;
-
 FirebaseAuth auth;
 FirebaseConfig config;
+
+
+bool tog;
+bool toggle;
 
 //Adafruit BME680 Variable Declarations
 unsigned long sendDataPrevMillis = 0;
@@ -83,6 +84,8 @@ void setup(){
   // To make the Blue LED Blink for debugging purposes
   pinMode(LED,OUTPUT);
 
+  
+
   // BME680 Setup
   while (!Serial);
   Serial.println(F("BME680 test"));
@@ -113,7 +116,15 @@ void setup(){
   }
 
   //WiFi Protocols + Connection to Firebase
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  WiFiManager wm;
+  wm.resetSettings();
+  bool res;
+  res = wm.autoConnect("AutoConnectAP","password"); // password protected ap
+  if(!res) {
+        Serial.println("Failed to connect");
+        // ESP.restart();
+    } 
+
   Serial.print("\n\n\nConnecting to Wi-Fi");
   while (WiFi.status() != WL_CONNECTED){
     Serial.print(".");
@@ -147,6 +158,15 @@ void setup(){
 }
 
 void loop(){
+
+  if (touchRead(4)<50) {
+    Serial.println("Heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeyyyyyyyyyyyyyyyyyyyyy ;)");
+    tog = 1;
+  } else {
+    tog = 0;
+  }
+
+
   //BME 680 Loop
   if (! bme.performReading()) {
     Serial.println("Failed to perform reading :(");
@@ -184,6 +204,8 @@ void loop(){
     CO2 = (float)mySensor.getCO2();
     tVOC = (float)mySensor.getTVOC();
     elapsedTime = (float)millis();
+
+    toggle = (bool)tog;
     
     
 
@@ -284,6 +306,17 @@ void loop(){
       Serial.println("FAILED");
       Serial.println("\tTYPE: " + fbdo.dataType());
       Serial.println("REASON: " + fbdo.errorReason());
-    }   
+    }
+    if (Firebase.RTDB.setBool(&fbdo, "Toggle", toggle)){
+      Serial.println("PASSED");
+      Serial.println(toggle);
+      Serial.println("PATH: " + fbdo.dataPath());
+      Serial.println("\tTYPE: " + fbdo.dataType());
+    }
+    else {
+      Serial.println("FAILED");
+      Serial.println("\tTYPE: " + fbdo.dataType());
+      Serial.println("REASON: " + fbdo.errorReason());
+    }
   }
 }
