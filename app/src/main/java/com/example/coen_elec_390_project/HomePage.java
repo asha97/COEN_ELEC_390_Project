@@ -196,7 +196,6 @@ public class HomePage extends AppCompatActivity {
                     lineChart.setBackgroundColor(customChartBg);
 
                     lineChart.notifyDataSetChanged();
-                    //TODO: make the line appear
                     lineChart.setVisibility(View.VISIBLE);
                     lineChart.invalidate();
                 }
@@ -341,13 +340,13 @@ public class HomePage extends AppCompatActivity {
                     timeElapsed = (String)stopwatch_tv.getText();
                     startStopButton.setBackgroundColor(Color.BLUE); // set the background color to green
                     counter++;
-//                    altitude_history.clear();
-//                    humidity_history.clear();
-//                    temperature_history.clear();
-//                    co2_history.clear();
-//                    gas_history.clear();
-//                    pressure_history.clear();
-//                    tVOC_history.clear();
+                    altitude_history.clear();
+                    humidity_history.clear();
+                    temperature_history.clear();
+                    co2_history.clear();
+                    gas_history.clear();
+                    pressure_history.clear();
+                    tVOC_history.clear();
                 }
             }
         });
