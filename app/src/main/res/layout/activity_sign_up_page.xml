@@ -58,7 +58,7 @@
         android:layout_height="53dp"
         android:layout_marginBottom="28dp"
         android:ems="10"
-        android:hint="Height (m)"
+        android:hint="Height (cm)"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/saveSignUp"
         app:layout_constraintEnd_toEndOf="parent"
