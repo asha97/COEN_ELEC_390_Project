@@ -33,17 +33,19 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
+
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
     Button logoutButton,startStopButton, notifTest;
-    ImageView generalSettings, airQualityBtn, userProfileGo, medicationButton, statsButton;
+    ImageView generalSettings, airQualityBtn, userProfileGo, statsButton;
     TextView greetingText;
     FirebaseUser user;
     TextView stopwatch_tv;
     long counter = 0;
-
     DatabaseReference reference;
-
     private int seconds = 0;
     private boolean functioning;
     private boolean wasFunctioning;
@@ -64,7 +66,6 @@ public class HomePage extends AppCompatActivity {
         generalSettings = findViewById(R.id.settingButton);
         airQualityBtn = findViewById(R.id.airQualityData);
         userProfileGo = findViewById(R.id.userProfileAccess);
-        medicationButton = findViewById(R.id.logMedication);
         statsButton = findViewById(R.id.statsIcon);
         stopwatch_tv = findViewById(R.id.stopwatch_tv);
         greetingText = findViewById(R.id.userDetails);
@@ -221,14 +222,6 @@ public class HomePage extends AppCompatActivity {
 
         });
 
-        medicationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openMedication();
-            }
-
-        });
-
         userProfileGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -242,6 +235,25 @@ public class HomePage extends AppCompatActivity {
                 openStatistics();
             }
         });
+
+        statsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (counter >= 1) {
+                    openStatistics();
+                } else {
+                    //Toast.makeText(HomePage.this, "You cannot access the statistics page yet. In order to access the statistics page, you must start the stopwatch.", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(HomePage.this);
+                    builder.setTitle("Access to Statistics Analysis Denied");
+                    builder.setMessage("In order to access the Statistics Analysis page, you must start the stopwatch, and stop it after the desired amount of time.");
+                    builder.setPositiveButton("OK", null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            }
+        });
+
+
         startStopButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -333,10 +345,6 @@ public class HomePage extends AppCompatActivity {
         //TODO: @Asha I want the users to not be able to open up the statistics page until after they've captured a certain interval of time with the stopwatch. We can make the statistics button unclickable until after they stop the timer for the 1st time. We can make it change color.
         Intent intent = new Intent(getApplicationContext(), StatisticsPage.class);
         intent.putExtra("StatisticsHelper", globalHelper);
-        startActivity(intent);
-    }
-    public void openMedication() {
-        Intent intent = new Intent(getApplicationContext(), MedicationLogger.class);
         startActivity(intent);
     }
     public void openLogin() {
