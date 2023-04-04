@@ -221,7 +221,7 @@ public class airQualityAnalytics extends AppCompatActivity {
 //                String [] value2 = gasString.split(": ", 2);
 //                double gasValue = Double.parseDouble(value2[1]);
 
-                if(co2Value > 1000) {
+                if(co2Value > 1200) {
                     //notification code for high CO2 warning
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(airQualityAnalytics.this, "My Notification");
                     builder.setContentTitle("Warning: There is high CO2 exposure");
@@ -325,7 +325,7 @@ public class airQualityAnalytics extends AppCompatActivity {
                 String [] value7 = tVOCString.split(": ", 2);
                 double tVOCValue = Double.parseDouble(value7[1]);
 
-                if(tVOCValue > 0.001) {
+                if(tVOCValue > 0.1) {
                     //notification code for high tVOC warning
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(airQualityAnalytics.this, "My Notification");
                     builder.setContentTitle("Warning: There are high amounts of particles in this area");
