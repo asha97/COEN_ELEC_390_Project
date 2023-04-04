@@ -156,6 +156,13 @@ public class HomePage extends AppCompatActivity {
                  if(counter%2==0 && counter!=0) {
                     StatisticsHelper statisticsHelper = new StatisticsHelper(altitude_history,humidity_history,temperature_history,co2_history,gas_history,pressure_history,tVOC_history);
                     globalHelper = statisticsHelper;
+                     altitude_history.clear();
+                     humidity_history.clear();
+                     temperature_history.clear();
+                     co2_history.clear();
+                     gas_history.clear();
+                     pressure_history.clear();
+                     tVOC_history.clear();
                 }
             }
 
@@ -281,13 +288,6 @@ public class HomePage extends AppCompatActivity {
                     timeElapsed = (String)stopwatch_tv.getText();
                     startStopButton.setBackgroundColor(Color.BLUE); // set the background color to green
                     counter++;
-                    altitude_history.clear();
-                    humidity_history.clear();
-                    temperature_history.clear();
-                    co2_history.clear();
-                    gas_history.clear();
-                    pressure_history.clear();
-                    tVOC_history.clear();
                 }
             }
         });
