@@ -10,11 +10,15 @@ Team Members:
 
 Project: 
 
-* Our team aim to design a UV Ray and Air Quality watch, which will be monitoring the chemical compounds as well as wavelength of rays that are harmful to humans. :sunny: :cloud:	
-* The target populations for our product are primarily patients who are prone or do have some form of skin cancer. However, it could be used as a prevention tool for the general population.  :people_holding_hands:	
+* Our team aim to design an Air Quality Device, which will be monitoring the chemical compounds that are harmful to humans. :sunny: :cloud:	
+* The target populations for our product are primarily patients who have sensitive skin, allergic reactions and/or skin disease. However, it could be used as a prevention tool for the general population.  :people_holding_hands:	
 
 Potential Sensors Used: 
 
-* Gas Sensor CCS811
-* UV Sensor GYML8511
-* Temperature, Humidity and Pressure Sensor BME680
+* Gas Sensor - CCS811 
+* Temperature, Humidity and Pressure Sensor - BME680
+
+Technology Used: 
+* Front-End: Java, Android SDK
+* Back-End: Java, Firebase (Database), C++ (Arduino)
+* Hardware Development tools: Arduino IDE, ESP32 MCU

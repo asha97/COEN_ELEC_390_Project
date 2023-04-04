@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -21,27 +23,22 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".userBiometrics"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light" />
-        <activity
-            android:name=".WeatherDetails"
+
+            android:name=".SignUpInfo"
+            android:theme="@style/Theme.Material3.Light"
             android:exported="false" />
         <activity
-            android:name=".UserProfile"
+            android:name=".StatisticsPage"
             android:exported="false"
             android:parentActivityName=".HomePage"
             android:theme="@style/Theme.Material3.Light" />
+
         <activity
-            android:name=".tVOC_Activity"
+            android:name=".UserProfile"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light" />
         <activity
             android:name=".airQualityAnalytics"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light" />
-        <activity
-            android:name=".uvAnalytics"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light" />
         <activity
@@ -57,17 +54,14 @@
             android:name=".LoginPage"
             android:exported="false"
             android:parentActivityName=".MainActivity"
+
             android:theme="@style/Theme.Material3.Light" />
         <activity
             android:name=".SignUpPage"
             android:exported="false"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.Material3.Light" />
-        <activity
-            android:name=".ConnectionSettings"
-            android:exported="false"
-            android:parentActivityName=".HomePage"
-            android:theme="@style/Theme.Material3.Light" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -78,6 +72,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".myFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
