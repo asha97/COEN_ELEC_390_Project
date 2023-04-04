@@ -96,7 +96,7 @@ public class SignUpPage extends AppCompatActivity {
                     Toast.makeText(SignUpPage.this, "Please enter your location", Toast.LENGTH_SHORT).show();
                     return;
                 } else if (TextUtils.isEmpty(weight)){
-                    Toast.makeText(SignUpPage.this, "Please enter your weight", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpPage.this, "Please enter your weight in cm", Toast.LENGTH_SHORT).show();
                     return;
                 } else if (TextUtils.isEmpty(height)){
                     Toast.makeText(SignUpPage.this, "Please enter your height", Toast.LENGTH_SHORT).show();
