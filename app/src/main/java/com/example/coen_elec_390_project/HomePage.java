@@ -242,10 +242,12 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        statsButton.setOnClickListener(new View.OnClickListener() {
+     /*   statsButton.setOnClickListener(new View.OnClickListener() {
+           openStatistics();
+
             @Override
             public void onClick(View view) {
-                if (counter >= 1) {
+                if (functioning == false) {
                     openStatistics();
                 } else {
                     //Toast.makeText(HomePage.this, "You cannot access the statistics page yet. In order to access the statistics page, you must start the stopwatch.", Toast.LENGTH_SHORT).show();
@@ -257,9 +259,11 @@ public class HomePage extends AppCompatActivity {
                     dialog.show();
                 }
             }
+
+
         });
 
-
+*/
         startStopButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
