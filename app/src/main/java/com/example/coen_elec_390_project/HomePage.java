@@ -33,6 +33,10 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
+
 public class HomePage extends AppCompatActivity {
     FirebaseAuth auth;
     Button logoutButton,startStopButton, notifTest;
@@ -41,9 +45,7 @@ public class HomePage extends AppCompatActivity {
     FirebaseUser user;
     TextView stopwatch_tv;
     long counter = 0;
-
     DatabaseReference reference;
-
     private int seconds = 0;
     private boolean functioning;
     private boolean wasFunctioning;
@@ -233,6 +235,25 @@ public class HomePage extends AppCompatActivity {
                 openStatistics();
             }
         });
+
+        statsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (counter >= 1) {
+                    openStatistics();
+                } else {
+                    //Toast.makeText(HomePage.this, "You cannot access the statistics page yet. In order to access the statistics page, you must start the stopwatch.", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(HomePage.this);
+                    builder.setTitle("Access to Statistics Analysis Denied");
+                    builder.setMessage("In order to access the Statistics Analysis page, you must start the stopwatch, and stop it after the desired amount of time.");
+                    builder.setPositiveButton("OK", null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            }
+        });
+
+
         startStopButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
