@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -13,6 +14,9 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.components.YAxis;
+
 
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -25,6 +29,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +42,8 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import android.widget.Toast;
 
@@ -77,18 +84,6 @@ public class airQualityAnalytics extends AppCompatActivity {
 
         //----------------------CREATION OF BARCHART--------------------------//
 
-        // container for data
-        BarDataSet dataSet = new BarDataSet(new ArrayList<BarEntry>(), "Sensor Data");
-
-        // colors of chart
-        dataSet.setColors(new int[] { R.color.purple_500 });
-        dataSet.setValueTextColor(R.color.black);
-
-        // add data of barchart into object
-        BarData barData = new BarData(dataSet);
-        barChart.setData(barData);
-        barChart.invalidate();
-
         //display into the box the right metrics
         String [] nameMetric = {"Altitude (m)", "CO2 (ppm)", "Gas (KOhms)", "Humidity (%)", "Pressure (KPa)", "Temperature (*C)", "Elapsed Time (ms)", "tVOC (g*m^-3)" };
 
@@ -96,61 +91,55 @@ public class airQualityAnalytics extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 // clear data to make sure there isn't anything else
-                dataSet.clear();
                 list.clear();
 
-                // looping in data
+                // Create ArrayList to hold bar entries
+                ArrayList<BarEntry> altitude_data = new ArrayList<>();
+                ArrayList<BarEntry> co2_data = new ArrayList<>();
+                ArrayList<BarEntry> gas_data = new ArrayList<>();
+                ArrayList<BarEntry> humidity_data = new ArrayList<>();
+                ArrayList<BarEntry> pressure_data = new ArrayList<>();
+                ArrayList<BarEntry> temperature_data = new ArrayList<>();
+
                 int i = 0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     float value = Float.parseFloat(snapshot.getValue().toString());
                     //not going to be displaying the elapsed time
                     if (i !=6) {
+                        if(i==0){ //
+                            altitude_data.add(new BarEntry(i, value));
+                        }
+                        if(i==1){
+                            co2_data.add(new BarEntry(i, value));
+                        }
+                        if(i==2){
+                            gas_data.add(new BarEntry(i, value));
+                        }
+                        if(i==3){
+                            humidity_data.add(new BarEntry(i,value));
+                        }
                         if (i==4){
                             //Reducing pressure by a factor of 10: 1000hPa -> 100KPa
-                            dataSet.addEntry(new BarEntry(i, (value/10), nameMetric[i])); // This will add the pressure in KPa to the bar graph
+                            pressure_data.add(new BarEntry(i, (value/10))); // This will add the pressure in KPa to the bar graph
                         }
-                        else {
-                            dataSet.addEntry(new BarEntry(i, value, nameMetric[i])); //Adding as usual
+                        if(i==5){
+                            temperature_data.add(new BarEntry(i, value));
                         }
-                        String addData = nameMetric[i] + ": " + snapshot.getValue().toString();
-                        if (nameMetric[i].equals("Temperature (*C)")){
+
+                        //adding temperature into Fahrenheit in the listview only
+                        String label = nameMetric[i];
+                        String addData = label + ": " + snapshot.getValue().toString();
+                        if (label.equals("Temperature (*C)")){
                             String addFahrenheit = "Temperature (*F): " + convertToFahrenheit(value);
                             list.add(addFahrenheit);
                         }
-                        if (nameMetric[i].equals("Pressure (KPa)")){
+
+                        //adding pressure into Bar in the listview only
+                        if (label.equals("Pressure (KPa)")){
                             String addBar = "Pressure (Bar): " + convertToBar(value/10);
                             list.add(addBar);
-                        }
-                        //we want to make sure that the air quality particles are not surpassing the threshold
-                        if (nameMetric[i].equals("CO2 (ppm)")){
-                            int co2PPM = Integer.parseInt(snapshot.getValue().toString());
-
-                            if (co2PPM >= 200){
-//                                Toast.makeText(airQualityAnalytics.this, "CO2 particle is above 1000ppm, be careful!", Toast.LENGTH_SHORT).show();
-
-                                /*
-                                    this is where there is going to be the implementation of the notification
-                                    using the firebasemessaging class
-                                    the basic implementation is done, need to add the send() function, need implementation
-                                 */
-
-                                //String title = "CO2 (ppm)";
-                                //String message = co2PPM + "";
-
-                                //call the firebase messaging service object and use the object to get the sendNotification() method
-                                //myFirebaseMessagingService msgServ = new myFirebaseMessagingService();
-                                //msgServ.sendNotification(title, message);
-
-                            }
-                        }
-
-                        if (nameMetric[i].equals("Gas (KOhms)")){
-                            double gasMetric = Double.parseDouble(snapshot.getValue().toString());
-
-                            if (gasMetric >= 100){ // need to change this value for the right gas
-                               // Toast.makeText(airQualityAnalytics.this, "TVOC level is too high, be careful!", Toast.LENGTH_SHORT).show();
-                            }
                         }
 
                         list.add(addData);
@@ -158,7 +147,65 @@ public class airQualityAnalytics extends AppCompatActivity {
                     }
                 }
 
-                // notification that data in chart has been updated
+                //custom colors for the bar graph
+                int customColor1 = Color.rgb(173, 141, 242); // light purple
+                int customColor2 = Color.rgb(137, 94, 230); // darker light
+                int customColor3 = Color.rgb(112, 66, 212); // darker darker light purple
+                int customColor4 = Color.rgb(84, 81, 245); // blue purple
+                int customColor5 = Color.rgb(59, 71, 245); // blue ish purple
+                int customColor6 = Color.rgb(36, 71, 242); // blue
+
+
+                //define each data set in order to add them into the barDataSets
+                BarDataSet altitudeSet = new BarDataSet(altitude_data, "Altitude (m)");
+                altitudeSet.setColor(customColor1);
+
+                BarDataSet co2Set = new BarDataSet(co2_data, "CO2 (ppm)");
+                co2Set.setColor(customColor2);
+
+                BarDataSet gasSet = new BarDataSet(gas_data, "Gas (KOhms)");
+                gasSet.setColor(customColor3);
+
+                BarDataSet humiditySet = new BarDataSet(humidity_data, "Humidity (%)");
+                humiditySet.setColor(customColor4);
+
+                BarDataSet pressureSet = new BarDataSet(pressure_data, "Pressure (KPa)");
+                pressureSet.setColor(customColor5);
+
+                BarDataSet temperatureSet = new BarDataSet(temperature_data, "Temperature (*C)");
+                temperatureSet.setColor(customColor6);
+
+                ArrayList<IBarDataSet> barDataSets = new ArrayList<>();
+
+                barDataSets.add(altitudeSet);
+                barDataSets.add(co2Set);
+                barDataSets.add(gasSet);
+                barDataSets.add(humiditySet);
+                barDataSets.add(pressureSet);
+                barDataSets.add(temperatureSet);
+
+                // add data sets into the bar chart
+                BarData barData = new BarData(barDataSets);
+                barChart.setData(barData);
+
+                //change color of the background of the barchart
+                int customChartBg = Color.rgb(222,229,255);
+                barChart.setBackgroundColor(customChartBg);
+
+                // Remove the grid
+                XAxis xAxis = barChart.getXAxis();
+                xAxis.setDrawGridLines(false);
+                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                xAxis.setDrawAxisLine(true);
+
+                YAxis leftAxis = barChart.getAxisLeft();
+                leftAxis.setDrawGridLines(false);
+                leftAxis.setDrawAxisLine(true);
+
+                YAxis rightAxis = barChart.getAxisRight();
+                rightAxis.setDrawGridLines(false);
+                rightAxis.setDrawAxisLine(false);
+
                 barData.notifyDataChanged();
                 barChart.notifyDataSetChanged();
                 barChart.invalidate();
