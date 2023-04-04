@@ -81,6 +81,7 @@ public class HomePage extends AppCompatActivity {
         ArrayList<Float> gas_history = new ArrayList<>();
         ArrayList<Float> pressure_history = new ArrayList<>();
         ArrayList<Float> tVOC_history = new ArrayList<>();
+        ArrayList<Float> co2_history_chart = new ArrayList<>();
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser(); //initialize the current user
@@ -107,7 +108,7 @@ public class HomePage extends AppCompatActivity {
                     arrayList_result.add(snapshot.getValue().toString());
                     if(j == 1){
                         float rawCO2 = Float.parseFloat(snapshot.getValue().toString());
-                        double changedUnitCO2 = rawCO2 * 0.01;
+                        double changedUnitCO2 = rawCO2 * 0.001;
                         co2_data.add(new Entry(i, (float) changedUnitCO2));
                     }
                     if(j == 2){
@@ -118,7 +119,7 @@ public class HomePage extends AppCompatActivity {
                     }
                     if(j == 4){
                         float rawPressure = Float.parseFloat(snapshot.getValue().toString());
-                        double changedUnitPressure = rawPressure * 0.01;
+                        double changedUnitPressure = rawPressure * 0.001;
                         pressure_data.add(new Entry(i, (float) changedUnitPressure));
                     }
                     if(j == 5){
@@ -136,18 +137,18 @@ public class HomePage extends AppCompatActivity {
                 }
                 else {
                     //CO2 line
-                    for(int z = 0; z < co2_history.size(); z++) {
-                        co2_data.add(new Entry(z+1, co2_history.get(z)));
+                    for(int z = 0; z < co2_history_chart.size(); z++) {
+                        co2_data.add(new Entry(z+1, co2_history_chart.get(z)));
                     }
                     final LineDataSet co2Set = new LineDataSet(co2_data, "CO2");
-                    co2Set.setColor(Color.YELLOW);
+                    co2Set.setColor(Color.GREEN);
 
-                    //gas line
-                    for(int z = 0; z < gas_history.size(); z++) {
-                        gas_data.add(new Entry(z+1, gas_history.get(z)));
-                    }
-                    final LineDataSet gasSet = new LineDataSet(gas_data, "Gas");
-                    gasSet.setColor(Color.GREEN);
+//                    //gas line
+//                    for(int z = 0; z < gas_history.size(); z++) {
+//                        gas_data.add(new Entry(z+1, gas_history.get(z)));
+//                    }
+//                    final LineDataSet gasSet = new LineDataSet(gas_data, "Gas");
+//                    gasSet.setColor(Color.GREEN);
 
                     //humidity line
                     for(int z = 0; z < humidity_history.size(); z++) {
@@ -156,12 +157,12 @@ public class HomePage extends AppCompatActivity {
                     final LineDataSet humiditySet = new LineDataSet(humidity_data, "Humidity");
                     humiditySet.setColor(Color.CYAN);
 
-                    //pressure line
-                    for(int z = 0; z < pressure_history.size(); z++) {
-                        pressure_data.add(new Entry(z+1, pressure_history.get(z)));
-                    }
-                    final LineDataSet pressureSet = new LineDataSet(pressure_data, "Pressure");
-                    pressureSet.setColor(Color.BLACK);
+//                    //pressure line
+//                    for(int z = 0; z < pressure_history.size(); z++) {
+//                        pressure_data.add(new Entry(z+1, pressure_history.get(z)));
+//                    }
+//                    final LineDataSet pressureSet = new LineDataSet(pressure_data, "Pressure");
+//                    pressureSet.setColor(Color.BLACK);
 
                     //temperature line
                     for(int z = 0; z < temperature_history.size(); z++) {
@@ -170,20 +171,20 @@ public class HomePage extends AppCompatActivity {
                     final LineDataSet temperatureSet = new LineDataSet(temperature_data, "Temp");
                     temperatureSet.setColor(Color.RED);
 
-                    //tVOC line
-                    for(int z = 0; z < tVOC_history.size(); z++) {
-                        tVOC_data.add(new Entry(z+1, tVOC_history.get(z)));
-                    }
-                    final LineDataSet tVOCSet = new LineDataSet(tVOC_data, "tVOC");
-                    tVOCSet.setColor(Color.GRAY);
+//                    //tVOC line
+//                    for(int z = 0; z < tVOC_history.size(); z++) {
+//                        tVOC_data.add(new Entry(z+1, tVOC_history.get(z)));
+//                    }
+//                    final LineDataSet tVOCSet = new LineDataSet(tVOC_data, "tVOC");
+//                    tVOCSet.setColor(Color.GRAY);
 
                     ArrayList<ILineDataSet> dataSets = new ArrayList<>();
                     dataSets.add(co2Set);
-                    dataSets.add(gasSet);
+                    //dataSets.add(gasSet);
                     dataSets.add(humiditySet);
-                    dataSets.add(pressureSet);
+//                    dataSets.add(pressureSet);
                     dataSets.add(temperatureSet);
-                    dataSets.add(tVOCSet);
+                    //dataSets.add(tVOCSet);
 
                     LineData lineData = new LineData(dataSets);
 
@@ -196,7 +197,8 @@ public class HomePage extends AppCompatActivity {
 
                 if (!(counter%2==0)){
                     altitude_history.add(Float.parseFloat(arrayList_result.get(0)));
-                    co2_history.add(Float.parseFloat(arrayList_result.get(1)));
+                    co2_history.add((float) (Float.parseFloat(arrayList_result.get(1))));
+                    co2_history_chart.add((float) (Float.parseFloat(arrayList_result.get(1)) * 0.01));
                     gas_history.add(Float.parseFloat(arrayList_result.get(2)));
                     humidity_history.add(Float.parseFloat(arrayList_result.get(3)));
                     pressure_history.add(Float.parseFloat(arrayList_result.get(4)));
