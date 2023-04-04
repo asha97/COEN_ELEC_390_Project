@@ -24,10 +24,6 @@
             android:exported="false"
             android:theme="@style/Theme.Material3.Light" />
         <activity
-            android:name=".MedicationLogger"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light" />
-        <activity
             android:name=".UserProfile"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light" />
