@@ -107,7 +107,7 @@ public class HomePage extends AppCompatActivity {
                     arrayList_result.add(snapshot.getValue().toString());
                     if(j == 1){
                         float rawCO2 = Float.parseFloat(snapshot.getValue().toString());
-                        double changedUnitCO2 = rawCO2 * 0.001;
+                        double changedUnitCO2 = rawCO2 * 0.01;
                         co2_data.add(new Entry(i, (float) changedUnitCO2));
                     }
                     if(j == 2){
@@ -142,26 +142,12 @@ public class HomePage extends AppCompatActivity {
                     final LineDataSet co2Set = new LineDataSet(co2_data, "CO2");
                     co2Set.setColor(Color.GREEN);
 
-//                    //gas line
-//                    for(int z = 0; z < gas_history.size(); z++) {
-//                        gas_data.add(new Entry(z+1, gas_history.get(z)));
-//                    }
-//                    final LineDataSet gasSet = new LineDataSet(gas_data, "Gas");
-//                    gasSet.setColor(Color.GREEN);
-
                     //humidity line
                     for(int z = 0; z < humidity_history.size(); z++) {
                         humidity_data.add(new Entry(z+1, humidity_history.get(z)));
                     }
                     final LineDataSet humiditySet = new LineDataSet(humidity_data, "Humidity");
-                    humiditySet.setColor(Color.CYAN);
-
-//                    //pressure line
-//                    for(int z = 0; z < pressure_history.size(); z++) {
-//                        pressure_data.add(new Entry(z+1, pressure_history.get(z)));
-//                    }
-//                    final LineDataSet pressureSet = new LineDataSet(pressure_data, "Pressure");
-//                    pressureSet.setColor(Color.BLACK);
+                    humiditySet.setColor(Color.BLACK);
 
                     //temperature line
                     for(int z = 0; z < temperature_history.size(); z++) {
@@ -170,20 +156,10 @@ public class HomePage extends AppCompatActivity {
                     final LineDataSet temperatureSet = new LineDataSet(temperature_data, "Temp");
                     temperatureSet.setColor(Color.RED);
 
-//                    //tVOC line
-//                    for(int z = 0; z < tVOC_history.size(); z++) {
-//                        tVOC_data.add(new Entry(z+1, tVOC_history.get(z)));
-//                    }
-//                    final LineDataSet tVOCSet = new LineDataSet(tVOC_data, "tVOC");
-//                    tVOCSet.setColor(Color.GRAY);
-
                     ArrayList<ILineDataSet> dataSets = new ArrayList<>();
                     dataSets.add(co2Set);
-                    //dataSets.add(gasSet);
                     dataSets.add(humiditySet);
-//                    dataSets.add(pressureSet);
                     dataSets.add(temperatureSet);
-                    //dataSets.add(tVOCSet);
 
                     LineData lineData = new LineData(dataSets);
 
@@ -315,13 +291,6 @@ public class HomePage extends AppCompatActivity {
                     timeElapsed = (String)stopwatch_tv.getText();
                     startStopButton.setBackgroundColor(Color.BLUE); // set the background color to green
                     counter++;
-//                    altitude_history.clear();
-//                    humidity_history.clear();
-//                    temperature_history.clear();
-//                    co2_history.clear();
-//                    gas_history.clear();
-//                    pressure_history.clear();
-//                    tVOC_history.clear();
                 }
             }
         });
