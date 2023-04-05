@@ -69,8 +69,8 @@
 
     <TextView
         android:id="@+id/userDetails"
-        android:layout_width="140dp"
-        android:layout_height="33dp"
+        android:layout_width="285dp"
+        android:layout_height="23dp"
         android:layout_marginTop="16dp"
         android:text="Good day, User!"
         android:textSize="18sp"
