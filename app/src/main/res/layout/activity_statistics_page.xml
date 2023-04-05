@@ -84,8 +84,8 @@
 
     <ImageView
         android:id="@+id/imageView21"
-        android:layout_width="293dp"
-        android:layout_height="45dp"
+        android:layout_width="245dp"
+        android:layout_height="44dp"
         android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -149,6 +149,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Altitude"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView32"
         app:layout_constraintEnd_toEndOf="@+id/imageView32"
         app:layout_constraintHorizontal_bias="0.05"
@@ -161,6 +162,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CO2"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView34"
         app:layout_constraintEnd_toEndOf="@+id/imageView34"
         app:layout_constraintHorizontal_bias="0.047"
@@ -173,6 +175,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Gas"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView35"
         app:layout_constraintEnd_toEndOf="@+id/imageView35"
         app:layout_constraintHorizontal_bias="0.046"
@@ -185,6 +188,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Humidity"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView36"
         app:layout_constraintEnd_toEndOf="@+id/imageView36"
         app:layout_constraintHorizontal_bias="0.051"
@@ -196,7 +200,8 @@
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Press"
+        android:text="Pressure"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView37"
         app:layout_constraintEnd_toEndOf="@+id/imageView37"
         app:layout_constraintHorizontal_bias="0.051"
@@ -208,7 +213,8 @@
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Temp"
+        android:text="Temperature"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView38"
         app:layout_constraintEnd_toEndOf="@+id/imageView38"
         app:layout_constraintHorizontal_bias="0.048"
@@ -221,6 +227,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total VOC"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView39"
         app:layout_constraintEnd_toEndOf="@+id/imageView39"
         app:layout_constraintHorizontal_bias="0.032"
@@ -259,7 +266,7 @@
         android:text="Average:"
         app:layout_constraintBottom_toTopOf="@+id/med_alt_tv"
         app:layout_constraintEnd_toEndOf="@+id/imageView32"
-        app:layout_constraintHorizontal_bias="0.278"
+        app:layout_constraintHorizontal_bias="0.314"
         app:layout_constraintStart_toStartOf="@+id/imageView32"
         app:layout_constraintTop_toTopOf="@+id/imageView32"
         app:layout_constraintVertical_bias="0.428" />
@@ -271,7 +278,7 @@
         android:text="Median:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView32"
         app:layout_constraintEnd_toEndOf="@+id/imageView32"
-        app:layout_constraintHorizontal_bias="0.274"
+        app:layout_constraintHorizontal_bias="0.309"
         app:layout_constraintStart_toStartOf="@+id/imageView32"
         app:layout_constraintTop_toTopOf="@+id/imageView32"
         app:layout_constraintVertical_bias="0.839" />
@@ -283,7 +290,7 @@
         android:text="Average:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView34"
         app:layout_constraintEnd_toEndOf="@+id/imageView34"
-        app:layout_constraintHorizontal_bias="0.23"
+        app:layout_constraintHorizontal_bias="0.314"
         app:layout_constraintStart_toStartOf="@+id/imageView34"
         app:layout_constraintTop_toTopOf="@+id/imageView34"
         app:layout_constraintVertical_bias="0.125" />
@@ -295,7 +302,7 @@
         android:text="Median:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView34"
         app:layout_constraintEnd_toEndOf="@+id/imageView34"
-        app:layout_constraintHorizontal_bias="0.227"
+        app:layout_constraintHorizontal_bias="0.309"
         app:layout_constraintStart_toStartOf="@+id/imageView34"
         app:layout_constraintTop_toTopOf="@+id/imageView34"
         app:layout_constraintVertical_bias="0.803" />
@@ -331,7 +338,7 @@
         android:text="Average:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView35"
         app:layout_constraintEnd_toEndOf="@+id/imageView35"
-        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintHorizontal_bias="0.314"
         app:layout_constraintStart_toStartOf="@+id/imageView35"
         app:layout_constraintTop_toTopOf="@+id/imageView35"
         app:layout_constraintVertical_bias="0.142" />
@@ -343,7 +350,7 @@
         android:text="Median:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView35"
         app:layout_constraintEnd_toEndOf="@+id/imageView35"
-        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintHorizontal_bias="0.309"
         app:layout_constraintStart_toStartOf="@+id/imageView35"
         app:layout_constraintTop_toTopOf="@+id/imageView35"
         app:layout_constraintVertical_bias="0.839" />
@@ -379,7 +386,7 @@
         android:text="Average:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView36"
         app:layout_constraintEnd_toEndOf="@+id/imageView36"
-        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintHorizontal_bias="0.314"
         app:layout_constraintStart_toStartOf="@+id/imageView36"
         app:layout_constraintTop_toTopOf="@+id/imageView36"
         app:layout_constraintVertical_bias="0.142" />
@@ -391,7 +398,7 @@
         android:text="Median:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView36"
         app:layout_constraintEnd_toEndOf="@+id/imageView36"
-        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintHorizontal_bias="0.309"
         app:layout_constraintStart_toStartOf="@+id/imageView36"
         app:layout_constraintTop_toTopOf="@+id/imageView36"
         app:layout_constraintVertical_bias="0.875" />
@@ -427,7 +434,7 @@
         android:text="Average:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView37"
         app:layout_constraintEnd_toEndOf="@+id/imageView37"
-        app:layout_constraintHorizontal_bias="0.214"
+        app:layout_constraintHorizontal_bias="0.314"
         app:layout_constraintStart_toStartOf="@+id/imageView37"
         app:layout_constraintTop_toTopOf="@+id/imageView37"
         app:layout_constraintVertical_bias="0.142" />
@@ -439,7 +446,7 @@
         android:text="Median:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView37"
         app:layout_constraintEnd_toEndOf="@+id/imageView37"
-        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintHorizontal_bias="0.309"
         app:layout_constraintStart_toStartOf="@+id/imageView37"
         app:layout_constraintTop_toTopOf="@+id/imageView37"
         app:layout_constraintVertical_bias="0.857" />
@@ -475,7 +482,7 @@
         android:text="Average:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView38"
         app:layout_constraintEnd_toEndOf="@+id/imageView38"
-        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintHorizontal_bias="0.314"
         app:layout_constraintStart_toStartOf="@+id/imageView38"
         app:layout_constraintTop_toTopOf="@+id/imageView38"
         app:layout_constraintVertical_bias="0.16" />
@@ -487,7 +494,7 @@
         android:text="Median:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView38"
         app:layout_constraintEnd_toEndOf="@+id/imageView38"
-        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintHorizontal_bias="0.309"
         app:layout_constraintStart_toStartOf="@+id/imageView38"
         app:layout_constraintTop_toTopOf="@+id/imageView38"
         app:layout_constraintVertical_bias="0.875" />
@@ -523,7 +530,7 @@
         android:text="Average:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView39"
         app:layout_constraintEnd_toEndOf="@+id/imageView39"
-        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintHorizontal_bias="0.314"
         app:layout_constraintStart_toStartOf="@+id/imageView39"
         app:layout_constraintTop_toTopOf="@+id/imageView39"
         app:layout_constraintVertical_bias="0.16" />
@@ -535,7 +542,7 @@
         android:text="Median:"
         app:layout_constraintBottom_toBottomOf="@+id/imageView39"
         app:layout_constraintEnd_toEndOf="@+id/imageView39"
-        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintHorizontal_bias="0.309"
         app:layout_constraintStart_toStartOf="@+id/imageView39"
         app:layout_constraintTop_toTopOf="@+id/imageView39"
         app:layout_constraintVertical_bias="0.839" />
@@ -563,6 +570,76 @@
         app:layout_constraintStart_toStartOf="@+id/imageView39"
         app:layout_constraintTop_toTopOf="@+id/imageView39"
         app:layout_constraintVertical_bias="0.839" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="54dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView32"
+        app:layout_constraintStart_toStartOf="@+id/imageView32"
+        app:srcCompat="@drawable/altitude_icon" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView34"
+        app:layout_constraintStart_toStartOf="@+id/imageView34"
+        app:srcCompat="@drawable/co2_icon" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="54dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView35"
+        app:layout_constraintStart_toStartOf="@+id/imageView35"
+        app:srcCompat="@drawable/gas_icon" />
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="50dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView36"
+        app:layout_constraintStart_toStartOf="@+id/imageView36"
+        app:srcCompat="@drawable/humidity_icon" />
+
+    <ImageView
+        android:id="@+id/imageView33"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView37"
+        app:layout_constraintStart_toStartOf="@+id/imageView37"
+        app:srcCompat="@drawable/pressure_icon" />
+
+    <ImageView
+        android:id="@+id/imageView40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView38"
+        app:layout_constraintStart_toStartOf="@+id/imageView38"
+        app:srcCompat="@drawable/temp_icon" />
+
+    <ImageView
+        android:id="@+id/imageView41"
+        android:layout_width="48dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView39"
+        app:layout_constraintStart_toStartOf="@+id/imageView39"
+        app:srcCompat="@drawable/tvoc_icon" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
