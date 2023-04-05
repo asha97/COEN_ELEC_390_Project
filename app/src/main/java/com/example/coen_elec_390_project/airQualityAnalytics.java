@@ -148,12 +148,12 @@ public class airQualityAnalytics extends AppCompatActivity {
                 }
 
                 //custom colors for the bar graph
-                int customColor1 = Color.rgb(173, 141, 242); // light purple
-                int customColor2 = Color.rgb(137, 94, 230); // darker light
-                int customColor3 = Color.rgb(112, 66, 212); // darker darker light purple
-                int customColor4 = Color.rgb(84, 81, 245); // blue purple
-                int customColor5 = Color.rgb(59, 71, 245); // blue ish purple
-                int customColor6 = Color.rgb(36, 71, 242); // blue
+                int customColor1 = Color.rgb(54,21,30);
+                int customColor2 = Color.rgb(89,63,98);
+                int customColor3 = Color.rgb(123,109,141);
+                int customColor4 = Color.rgb(148,154,255);
+                int customColor5 = Color.rgb(165,196,212);
+                int customColor6 = Color.rgb(129,5,97);
 
 
                 //define each data set in order to add them into the barDataSets
