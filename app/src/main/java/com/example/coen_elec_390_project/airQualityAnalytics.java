@@ -85,7 +85,7 @@ public class airQualityAnalytics extends AppCompatActivity {
         //----------------------CREATION OF BARCHART--------------------------//
 
         //display into the box the right metrics
-        String [] nameMetric = {"Altitude (m)", "CO2 (ppm)", "Gas (KOhms)", "Humidity (%)", "Pressure (KPa)", "Temperature (*C)", "Elapsed Time (ms)", "tVOC (g*m^-3)" };
+        String [] nameMetric = {"Altitude (m)", "CO2 (ppm)", "Gas Resistance (KOhms)", "Humidity (%)", "Pressure (KPa)", "Temperature (*C)", "Elapsed Time (ms)", "tVOC (g*m^-3)" };
 
         // Attach a ValueEventListener to the Firebase database node to get the data
         reference.addValueEventListener(new ValueEventListener() {
