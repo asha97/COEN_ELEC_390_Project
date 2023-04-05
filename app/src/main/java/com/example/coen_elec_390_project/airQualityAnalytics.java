@@ -321,31 +321,31 @@ public class airQualityAnalytics extends AppCompatActivity {
                     managerCompat.notify(4, builder.build());
                 }
 
-                String tVOCString = list.get(7);
-                String [] value7 = tVOCString.split(": ", 2);
-                double tVOCValue = Double.parseDouble(value7[1]);
-
-                if(tVOCValue > 0.1) {
-                    //notification code for high tVOC warning
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(airQualityAnalytics.this, "My Notification");
-                    builder.setContentTitle("Warning: There are high amounts of particles in this area");
-                    builder.setContentText("Make sure to wear a mask or leave the premises!");
-                    builder.setSmallIcon(R.drawable.ic_launcher_background);
-                    builder.setAutoCancel(true);
-
-                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(airQualityAnalytics.this);
-                    if (ActivityCompat.checkSelfPermission(airQualityAnalytics.this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    ActivityCompat#requestPermissions
-                        // here to request the missing permissions, and then overriding
-                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                        //                                          int[] grantResults)
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for ActivityCompat#requestPermissions for more details.
-                        return;
-                    }
-                    managerCompat.notify(5, builder.build());
-                }
+//                String tVOCString = list.get(7);
+//                String [] value7 = tVOCString.split(": ", 2);
+//                double tVOCValue = Double.parseDouble(value7[1]);
+//
+//                if(tVOCValue > 0.1) {
+//                    //notification code for high tVOC warning
+//                    NotificationCompat.Builder builder = new NotificationCompat.Builder(airQualityAnalytics.this, "My Notification");
+//                    builder.setContentTitle("Warning: There are high amounts of particles in this area");
+//                    builder.setContentText("Make sure to wear a mask or leave the premises!");
+//                    builder.setSmallIcon(R.drawable.ic_launcher_background);
+//                    builder.setAutoCancel(true);
+//
+//                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(airQualityAnalytics.this);
+//                    if (ActivityCompat.checkSelfPermission(airQualityAnalytics.this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+//                        // TODO: Consider calling
+//                        //    ActivityCompat#requestPermissions
+//                        // here to request the missing permissions, and then overriding
+//                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                        //                                          int[] grantResults)
+//                        // to handle the case where the user grants the permission. See the documentation
+//                        // for ActivityCompat#requestPermissions for more details.
+//                        return;
+//                    }
+//                    managerCompat.notify(5, builder.build());
+//                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
