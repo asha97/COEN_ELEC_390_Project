@@ -33,7 +33,13 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
+/**
+ * This class controls the backend of the Homepage
+ * Notable features here are: the linegraph, the stopwatch, and the various button to take us to others activities (profile, profile settings, statistics, analysis)
+ * @author David Molina (40111257), Asha Islam (), Pavithra Sivagnanasuntharam()
+ */
 public class HomePage extends AppCompatActivity {
+
     FirebaseAuth auth;
     Button logoutButton,startStopButton, notifTest;
     ImageView generalSettings, airQualityBtn, userProfileGo, medicationButton, statsButton;
@@ -49,6 +55,7 @@ public class HomePage extends AppCompatActivity {
     private boolean wasFunctioning;
     String timeElapsed;
     Handler handler;
+
     private LineChart lineChart;
     ArrayList<Entry> co2_data;
     ArrayList<Entry> gas_data;
@@ -59,6 +66,10 @@ public class HomePage extends AppCompatActivity {
 
     StatisticsHelper globalHelper;
 
+    /**
+     * The OnCreate method is where every component of the page is initialized and operated from
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +100,11 @@ public class HomePage extends AppCompatActivity {
         handler = new Handler();
         reference.addValueEventListener(new ValueEventListener() {
 
+            /**
+             * On the homepage, we require operations to be done at every data change on the Firebase Database.
+             * More specifically, the linegraph needs to be updated at every data change, and the statistics array (history arrays) need to be populated
+             * @param dataSnapshot The snapshot of the Firebase Database that is taken at every data change
+             */
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<String> arrayList_result = new ArrayList<String>();
@@ -186,6 +202,10 @@ public class HomePage extends AppCompatActivity {
                 }
             }
 
+            /**
+             * This methods dictates what happens once there is a data base error
+             * @param error the database error
+             */
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -198,6 +218,7 @@ public class HomePage extends AppCompatActivity {
             greetingText.setText("Good day, " + user.getEmail());
             String uid = user.getUid();
 
+            // TODO: @Pavi @Asha, do we need this method?
             // Retrieve the user's information from Firebase
             DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child("id");
             userRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -222,6 +243,11 @@ public class HomePage extends AppCompatActivity {
         }
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * The logout onClick method
+             * Logs out a user when pressing the logout button
+             * @param view the view where the button is pressed
+             */
             @Override
             public void onClick(View view) {
                 //this is going to be signing out the current user
@@ -233,6 +259,11 @@ public class HomePage extends AppCompatActivity {
 
 
         generalSettings.setOnClickListener(new View.OnClickListener() {
+            /**
+             * The profile settings button onClick method
+             * takes a user to the profile settings page once button is clicked
+             * @param view the view where the button is pressed
+             */
             @Override
             public void onClick(View view) {
                 openProfileSettings();
@@ -241,6 +272,11 @@ public class HomePage extends AppCompatActivity {
         });
 
         airQualityBtn.setOnClickListener(new View.OnClickListener() {
+            /**
+             * The AirQualityAnalytics button onClick method
+             * takes a user to the analysis page once button is clicked
+             * @param view the view where the button is pressed
+             */
             @Override
             public void onClick(View view) {
                 openAirQuality();
@@ -251,6 +287,11 @@ public class HomePage extends AppCompatActivity {
 
 
         userProfileGo.setOnClickListener(new View.OnClickListener() {
+            /**
+             * The profile button onClick method
+             * takes a user to the profile page once button is clicked
+             * @param view the view where the button is pressed
+             */
             @Override
             public void onClick(View view) {
                 openUserProfile();
@@ -258,6 +299,11 @@ public class HomePage extends AppCompatActivity {
          });
 
         statsButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * The statistics button onClick method
+             * takes a user to the statistics page once button is clicked
+             * @param view the view where the button is pressed
+             */
             @Override
             public void onClick(View view) {
                 openStatistics();
@@ -265,6 +311,13 @@ public class HomePage extends AppCompatActivity {
         });
         startStopButton.setOnClickListener(new View.OnClickListener() {
 
+            /**
+             * The "Start/Stop" button onClick method
+             * Changes the behavior of the "start/stop" button each time it is pressed
+             * If the counter is even, it starts the stopwatch, if the counter is odd, it stops the stopwatch
+             * Changes the text displayed on the button in consequence ("start" or "Stop")
+             * @param view the view where the button is pressed
+             */
             @Override
             public void onClick(View view) {
                 if(counter%2 == 0){
@@ -297,6 +350,11 @@ public class HomePage extends AppCompatActivity {
     }
 
 
+    /**
+     * The onSaveInstanceState method
+     * Saves the stopwatch seconds, minutes and hours
+     * @param outState
+     */
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -305,6 +363,10 @@ public class HomePage extends AppCompatActivity {
         outState.putBoolean("wasFunctioning", wasFunctioning);
     }
 
+    /**
+     * the onPause method
+     * Every time the activity is paused, the stopwatch's "WasFunctioning" boolean becomes true and the "functioning" boolean becomes false.
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -312,6 +374,10 @@ public class HomePage extends AppCompatActivity {
         functioning = false;
     }
 
+    /**
+     * the onResume method
+     * Every time the activity is resumed, the stopwatch resumes its functioning and its "functioning" boolean becomes true, if it was false before.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -320,10 +386,17 @@ public class HomePage extends AppCompatActivity {
         }
     }
 
+    /**
+     * This methods starts the stopwatch
+     */
     private void runStopwatch(){
         handler.postDelayed(runnable,0);
     }
 
+    /**
+     * This runnable is responsible for the operation of the stopwatch: calculating seconds, minutes and hours and displaying them
+     * It is also responsible for incrementing the seconds variable each second
+     */
     public Runnable runnable = new Runnable() {
         //final TextView STOPWATCH_TV = (TextView) findViewById(R.id.stopwatch_tv);
         @Override
@@ -342,27 +415,43 @@ public class HomePage extends AppCompatActivity {
     };
 
 
-
+    /**
+     * This methods creates an Intent to open the statistics page every time the user presses the statistics button
+     */
     public void openStatistics() {
-        //TODO: @Asha I want the users to not be able to open up the statistics page until after they've captured a certain interval of time with the stopwatch. We can make the statistics button unclickable until after they stop the timer for the 1st time. We can make it change color.
         Intent intent = new Intent(getApplicationContext(), StatisticsPage.class);
         intent.putExtra("StatisticsHelper", globalHelper);
         startActivity(intent);
     }
 
+    /**
+     * This methods creates an Intent to open the login page every time the user presses the login button
+     */
     public void openLogin() {
         Intent intent = new Intent(getApplicationContext(), LoginPage.class);
         startActivity(intent);
         finish();
     }
+
+    /**
+     * This methods creates an Intent to open the profile settings page every time the user presses the profile settings button
+     */
     public void openProfileSettings() {
         Intent intent = new Intent(getApplicationContext(), UserProfileSettings.class);
         startActivity(intent);
     }
+
+    /**
+     * This methods creates an Intent to open the air quality analytics page every time the user presses the air quality analytics button
+     */
     public void openAirQuality() {
         Intent intent = new Intent(getApplicationContext(), airQualityAnalytics.class);
         startActivity(intent);
     }
+
+    /**
+     * This methods creates an Intent to open the user profile page every time the user presses the user profile button
+     */
     public void openUserProfile() {
         Intent intent = new Intent(getApplicationContext(), UserProfile.class);
         startActivity(intent);

@@ -11,6 +11,11 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+/**
+ * This class controls the backend of the statistics page
+ * This class initializes every component on the page and calculates the statistics for every metric
+ * @author David Molina (40111257), Asha Islam (), Pavithra Sivagnanasuntharam ()
+ */
 public class StatisticsPage extends AppCompatActivity {
     private StatisticsHelper statisticsHelper;
 
@@ -46,8 +51,17 @@ public class StatisticsPage extends AppCompatActivity {
     private TextView med_tmp;
     private TextView med_voc;
 
+    /**
+     * The decimal format used for each value that is displayed (2 decimal places of precision)
+     */
     private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
+    /**
+     * The onCreate method of the statistics page
+     * Every TextView is initialized here
+     * StatisticsHelper is used to calculate the minimum, maximum, the median and the mean of each metric
+     * @param savedInstanceState the savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -176,6 +190,11 @@ public class StatisticsPage extends AppCompatActivity {
 
     }
 
+    /**
+     * This method is used to return to the homepage after clicking the up navigation arrow on the menu bar
+     * @param item the item clicked
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
