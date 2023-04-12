@@ -56,7 +56,7 @@ public class User {
         userRef.child("weight").setValue(weight);
         userRef.child("email").setValue(email_address);
     }
-
+//this one too
     public void updateToFirebase() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference usersRef = database.getReference().child("users");
