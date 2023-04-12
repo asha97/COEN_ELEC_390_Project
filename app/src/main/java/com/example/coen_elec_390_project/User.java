@@ -3,6 +3,11 @@ package com.example.coen_elec_390_project;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+//TODO @Asha @Pavi it seems that this class has many methods that aren't used. Let me know if this isn't the case or please clean them up.
+/**
+ * This class represents each user and their biometrics
+ * @author David Molina (4011257), Asha Islam (), Pavithra Sivagnanasunthrama()
+ */
 public class User {
     private String name;
     private String DoB;
@@ -13,10 +18,22 @@ public class User {
     //this is the email address that we are going to be getting from the login
     private String email_address;
 
+    /**
+     * Default constructor
+     */
     public User() {
 
     }
 
+    /**
+     * Custom constructor
+     * @param name user's name
+     * @param DoB user's date of birth
+     * @param location user's location
+     * @param height user's height
+     * @param weight user's weight
+     * @param email user's email
+     */
     public User(String name, String DoB, String location, String height, String weight,String email) {
         this.name = name;
         this.DoB = DoB;
@@ -26,6 +43,7 @@ public class User {
         this.email_address = email;
     }
 
+    //not writing Javadoc for this one now, until you confirm that this method is used or not. Same for all other methods that seem unused.
     public void writeToFirebase() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference usersRef = database.getReference("users");
@@ -38,7 +56,7 @@ public class User {
         userRef.child("weight").setValue(weight);
         userRef.child("email").setValue(email_address);
     }
-
+//this one too
     public void updateToFirebase() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference usersRef = database.getReference().child("users");
@@ -63,10 +81,17 @@ public class User {
     }
 
 
+    /**
+     * Gets user's name
+     * @return user's name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets user's name
+     */
     public void setName(String name) {
         this.name = name;
     }
@@ -75,6 +100,9 @@ public class User {
         return DoB;
     }
 
+    /**
+     * Sets user's DOB
+     */
     public void setDoB(String DoB) {
         this.DoB = DoB;
     }
@@ -83,14 +111,26 @@ public class User {
         return location;
     }
 
+    /**
+     * Sets user's location
+     * @param location user's location
+     */
     public void setLocation(String location) {
         this.location = location;
     }
 
+    /**
+     * Gets user's height
+     * @return user's height
+     */
     public int getHeight() {
         return height;
     }
 
+    /**
+     * Sets user's height
+     * @param height user's height
+     */
     public void setHeight(int height) {
         this.height = height;
     }
@@ -99,6 +139,10 @@ public class User {
         return weight;
     }
 
+    /**
+     * Sets user's weight
+     * @param weight user's weight
+     */
     public void setWeight(double weight) {
         this.weight = weight;
     }
