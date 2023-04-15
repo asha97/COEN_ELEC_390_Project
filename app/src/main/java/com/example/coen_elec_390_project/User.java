@@ -43,7 +43,6 @@ public class User {
         this.email_address = email;
     }
 
-    //not writing Javadoc for this one now, until you confirm that this method is used or not. Same for all other methods that seem unused.
     public void writeToFirebase() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference usersRef = database.getReference("users");
@@ -56,7 +55,7 @@ public class User {
         userRef.child("weight").setValue(weight);
         userRef.child("email").setValue(email_address);
     }
-//this one too
+
     public void updateToFirebase() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference usersRef = database.getReference().child("users");
@@ -147,21 +146,6 @@ public class User {
         this.weight = weight;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getEmailAddress() {
-        return email_address;
-    }
-
-    public void setEmailAddress(String email_address) {
-        this.email_address = email_address;
-    }
 
 
 }

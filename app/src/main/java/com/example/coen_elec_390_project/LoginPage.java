@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 /**
  * the user is going to be asked to enter their credentials in order to log into their personal account
+ *  @author David Molina (40111257), Asha Islam (40051511), Pavithra Sivagnanasuntharam(40117356)
  */
 public class LoginPage extends AppCompatActivity {
 

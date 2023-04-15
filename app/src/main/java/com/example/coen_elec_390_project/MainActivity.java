@@ -10,6 +10,7 @@ import android.content.Intent;
 /**
  * this is the main page, the user is going to be landing on this page when they first open the application
  * the user is going to be prompted to either the login or sign-up page
+ *  @author David Molina (40111257), Asha Islam (40051511), Pavithra Sivagnanasuntharam(40117356)
  */
 public class MainActivity extends AppCompatActivity {
     Button signUpBtn, loginBtn, homePageBtn;

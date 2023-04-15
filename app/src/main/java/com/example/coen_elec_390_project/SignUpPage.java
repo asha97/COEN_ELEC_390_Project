@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 /**
  * this is a sign up page where the user is going to be entering their information
  * and the information is going to be stored into the firebase
+ *  @author David Molina (40111257), Asha Islam (40051511), Pavithra Sivagnanasuntharam(40117356)
  */
 
 public class SignUpPage extends AppCompatActivity {

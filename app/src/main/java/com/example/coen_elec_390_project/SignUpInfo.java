@@ -10,6 +10,7 @@ import android.view.View;
 
 /**
  * activity which acts as a preamble for the sign up page
+ *  @author David Molina (40111257), Asha Islam (40051511), Pavithra Sivagnanasuntharam(40117356)
  */
 public class SignUpInfo extends AppCompatActivity {
     Button signUp;

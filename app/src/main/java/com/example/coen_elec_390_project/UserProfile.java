@@ -70,50 +70,6 @@ public class UserProfile extends AppCompatActivity {
         });
 
 
-
-
-/*
-
-        // Initialize Firebase
-        mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            userRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUser.getUid());
-            userRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        String name = dataSnapshot.child("name").getValue(String.class);
-                        String dob = dataSnapshot.child("dob").getValue(String.class);
-                        String location = dataSnapshot.child("location").getValue(String.class);
-                        int height = dataSnapshot.child("height").getValue(Integer.class);
-                        double weight = dataSnapshot.child("weight").getValue(Double.class);
-
-                        nameText1.setText(name);
-                        dateText1.setText(dob);
-                        locationText1.setText(location);
-
-                        // Calculate and display BMI
-                        double bmiValue = weight / Math.pow(height / 100.0, 2);
-                        bmi1.setText(String.format("%.1f", bmiValue));
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Log.e("UserProfile", "Failed to read user data", databaseError.toException());
-                }
-            });
-        }
-        else {
-            // User is not signed in
-            Toast.makeText(this, "Please sign in to view your profile", Toast.LENGTH_SHORT).show();
-            finish();
-        }
-
-
- */
-
         // Set up the button to allow the user to change their profile information
         Button changeProfileInfo = findViewById(R.id.changeProfileInfo);
         changeProfileInfo.setOnClickListener(new View.OnClickListener() {
