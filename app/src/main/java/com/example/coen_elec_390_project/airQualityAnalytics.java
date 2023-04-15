@@ -52,11 +52,28 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
-
 public class airQualityAnalytics extends AppCompatActivity {
     private BarChart barChart;
     private DatabaseReference reference;
     private ListView listView;
+
+    /**
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *  Build.VERSION.SDK_INT: this is checking if the Android device which is running the mobile application
+     *     has an OS version of API 26) or later.
+     *  NotificationChannel channel: this is creating a notification channel in order to create a notification
+     *  getSupportActionBar(): this is going to be displaying the back button so that the user could go
+     *    back to the home page.
+     *  listView: this is going to be used in order to display the list of data that is analyzed by the sensors.
+     *  barChart: this is going to be used in order to display the data of the sensor graphically in a bar chart.
+     *  reference: this is going to be invoking the reference object in order to get the data from Firebase Real-Time Database
+     *  reference.ValueEventListener: invoked when there is a change in the data at a specific location in the database
+     *  NotificationManagerCompat: used in order to send notification. We use this for all of the metrics that have
+     *   higher than normal concentration of the metrics.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,7 +172,6 @@ public class airQualityAnalytics extends AppCompatActivity {
                 int customColor5 = Color.rgb(165,196,212);
                 int customColor6 = Color.rgb(129,5,97);
 
-
                 //define each data set in order to add them into the barDataSets
                 BarDataSet altitudeSet = new BarDataSet(altitude_data, "Altitude (m)");
                 altitudeSet.setColor(customColor1);
@@ -192,7 +208,7 @@ public class airQualityAnalytics extends AppCompatActivity {
                 int customChartBg = Color.rgb(222,229,255);
                 barChart.setBackgroundColor(customChartBg);
 
-                // Remove the grid
+                // --------Remove the grid-----------------
                 XAxis xAxis = barChart.getXAxis();
                 xAxis.setDrawGridLines(false);
                 xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -205,21 +221,17 @@ public class airQualityAnalytics extends AppCompatActivity {
                 YAxis rightAxis = barChart.getAxisRight();
                 rightAxis.setDrawGridLines(false);
                 rightAxis.setDrawAxisLine(false);
+                // --------Remove the grid-----------------
 
-                barData.notifyDataChanged();
-                barChart.notifyDataSetChanged();
-                barChart.invalidate();
-                adapter.notifyDataSetChanged();
-
+                barData.notifyDataChanged(); //notify the BarData that the data has changed to change the appearance of the chart
+                barChart.notifyDataSetChanged(); //notify that dataset has been changed
+                barChart.invalidate(); //visually update the chart
+                adapter.notifyDataSetChanged(); //notify adapter that dataset has changed
 
                 //----------------------CREATION OF NOTIFICATIONS--------------------------//
                 String co2String = list.get(1);
                 String[] value1 = co2String.split(": ", 2);
                 double co2Value = Double.parseDouble(value1[1]);
-
-//                String gasString = list.get(2);
-//                String [] value2 = gasString.split(": ", 2);
-//                double gasValue = Double.parseDouble(value2[1]);
 
                 if(co2Value > 1200) {
                     //notification code for high CO2 warning
@@ -320,7 +332,6 @@ public class airQualityAnalytics extends AppCompatActivity {
                     }
                     managerCompat.notify(4, builder.build());
                 }
-
 //                String tVOCString = list.get(7);
 //                String [] value7 = tVOCString.split(": ", 2);
 //                double tVOCValue = Double.parseDouble(value7[1]);
@@ -362,14 +373,10 @@ public class airQualityAnalytics extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
     private String convertToFahrenheit(Float value){
         return String.valueOf((value*1.80000)+32.00);
     }
-
     private String convertToBar(Float value){
         return String.valueOf(value * 0.01);
     }
-
-
 }
