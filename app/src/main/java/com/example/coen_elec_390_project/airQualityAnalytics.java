@@ -57,6 +57,7 @@ import com.google.firebase.messaging.RemoteMessage;
  * this class is going to be redirecting the user into the real-time air quality page where
  * we are going to be visualizing the real time change of data in a bar graph
  * there is also going to be the use of a ListView in order to see the data in a list format
+ *  @author David Molina (40111257), Asha Islam (40051511), Pavithra Sivagnanasuntharam(40117356)
  */
 public class airQualityAnalytics extends AppCompatActivity {
     private BarChart barChart;
