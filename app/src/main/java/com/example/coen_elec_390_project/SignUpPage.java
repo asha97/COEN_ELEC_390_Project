@@ -19,6 +19,11 @@ import android.widget.ProgressBar;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+/**
+ * this is a sign up page where the user is going to be entering their information
+ * and the information is going to be stored into the firebase
+ */
+
 public class SignUpPage extends AppCompatActivity {
     EditText editTextEmail, editTextPassword, editName, editDOB, editLocation, editWeight, editHeight;
     Button regButton, clickingTheLogin;
@@ -27,6 +32,10 @@ public class SignUpPage extends AppCompatActivity {
     TextView textView;
 
     //check if the person is already logged in
+
+    /**
+     * this is going to prompt the user to the home page
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -56,6 +65,9 @@ public class SignUpPage extends AppCompatActivity {
         clickingTheLogin = findViewById(R.id.clickLogin);
 
         //if they click the login page, they are going to be prompted to go to the login page
+        /**
+         * this is for the login button
+         */
         clickingTheLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,6 +78,9 @@ public class SignUpPage extends AppCompatActivity {
 
         });
 
+        /**
+         * this is for the registration button
+         */
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,6 +118,9 @@ public class SignUpPage extends AppCompatActivity {
                     return;
                 }
 
+                /**
+                 * this is the authentication process
+                 */
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
@@ -130,21 +148,22 @@ public class SignUpPage extends AppCompatActivity {
     }
 
     //open the home page
+
+    /**
+     * this is going to be prompting the user to the home page
+     */
     public void openHomePage() {
         Intent intent = new Intent(getApplicationContext(), HomePage.class);
         startActivity(intent);
-//        finish();
     }
 
     //open the user profile settings activity
     public void openUserSettings() {
         Intent intent = new Intent(getApplicationContext(), UserProfileSettings.class);
         startActivity(intent);
-//        finish();
     }
     public void openLogin() {
         Intent intent = new Intent(getApplicationContext(), LoginPage.class);
         startActivity(intent);
-//        finish();
     }
 }
