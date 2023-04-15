@@ -18,12 +18,19 @@ import android.widget.TextView;
 import android.widget.ProgressBar;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * the user is going to be asked to enter their credentials in order to log into their personal account
+ */
 public class LoginPage extends AppCompatActivity {
 
     EditText enterTextEmail, enterTextPassword;
     Button loginButton, regButton;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
+
+    /**
+     * after authentication, the user is going to be lead to the home page
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -47,6 +54,10 @@ public class LoginPage extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         regButton = findViewById(R.id.registerButton);
 
+        /**
+         * this is going to be prompting the user to go to the registration page
+         * if they do not have an account yet
+         */
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +69,9 @@ public class LoginPage extends AppCompatActivity {
 
         });
 
+        /**
+         * this is going to be prompting the user to enter their credentials in order to be lead to the home page
+         */
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +91,10 @@ public class LoginPage extends AppCompatActivity {
                     return;
                 }
 
+                /**
+                 * checking if the authentication process is successful or not
+                 * if it is successful, then the user is going to be prompted to the home page
+                 */
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override

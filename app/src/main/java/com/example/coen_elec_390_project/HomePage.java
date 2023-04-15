@@ -36,7 +36,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 /**
  * This class controls the backend of the Homepage
  * Notable features here are: the linegraph, the stopwatch, and the various button to take us to others activities (profile, profile settings, statistics, analysis)
- * @author David Molina (40111257), Asha Islam (), Pavithra Sivagnanasuntharam()
+ * @author David Molina (40111257), Asha Islam (40051511), Pavithra Sivagnanasuntharam(40117356)
  */
 public class HomePage extends AppCompatActivity {
 

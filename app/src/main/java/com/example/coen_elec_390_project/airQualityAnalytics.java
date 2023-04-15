@@ -52,21 +52,31 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
+
+/**
+ * this class is going to be redirecting the user into the real-time air quality page where
+ * we are going to be visualizing the real time change of data in a bar graph
+ * there is also going to be the use of a ListView in order to see the data in a list format
+ */
 public class airQualityAnalytics extends AppCompatActivity {
     private BarChart barChart;
     private DatabaseReference reference;
     private ListView listView;
 
     /**
+     * @author David Molina (40111257), Asha Islam (40051511), Pavithra Sivagnanasuntharam(40117356)
      *
      * @param savedInstanceState If the activity is being re-initialized after
      *     previously being shut down then this Bundle contains the data it most
      *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
      *  Build.VERSION.SDK_INT: this is checking if the Android device which is running the mobile application
      *     has an OS version of API 26) or later.
+     *
      *  NotificationChannel channel: this is creating a notification channel in order to create a notification
      *  getSupportActionBar(): this is going to be displaying the back button so that the user could go
      *    back to the home page.
+     *
      *  listView: this is going to be used in order to display the list of data that is analyzed by the sensors.
      *  barChart: this is going to be used in order to display the data of the sensor graphically in a bar chart.
      *  reference: this is going to be invoking the reference object in order to get the data from Firebase Real-Time Database
@@ -121,6 +131,10 @@ public class airQualityAnalytics extends AppCompatActivity {
                 ArrayList<BarEntry> temperature_data = new ArrayList<>();
 
                 int i = 0;
+                /**
+                 * this is going to iterate through the data and populate the array list with the
+                 * appropriate data.
+                 */
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     float value = Float.parseFloat(snapshot.getValue().toString());
                     //not going to be displaying the elapsed time
@@ -363,6 +377,13 @@ public class airQualityAnalytics extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     *
+     * @param item The menu item that was selected.
+     *        Method created to prompt the back button so that we could return to home page
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) { //go back to main activity
         switch (item.getItemId()) {
@@ -373,9 +394,20 @@ public class airQualityAnalytics extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    /**
+     * @param value: this is going to be taking the temperature value in celsius and convert it in Fahrenheit
+     * @return
+     */
     private String convertToFahrenheit(Float value){
         return String.valueOf((value*1.80000)+32.00);
     }
+
+    /**
+     * @param value: this is going to be taking the value of the pressure and is going to be
+     *        converting it into Bar
+     * @return
+     */
     private String convertToBar(Float value){
         return String.valueOf(value * 0.01);
     }

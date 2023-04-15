@@ -8,8 +8,10 @@ import android.widget.Button;
 import android.content.Intent;
 import android.view.View;
 
+/**
+ * activity which acts as a preamble for the sign up page
+ */
 public class SignUpInfo extends AppCompatActivity {
-
     Button signUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,9 @@ public class SignUpInfo extends AppCompatActivity {
         });
     }
 
+    /**
+     * this is going to the sign-up page
+     */
     private void goToSignUp(){
         Intent intent = new Intent(this, SignUpPage.class);
         startActivity(intent);
