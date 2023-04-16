@@ -19,11 +19,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * This class is responsible for the backend of the user profile settings page.
+ * Updating, fetching and presenting the user profile settings for each user
+ * @author David Molina (40111257), Asha Islam (40051511), Pavithra Sivagnanasuntharam(40117356)
+ */
 public class UserProfileSettings extends AppCompatActivity {
 
     Button saveUser;
     EditText user_name, user_date_of_birth, user_location, user_height, user_weight;
     User user;
+
+    /**
+     * The onCreate method, it initializes the user profile settings page
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +50,10 @@ public class UserProfileSettings extends AppCompatActivity {
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("users").child(uid);
         userReference.addValueEventListener((new ValueEventListener() {
+            /**
+             * Updates the user instance (of the user class) with the newest data (when it changes)
+             * @param dataSnapshot snapshot of the firebase database
+             */
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 user = dataSnapshot.getValue(User.class);
@@ -53,6 +67,10 @@ public class UserProfileSettings extends AppCompatActivity {
 
         //save button
         saveUser.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Saves the newest user profile settings into Firebase
+             * @param view the view in which this is done
+             */
             @Override
             public void onClick(View view) {
 
@@ -80,7 +98,10 @@ public class UserProfileSettings extends AppCompatActivity {
                 }
 
                 userReference.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    // display a Toast message to inform that the update is done successfully
+                    /**
+                     * Displays a Toast message to confirm successful save of their profile onto Firebase
+                     * @param task
+                     */
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()) {
@@ -95,6 +116,9 @@ public class UserProfileSettings extends AppCompatActivity {
         });
     }
 
+    /**
+     * Opens the home page
+     */
     public void openHomePage() {
         Intent intent = new Intent(getApplicationContext(), HomePage.class);
         startActivity(intent);

@@ -30,7 +30,6 @@ public class SignUpPage extends AppCompatActivity {
     Button regButton, clickingTheLogin;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
-    TextView textView;
 
     //check if the person is already logged in
 
@@ -65,7 +64,6 @@ public class SignUpPage extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         clickingTheLogin = findViewById(R.id.clickLogin);
 
-        //if they click the login page, they are going to be prompted to go to the login page
         /**
          * this is for the login button
          */
@@ -83,6 +81,11 @@ public class SignUpPage extends AppCompatActivity {
          * this is for the registration button
          */
         regButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Registration onClick button
+             * Registers a user
+             * @param view the view
+             */
             @Override
             public void onClick(View view) {
 
@@ -158,13 +161,4 @@ public class SignUpPage extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //open the user profile settings activity
-    public void openUserSettings() {
-        Intent intent = new Intent(getApplicationContext(), UserProfileSettings.class);
-        startActivity(intent);
-    }
-    public void openLogin() {
-        Intent intent = new Intent(getApplicationContext(), LoginPage.class);
-        startActivity(intent);
-    }
 }
