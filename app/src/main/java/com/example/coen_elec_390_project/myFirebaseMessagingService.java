@@ -10,7 +10,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 /**
  * This class is responsible for the notifications
- * It interacts with notifications with the Firebase Messaging service
+ * It interacts with notifications with the Firebase Messaging service.
  * @author David Molina (40111257), Asha Islam (40051511), Pavithra Sivagnanasuntharam(40117356)
  */
 public class myFirebaseMessagingService extends FirebaseMessagingService{
