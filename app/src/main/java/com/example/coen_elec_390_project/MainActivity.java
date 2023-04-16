@@ -49,10 +49,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    /**
+     * Goes to login page
+     */
     private void goToLogin(){
         Intent intent = new Intent(this, LoginPage.class);
         startActivity(intent);
     }
+
+    /**
+     * Goes to signup page
+     */
     private void goToSignUp(){
         Intent intent = new Intent(this, SignUpInfo.class);
         startActivity(intent);

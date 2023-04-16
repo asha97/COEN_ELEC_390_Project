@@ -55,11 +55,13 @@ public class LoginPage extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         regButton = findViewById(R.id.registerButton);
 
-        /**
-         * this is going to be prompting the user to go to the registration page
-         * if they do not have an account yet
-         */
+
         regButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * this is going to be prompting the user to go to the registration page
+             * if they do not have an account yet
+             * @param view the view
+             */
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SignUpPage.class);
@@ -70,10 +72,12 @@ public class LoginPage extends AppCompatActivity {
 
         });
 
-        /**
-         * this is going to be prompting the user to enter their credentials in order to be lead to the home page
-         */
+
         loginButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * this is going to be prompting the user to enter their credentials in order to be lead to the home page
+             * @param view the view
+             */
             @Override
             public void onClick(View view) {
                 //we want to see the progression of the sign up
@@ -92,12 +96,14 @@ public class LoginPage extends AppCompatActivity {
                     return;
                 }
 
-                /**
-                 * checking if the authentication process is successful or not
-                 * if it is successful, then the user is going to be prompted to the home page
-                 */
+
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            /**
+                             * checking if the authentication process is successful or not
+                             * if it is successful, then the user is going to be prompted to the home page
+                             * @param task the task
+                             */
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
@@ -122,7 +128,9 @@ public class LoginPage extends AppCompatActivity {
         });
     }
 
-    //open the home page
+    /**
+     * Opens the homepage
+     */
     public void openHomePage() {
         Intent intent = new Intent(getApplicationContext(), HomePage.class);
         startActivity(intent);

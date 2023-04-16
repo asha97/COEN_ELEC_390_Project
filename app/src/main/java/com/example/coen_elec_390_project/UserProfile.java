@@ -17,6 +17,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+/**
+ * This class handles the backend of the profile page
+ * Fetches newest info for each user profile, displays user info
+ * @author David Molina (40111257), Asha Islam (40051511), Pavithra Sivagnanasuntharam(40117356)
+ */
 public class UserProfile extends AppCompatActivity {
 
     // Declare class variables
@@ -29,6 +35,10 @@ public class UserProfile extends AppCompatActivity {
     private FirebaseUser currentUser;
 
     @Override
+    /**
+     * The onCreate method of the user profile page
+     * Initializes components of the profile page
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
@@ -47,6 +57,9 @@ public class UserProfile extends AppCompatActivity {
         DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users").child(uid); // Reference the "users" node and the specific user's data using their UID
         databaseRef.addValueEventListener(new ValueEventListener() {
             @Override
+            /**
+             * Fetches the newest profile data from Firebase, every time the profile information changes
+             */
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.child("name").getValue(String.class);
                 String dob = dataSnapshot.child("doB").getValue(String.class);
@@ -74,6 +87,9 @@ public class UserProfile extends AppCompatActivity {
         Button changeProfileInfo = findViewById(R.id.changeProfileInfo);
         changeProfileInfo.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * Opens the user profile settings page
+             */
             public void onClick(View v) {
                 // Open the EditProfile activity to allow the user to change their profile information
                 Intent intent = new Intent(UserProfile.this, UserProfileSettings.class);
@@ -82,7 +98,11 @@ public class UserProfile extends AppCompatActivity {
         });
     }
 
-    // Handle the back button press
+    /**
+     * Returns to the home page
+     * @param item the up navigation arrow
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
